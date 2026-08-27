@@ -1,0 +1,15 @@
+{
+  "schema_version": "pubmed-search-v1",
+  "database": "PubMed",
+  "searched_at_utc": "2026-08-27T10:59:31+00:00",
+  "query": "((\"Calcium, Dietary\"[Mesh] OR calcium supplement*[tiab] OR calcium supplementation[tiab]) AND (\"Fractures, Bone\"[Mesh] OR fracture*[tiab]) AND (random*[tiab] OR trial[tiab] OR \"Systematic Review\"[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (\"2025/02/20\"[Date - Publication] : \"3000\"[Date - Publication])",
+  "query_translation": "(\"calcium, dietary\"[MeSH Terms] OR \"calcium supplement*\"[Title/Abstract] OR \"calcium supplementation\"[Title/Abstract]) AND (\"fractures, bone\"[MeSH Terms] OR \"fracture*\"[Title/Abstract]) AND (\"random*\"[Title/Abstract] OR \"trial\"[Title/Abstract] OR \"Systematic Review\"[Publication Type] OR \"Systematic Review\"[Title/Abstract] OR \"meta analy*\"[Title/Abstract]) AND 2025/02/20:3000/12/31[Date - Publication]",
+  "total_hits": 11,
+  "exported_records": 11,
+  "retrieved_all_hits": true,
+  "explicit_truncation": false,
+  "sort": "pub date",
+  "abstracts_available": 11,
+  "warnings": {},
+  "ris_sha256": "fb1224991325f884d4e4a7029c76b40b49ec2c96e7f7ee63cef6867ee00ade49"
+}

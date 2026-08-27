@@ -1,0 +1,152 @@
+{
+  "title": "氨糖软骨素与关节疼痛",
+  "verdict": "conditional",
+  "for_whom": "只适用于已确诊膝骨关节炎、且产品配方与研究接近的人。",
+  "effect_ceiling": "即使有效，疼痛改善通常也很小，功能未见稳定改善。",
+  "safety_red_line": "关节红肿发热、外伤后剧痛或正在用抗凝药时，先就医或咨询药师。",
+  "why": {
+    "summary": "证据只对准膝骨关节炎，而且平均收益很小，不能外推到所有关节痛。",
+    "key_points": [
+      "2026年伞状综述纳入19份综述；多数方法学质量低或极低。",
+      "VAS疼痛出现小幅改善，但WOMAC疼痛和功能没有稳定改善。",
+      "氨糖与软骨素联用的结果并不比单一成分更确定，配方差异很大。"
+    ],
+    "better_options": [
+      "确诊膝骨关节炎后，运动、减重和规范止痛通常比盲买补充剂更优先。"
+    ]
+  },
+  "suitability": {
+    "intake_summary": [
+      "用户选择跳过点击式关键信息收集，本页按未确认疼痛关节、诊断和产品配方的一般情境生成。"
+    ],
+    "assumption": "暂按尚未确诊病因的一般关节疼痛提问处理。",
+    "user_match": "未知：尚不知道疼痛关节、是否确诊膝骨关节炎以及具体配方。",
+    "may_fit": [
+      "已确诊轻中度膝骨关节炎，了解预期收益很小，并愿意设置8至12周停止规则的人。"
+    ],
+    "avoid_or_check": [
+      "急性红肿热痛、创伤后疼痛、感染或炎症性关节病不能按膝骨关节炎证据自行处理。",
+      "使用华法林等抗凝药时先核对相互作用。"
+    ],
+    "remaining_uncertainties": [
+      "疼的是哪个关节，医生是否确诊骨关节炎？这决定证据集是否匹配。",
+      "产品里氨糖和软骨素各是什么形式、每天多少量？这决定能否外推研究结果。"
+    ]
+  },
+  "research": {
+    "picos": "P：成人膝骨关节炎；I：口服氨糖、软骨素或二者组合；C：安慰剂或非手术对照；O：疼痛、功能和不良事件；S：系统综述及随机对照试验；随访：数周至12个月。",
+    "effect": "2026年伞状综述显示VAS疼痛SMD -0.36，但WOMAC疼痛和功能无明确改善；显著效应处于或低于最小临床重要差异。",
+    "certainty": "低至极低（逐结局）",
+    "certainty_method": "source_grade",
+    "certainty_scope": "以检索至2025-11-25的多库伞状综述为历史基座；随后完整导出并单人筛查PubMed更新检索7条命中，纳入1份更新网络Meta。",
+    "certainty_reasons": [
+      "底层综述多数质量低或极低",
+      "盐型、剂量和结局测量差异大",
+      "平均效应小且部分比较依赖间接证据"
+    ],
+    "adjudication": [
+      {
+        "source": "2026年伞状综述",
+        "finding": "最多只有很小的疼痛改善，功能无稳定获益",
+        "why_differs": "按最小临床重要差异解释，并处理了综述间试验重叠",
+        "weight": "高：多库检索、预注册、双人筛选，但底层综述质量偏低"
+      },
+      {
+        "source": "2026年网络Meta",
+        "finding": "部分排名看似有利于氨糖软骨素",
+        "why_differs": "排名混合了直接和间接比较，且多数辅助比较为低或极低确定性",
+        "weight": "中低：可作更新交叉核对，不能靠SUCRA排名替代效应与确定性"
+      }
+    ],
+    "outcomes": [
+      {
+        "outcome": "膝骨关节炎疼痛",
+        "effect": "VAS平均改善很小；WOMAC疼痛未显示稳定差异，效应处于或低于临床重要阈值。",
+        "certainty": "低",
+        "why": "来源评级与方法审计均提示效应小、结果不一致且底层综述质量有限。",
+        "grade_domains": {
+          "risk_of_bias": "严重：多数底层综述被AMSTAR-2评为低或极低质量。",
+          "inconsistency": "严重：VAS与WOMAC结果不同，配方与随访差异明显。",
+          "indirectness": "严重：证据主要针对膝骨关节炎及特定盐型，不能外推到所有关节痛或商品。",
+          "imprecision": "严重性有限：总体样本不少，但效应靠近临床重要阈值且部分比较区间较宽。",
+          "dissemination_bias": "疑似：补充剂领域存在商业研究和阳性结果传播优势。"
+        }
+      },
+      {
+        "outcome": "身体功能",
+        "effect": "WOMAC总分和功能分量表未见明确改善。",
+        "certainty": "低",
+        "why": "结果较一致地显示缺少可感知功能获益，但底层证据方法学局限仍降低确信度。",
+        "grade_domains": {
+          "risk_of_bias": "严重：底层综述与试验质量参差。",
+          "inconsistency": "不严重：主要综合结果均未显示稳定功能获益。",
+          "indirectness": "严重：仅直接适用于膝骨关节炎和研究配方。",
+          "imprecision": "严重：不能排除小幅获益或伤害。",
+          "dissemination_bias": "疑似但未单独追加降级：商业研究与选择性传播风险存在。"
+        }
+      }
+    ],
+    "evidence_base": {
+      "approach": "existing_review_plus_pubmed_update",
+      "summary": "采用2026年《Frontiers in Nutrition》氨糖膝骨关节炎伞状综述作为历史基座；其检索覆盖MEDLINE、Embase、Web of Science和Cochrane Library至2025-11-25。",
+      "appraisal": "综述预注册、双人筛选、使用AMSTAR-2并处理重叠试验；但纳入的19份综述多数为低或极低质量，剂型和剂量报告不充分。",
+      "search_end": "2025-11-25"
+    },
+    "search": {
+      "database": "PubMed",
+      "query": "((\"Glucosamine\"[Mesh] OR glucosamine[tiab] OR \"Chondroitin Sulfates\"[Mesh] OR chondroitin[tiab]) AND (\"Osteoarthritis, Knee\"[Mesh] OR knee osteoarthriti*[tiab]) AND (pain[tiab] OR function[tiab]) AND (random*[tiab] OR trial[tiab] OR \"Systematic Review\"[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (\"2025/11/26\"[Date - Publication] : \"3000\"[Date - Publication])",
+      "query_translation": "(\"Glucosamine\"[MeSH Terms] OR \"Glucosamine\"[Title/Abstract] OR \"Chondroitin Sulfates\"[MeSH Terms] OR \"chondroitin\"[Title/Abstract]) AND (\"osteoarthritis, knee\"[MeSH Terms] OR \"knee osteoarthriti*\"[Title/Abstract]) AND (\"pain\"[Title/Abstract] OR \"function\"[Title/Abstract]) AND (\"random*\"[Title/Abstract] OR \"trial\"[Title/Abstract] OR \"Systematic Review\"[Publication Type] OR \"Systematic Review\"[Title/Abstract] OR \"meta analy*\"[Title/Abstract]) AND 2025/11/26:3000/12/31[Date - Publication]",
+      "searched_at": "2026-08-27",
+      "records_found": 7,
+      "records_exported": 7,
+      "records_screened": 7,
+      "full_text_assessed": 1,
+      "reports_included": 1,
+      "studies_included": 1,
+      "complete_retrieval": true,
+      "screening_complete": true,
+      "limits": "PubMed更新检索由单人筛选；历史基座覆盖多库，但本次未重新提取其全部底层试验。"
+    },
+    "eligibility": {
+      "inclusion": [
+        "P：成人膝骨关节炎。",
+        "I：口服氨糖、软骨素或二者组合。",
+        "C：安慰剂、无补充或非手术对照。",
+        "O：疼痛、身体功能或不良事件。",
+        "S：系统综述、Meta分析或随机对照试验。"
+      ],
+      "exclusion": [
+        "其他关节痛病因、动物或体外研究。",
+        "关节腔注射或无法分离氨糖软骨素作用的复杂共干预。",
+        "方案、叙述性综述或未报告目标结局。"
+      ],
+      "exclusion_log": [
+        {"reason": "历史基座本身，不重复计入更新", "count": "1"},
+        {"reason": "PICOS或研究设计不匹配", "count": "5"}
+      ]
+    },
+    "funding": "历史基座未报告行业资助本综述；底层补充剂试验的商业资助情况不一。",
+    "what_would_change": [
+      "出现由独立团队完成、配方明确、样本充分并达到临床重要差异的长期随机试验。",
+      "确认用户已诊断膝骨关节炎且产品盐型、剂量与获益试验高度匹配。"
+    ],
+    "updated": "2026-08-27",
+    "sources": [
+      {
+        "label": "2026年氨糖膝骨关节炎伞状综述",
+        "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2026.1806413/full",
+        "role": "历史证据基座",
+        "year": 2026
+      },
+      {
+        "label": "2026年氨糖软骨素膝骨关节炎网络Meta",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42558409/",
+        "role": "更新证据",
+        "year": 2026
+      }
+    ],
+    "meta": "本案例审计现有综述，不重复进行原创Meta或重复计算底层试验。",
+    "grade": "采用来源已有的GRADE/CINeMA判断并核查更新证据；疼痛和功能总体为低至极低确定性。",
+    "rob": "主要局限为底层综述质量低、试验重叠、配方异质性以及小效应接近临床重要阈值。"
+  }
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>__TITLE__ · 营养证据卡</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --panel:#fff; --ink:#172033; --muted:#667085; --line:#dfe4ec;
+      --accent:#265d97; --accent-soft:#edf5ff; --danger:#9e332d; --danger-soft:#fff2f0;
+      --shadow:0 18px 50px rgba(23,32,51,.10);
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,"PingFang SC","Microsoft YaHei",sans-serif; }
+    main { width:min(760px,calc(100% - 24px)); margin:32px auto; }
+    .shell { background:var(--panel); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+    header { padding:28px 28px 8px; }
+    .eyebrow { color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:5px 0 0; font-size:22px; font-weight:650; }
+    .decision { padding:18px 28px 26px; }
+    .verdict { margin:0 0 20px; color:var(--VERDICT_COLOR__); font-size:clamp(30px,7vw,48px); line-height:1.16; letter-spacing:-.03em; }
+    .essentials { display:grid; gap:10px; }
+    .essential { border:1px solid var(--line); border-radius:14px; padding:13px 15px; background:#fff; }
+    .essential strong { display:block; margin-bottom:2px; font-size:13px; color:var(--muted); }
+    .essential.safety { border-color:#f2cbc7; background:var(--danger-soft); }
+    .actions { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:0 28px 28px; }
+    details { border-top:1px solid var(--line); background:var(--panel); }
+    summary { list-style:none; cursor:pointer; font-weight:650; }
+    summary::-webkit-details-marker { display:none; }
+    .actions summary { display:flex; justify-content:center; align-items:center; min-height:48px; padding:8px 10px; border:1px solid var(--accent); border-radius:12px; color:var(--accent); background:var(--accent-soft); text-align:center; }
+    .actions summary:focus-visible { outline:3px solid rgba(38,93,151,.28); outline-offset:2px; }
+    .actions details[open] { grid-column:1/-1; }
+    .actions details[open] summary { color:#fff; background:var(--accent); }
+    .action-body { margin-top:4px; padding:20px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .action-body h2 { margin:0 0 10px; font-size:20px; }
+    .action-body h3 { margin:20px 0 6px; font-size:16px; }
+    .action-body p { margin:7px 0; }
+    .action-body ul { margin:7px 0; padding-left:1.35em; }
+    .action-body li + li { margin-top:5px; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:12px 0; }
+    .research-grid div { border:1px solid var(--line); border-radius:12px; padding:11px 12px; }
+    .research-grid strong { display:block; color:var(--muted); font-size:12px; }
+    .table-wrap { width:100%; overflow-x:auto; margin:10px 0 14px; }
+    table { width:100%; border-collapse:collapse; min-width:650px; font-size:14px; }
+    th,td { border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+    th { color:var(--muted); background:var(--accent-soft); font-size:12px; }
+    .nested { margin-top:12px; border:1px solid var(--line); border-radius:12px; }
+    .nested summary { padding:11px 13px; }
+    .nested .inner { padding:0 13px 13px; color:var(--muted); }
+    .sources { padding-left:1.2em; }
+    .access-warning { margin:12px 0; padding:14px 16px; border:1px solid #e8b96b; border-radius:14px; background:#fff7e8; color:#5f4515; }
+    .access-warning strong { display:block; margin-bottom:4px; }
+    .access-dialog { width:min(620px,calc(100% - 28px)); border:1px solid #e8b96b; border-radius:18px; padding:24px; background:#fffdf8; color:#172033; box-shadow:0 24px 70px rgba(23,32,51,.22); }
+    .access-dialog::backdrop { background:rgba(23,32,51,.36); }
+    .access-dialog h2 { margin:3px 0 10px; font-size:22px; }
+    .access-dialog p { margin:8px 0; }
+    .dialog-kicker { color:#8a5c0a; font-size:13px; font-weight:700; letter-spacing:.08em; }
+    .dialog-close { float:right; border:1px solid var(--line); border-radius:10px; padding:7px 11px; background:#fff; color:#475467; cursor:pointer; }
+    a { color:var(--accent); overflow-wrap:anywhere; }
+    @media (max-width:620px) {
+      main { margin:12px auto; }
+      header,.decision { padding-left:18px; padding-right:18px; }
+      .actions { grid-template-columns:1fr; padding:0 18px 20px; }
+      .action-body { grid-column:auto; }
+      .research-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .action-body { animation:reveal .16s ease-out; }
+      @keyframes reveal { from { opacity:.35; transform:translateY(-3px); } }
+    }
+    @media (prefers-color-scheme:dark) {
+      :root { --bg:#111827; --panel:#182132; --ink:#f2f4f7; --muted:#aab4c4; --line:#344054; --accent:#8fc2ff; --accent-soft:#203b5b; --danger:#ffaaa2; --danger-soft:#442624; --shadow:none; }
+      .essential,.action-body { background:#182132; }
+    }
+    @media print {
+      body { background:#fff; }
+      main { width:100%; margin:0; }
+      .shell { border:0; box-shadow:none; }
+      .actions { display:block; }
+      .actions details { display:block; margin-top:12px; }
+      .actions summary { justify-content:flex-start; border:0; padding:0; background:none!important; color:#000!important; }
+      .action-body { display:block!important; border:0; padding:8px 0 16px; }
+      .access-dialog { position:static; width:100%; box-shadow:none; }
+    }
+  </style>
+</head>
+<body>
+__ACCESS_DIALOG__
+<main>
+  <article class="shell" aria-labelledby="title">
+    <header>
+      <div class="eyebrow">营养证据卡</div>
+      <h1 id="title">__TITLE__</h1>
+    </header>
+    <section class="decision" aria-label="购买与使用建议">
+      <p class="verdict" data-testid="verdict">__VERDICT__</p>
+      <div class="essentials">
+        <div class="essential" data-testid="for-whom"><strong>对谁可能有用</strong>__FOR_WHOM__</div>
+        <div class="essential" data-testid="effect-ceiling"><strong>效果上限</strong>__EFFECT_CEILING__</div>
+        <div class="essential safety" data-testid="safety-red-line"><strong>安全红线</strong>__SAFETY_RED_LINE__</div>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="展开详细内容">
+      <details data-testid="why">
+        <summary>为什么</summary>
+        <div class="action-body">__WHY_HTML__</div>
+      </details>
+      <details data-testid="suitability">
+        <summary>适不适合我</summary>
+        <div class="action-body">__SUITABILITY_HTML__</div>
+      </details>
+      <details data-testid="research">
+        <summary>证据怎么裁决</summary>
+        <div class="action-body">__RESEARCH_HTML__</div>
+      </details>
+    </section>
+  </article>
+</main>
+</body>
+</html>

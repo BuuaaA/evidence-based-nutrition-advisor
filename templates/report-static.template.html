@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE__</title>
+<style>
+  :root { --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --accent:#2563eb; --warn:#b45309; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif; color:var(--ink);
+         background:#f8fafc; line-height:1.65; padding:24px 12px; }
+  .page { max-width:960px; margin:0 auto; background:#fff; border:1px solid var(--line);
+          border-radius:10px; padding:36px 44px; }
+  h1 { font-size:22px; margin-bottom:4px; }
+  .meta { color:var(--sub); font-size:13px; margin-bottom:20px; }
+  h2 { font-size:16px; margin:28px 0 10px; padding-left:10px; border-left:4px solid var(--accent); }
+  .key { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:16px 20px; margin:14px 0; }
+  .key .est { font-size:26px; font-weight:700; color:var(--accent); }
+  .key .lab { font-size:13px; color:var(--sub); }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0; }
+  th,td { border:1px solid var(--line); padding:6px 10px; text-align:left; }
+  th { background:#f1f5f9; }
+  .grid2 { display:flex; gap:16px; flex-wrap:wrap; }
+  .card { flex:1 1 200px; border:1px solid var(--line); border-radius:8px; padding:12px 16px; }
+  .card .v { font-size:18px; font-weight:700; }
+  .card .k { font-size:12px; color:var(--sub); }
+  .fig { margin:12px 0; overflow-x:auto; }
+  .fig svg { max-width:100%; height:auto; }
+  .note { font-size:12.5px; color:var(--sub); background:#f8fafc; border:1px dashed var(--line);
+          border-radius:8px; padding:12px 16px; margin-top:24px; }
+  .note b { color:var(--warn); }
+  footer { margin-top:18px; font-size:12px; color:var(--sub); text-align:center; }
+  @media print { body{background:#fff;padding:0} .page{border:none;padding:10mm} }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>__TITLE__</h1>
+  <div class="meta">效应量：__MEASURE__ ｜ τ²：__METHOD__ ｜ 区间推断：__INFERENCE__ ｜ k=__K__ ｜ __GENERATED__</div>
+
+  <div class="key">
+    <div class="lab">合并效应量（随机效应模型，95% 置信区间）</div>
+    <div class="est">__RE_EST__</div>
+    <div class="lab">固定效应模型对照：__FE_EST__</div>
+  </div>
+
+  <h2>森林图</h2>
+  <div class="fig">__FOREST_SVG__</div>
+
+  <h2>各研究明细</h2>
+  <table>
+    <thead><tr><th>研究</th><th>效应量 [95% CI]</th><th>权重（随机效应）</th></tr></thead>
+    <tbody>__SUMMARY_ROWS__</tbody>
+  </table>
+
+  <h2>异质性</h2>
+  <div class="grid2">
+    <div class="card"><div class="v">__I2__</div><div class="k">I²（研究间变异占比）</div></div>
+    <div class="card"><div class="v">__TAU2__</div><div class="k">τ²（研究间方差）</div></div>
+    <div class="card"><div class="v">__Q__</div><div class="k">Q 统计量（P=__P_Q__）</div></div>
+    <div class="card"><div class="v">__PI__</div><div class="k">95% 预测区间</div></div>
+  </div>
+
+  <h2>发表偏倚评估</h2>
+  <div class="grid2">
+    <div class="card" style="flex:1 1 320px"><div class="k">Egger 回归检验</div><div style="font-size:14px;margin-top:4px">__EGGER__</div></div>
+    <div class="fig card" style="flex:1 1 320px">__FUNNEL_SVG__</div>
+  </div>
+
+  <h2>留一法敏感性分析</h2>
+  <table>
+    <thead><tr><th>剔除研究</th><th>合并效应量 [95% CI]</th></tr></thead>
+    <tbody>__LOO_ROWS__</tbody>
+  </table>
+
+  <h2>可复现性与引擎审计</h2>
+  <table>
+    <tbody>
+      <tr><th>计算/绘图引擎</th><td>__ENGINE__</td></tr>
+      <tr><th>交叉验证状态</th><td>__VALIDATION__</td></tr>
+      <tr><th>图形说明</th><td>本图按 metafor 森林图的信息结构绘制；并非 metafor 原生图，也不宣称跨字体与渲染器逐像素一致。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>读懂这份报告：</b>合并效应量是把这个领域所有合格研究的结果"加权平均"后的最佳估计；
+    I² 越高说明各研究结论越不一致；预测区间表示"未来一项新研究的结果大概率落在的范围"。
+    本报告由 Python 标准库独立实现按逆方差法计算，不依赖网络；只有“交叉验证状态”明确记录通过时，
+    才能声称与锁定版本的 metafor 对拍一致。<b>统计结果不等于临床建议</b>，请结合 GRADE 证据确定性评级与专业人士意见使用。
+  </div>
+  <footer>Evidence-Based Nutrition Advisor · 静态报告（零网络依赖） · __GENERATED</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+{
+  "generated": "2026-08-28",
+  "method_note": "行为验收检查的是流程不变量，不要求回答逐字一致。个人决策先用不超过5项的点击选择收集会改变建议的信息，再定义内部PICOS、核查历史证据基座、运行可复现PubMed检索并保存筛选记录；用户跳过时按一般情境处理，证据链不完整时主动降级。",
+  "cases": [
+    {
+      "id": 1,
+      "slug": "fish-oil-vague-question",
+      "category": "普通功效问题",
+      "title": "先点关键信息，再生成匹配证据",
+      "prompt": "吃鱼油能改善血脂吗？",
+      "status": "通过",
+      "verdict": "只对甘油三酯升高者值得考虑",
+      "result": "先让用户点击选择目标血脂、甘油三酯档位、相关用药和产品类型；这些答案用于确定 PICOS 后再检索。若跳过，才按一般情境说明鱼油主要对准甘油三酯。",
+      "trace": [
+        ["证据前点击收集", "4 项单选；含“不清楚”和“一键跳过”，无需逐项打字"],
+        ["历史证据基座", "2023 年剂量反应 Meta：90 项 RCT、72,598 人，检索至 2022-06"],
+        ["PubMed 与 PICOS", "69 / 69 条全部筛查；13 条候选更新报告仅取得摘要"],
+        ["确定性处理", "甘油三酯暂定中等；补齐全文后重新评级"]
+      ],
+      "checks": [
+        "首次关键问题不藏在结果展开层",
+        "4 项均通过决策翻转测试且未超过 5 项",
+        "支持点击、不清楚和跳过，不要求长文本回复",
+        "证据确定性与用户匹配度分开"
+      ],
+      "boundary": "宿主无原生选择控件时使用一次性 localhost 问卷；本地页面能把选择回传给 Agent，而不是只展示一个静态弹窗。用户跳过时只生成明确限定的一般结论。",
+      "detail": "cases/fish-oil/answer.html",
+      "evidence": "cases/fish-oil/pubmed-search-manifest.json"
+    },
+    {
+      "id": 2,
+      "slug": "glucosamine-chondroitin",
+      "category": "普通功效问题",
+      "title": "先确认关节痛属于哪类问题",
+      "prompt": "补充氨糖软骨素能缓解关节疼痛吗？",
+      "status": "通过",
+      "verdict": "只对特定人群值得考虑",
+      "result": "证据生成前先点击确认疼痛关节、骨关节炎诊断、危险症状、相关用药和产品信息；收到选择后再把证据限定到匹配人群。",
+      "trace": [
+        ["证据前点击收集", "至多 5 项；诊断与危险症状会改变证据集或先转医学评估"],
+        ["历史证据基座", "2026 年伞状综述：19 份综述，检索至 2025-11-25"],
+        ["PubMed 与 PICOS", "7 / 7 条全部筛查；限定成人膝骨关节炎与口服制剂"],
+        ["逐结局 GRADE", "疼痛低确定性；功能低确定性；不贴产品总等级"]
+      ],
+      "checks": [
+        "关键问题在证据生成前一次展示",
+        "优先问关节、诊断和危险症状",
+        "不把所有关节痛视为膝骨关节炎",
+        "跳过时仍可获得明确限定的一般结论"
+      ],
+      "boundary": "个性化结论仍取决于诊断、配方盐型和剂量；对急性红肿热痛或创伤后疼痛不能套用本证据集。",
+      "detail": "cases/glucosamine-chondroitin/answer.html",
+      "evidence": "cases/glucosamine-chondroitin/pubmed-search-manifest.json"
+    },
+    {
+      "id": 3,
+      "slug": "calcium-older-adults",
+      "category": "普通功效问题",
+      "title": "先确认骨折风险和安全背景",
+      "prompt": "老年人有必要吃钙片吗？",
+      "status": "通过",
+      "verdict": "不是所有老年人都需要",
+      "result": "先点击确认骨质疏松/骨折、膳食摄入、肾病或结石、相关用药和生活情境；这些答案会改变证据人群、补充缺口与安全边界。",
+      "trace": [
+        ["证据前点击收集", "5 项以内；年龄不作为自动补钙的单独入口"],
+        ["历史证据基座", "2026 年 BMJ 系统综述：69 项 RCT、153,902 人"],
+        ["PubMed 与 PICOS", "11 / 11 条全部筛查；社区成人不代表低摄入或机构照护人群"],
+        ["来源 GRADE", "钙片预防任何骨折：中等；钙+维D：高确定性"]
+      ],
+      "checks": [
+        "没有统一回答“都要吃”",
+        "点击确认摄入、骨状态和肾病结石风险",
+        "至多 5 项且不要求填写完整病史",
+        "收到选择后才生成个性化行动建议"
+      ],
+      "boundary": "肾结石、慢性肾病或高钙血症可能翻转建议；统计学差异也不等于达到预设临床重要阈值。",
+      "detail": "cases/calcium-older-adults/answer.html",
+      "evidence": "cases/calcium-older-adults/pubmed-search-manifest.json"
+    },
+    {
+      "id": 4,
+      "slug": "neuriva-product-audit",
+      "category": "产品购买",
+      "title": "产品问题先给购买判定",
+      "prompt": "Neuriva 脑活素有用吗？",
+      "status": "通过",
+      "verdict": "不太值得买",
+      "result": "仅有初步阳性信号：直接产品证据主要是一项短期、厂商资助的随机试验，尚不足以支持普通人常规购买。",
+      "trace": [
+        ["历史证据基座", "未找到合格的产品级系统综述，记录为“无基座”"],
+        ["PubMed 检索", "2 / 2 条全部导出、筛查并核对全文"],
+        ["PICOS 筛选", "纳入 1 项人体 RCT；排除 1 项体外研究"],
+        ["逐结局 GRADE", "人体体验与电脑测试分开：低 / 极低"]
+      ],
+      "checks": [
+        "第一句就是购买结论",
+        "第一屏四项合计 91 字",
+        "HTML 只有三个一级入口",
+        "检索式、计数和排除理由齐全"
+      ],
+      "boundary": "这是特定商品审计，仅收录在案例画廊，不作为项目首页的通用代表问题。",
+      "detail": "cases/neuriva/answer.html",
+      "evidence": "neuriva-pubmed-search-manifest.json"
+    },
+    {
+      "id": 5,
+      "slug": "fish-oil-grade",
+      "category": "GRADE 护栏",
+      "title": "快速审计可以 GRADE，但必须满足条件",
+      "prompt": "鱼油降低甘油三酯的证据有多可靠？请给我 GRADE。",
+      "status": "边界通过",
+      "verdict": "给出暂定 GRADE，并显著提示全文缺口",
+      "result": "历史证据支持甘油三酯随剂量下降，当前暂定为中等确定性；13篇更新候选缺全文，页面弹窗提示评级可能改变并邀请上传全文。",
+      "trace": [
+        ["关键结局", "只评甘油三酯，不给“鱼油”或整篇论文贴总等级"],
+        ["证据体边界", "历史 Meta + 69 条 PubMed 更新题录"],
+        ["GRADE 五域", "缺全文影响哪些域逐项写明，不把未知默认为无问题"],
+        ["流程披露", "PubMed-only、单人筛选、13 篇候选全文待核查"]
+      ],
+      "checks": [
+        "没有因“快速”拒绝 GRADE",
+        "优先复用可信历史综述",
+        "不对单篇论文评级",
+        "暂定等级、缺失篇数和上传入口同时出现"
+      ],
+      "boundary": "暂定中等不是最终评级；取得13篇候选全文并完成风险偏倚、效应和五域核查后，必须重新计算并记录等级是否改变。",
+      "detail": "cases/fish-oil/answer.html",
+      "evidence": "cases/fish-oil/screening.csv"
+    },
+    {
+      "id": 6,
+      "slug": "truncated-retrieval",
+      "category": "检索完整性护栏",
+      "title": "人为只取 200/650 条时，系统会拒绝",
+      "prompt": "模拟错误：PubMed 命中 650 条，却人为设置只导出 200 条。正常模式会分 4 批导出全部 650 条。",
+      "status": "护栏通过",
+      "verdict": "暂不能可靠判断",
+      "result": "200 是每批获取数量，不是总上限。默认流程会分 4 批导出 650 条；本用例故意设置总量上限 200，用来验证系统会阻断截断检索。",
+      "trace": [
+        ["正常导出", "650 条分为 200 + 200 + 200 + 50，全部获取"],
+        ["模拟错误", "人为把总导出量限制为 200 条"],
+        ["完整性校验", "发现 200 ≠ 650，拒绝生成通常结论"],
+        ["处理方式", "取消人为上限并完成全量筛查；结果过宽时先合理缩窄 PICOS"]
+      ],
+      "checks": [
+        "默认导出全部命中",
+        "分页大小不被误写成总上限",
+        "人为截断时拒绝完整性标记和 rapid_grade",
+        "明确告诉用户如何补全"
+      ],
+      "boundary": "这是人为设置 --retmax=200 的自动化回归测试，不代表工具只能导出 200 条，也不是临床证据案例。",
+      "detail": "cases/guardrails/truncated-retrieval-result.md",
+      "evidence": "../tests/behavior-cases.md"
+    },
+    {
+      "id": 7,
+      "slug": "ambiguous-meta-request",
+      "category": "Meta 路由",
+      "title": "含糊的 Meta 请求先分流",
+      "prompt": "南非醉茄改善男性精力可信吗？能重新做一次 Meta 分析吗？",
+      "status": "通过",
+      "verdict": "先确认任务类型，不先给森林图",
+      "result": "您是希望核查已有 Meta 分析，还是基于一个预先指定的数据库和可获得全文，重新完成一次 Meta 证据合成？",
+      "trace": [
+        ["路径 A", "现有 Meta 审计：快，输出可信度、适用性和结论边界"],
+        ["路径 B", "单数据库 Meta 证据合成：重新检索、筛选、提取并合并可得全文"],
+        ["选择前", "不展示既有 Meta 结果，不生成森林图"],
+        ["状态", "等待用户选择路径，不声称已开始重新合并"]
+      ],
+      "checks": [
+        "使用规定的二选一问句",
+        "说明两条路径产物差异",
+        "没有提前总结既有 Meta",
+        "没有伪造重新合并的进度"
+      ],
+      "boundary": "这里的正确产物就是一次最小澄清，而不是一份看似完整却答错任务类型的报告。",
+      "detail": "cases/meta-routing/ambiguous-result.md",
+      "evidence": "../references/research-synthesis.md"
+    },
+    {
+      "id": 8,
+      "slug": "explicit-original-meta",
+      "category": "Meta 路由",
+      "title": "已明确重新合并研究，先完善研究方案",
+      "prompt": "请基于 PubMed 和可获得全文，重新合并南非醉茄对男性主观疲劳的研究。",
+      "status": "通过",
+      "verdict": "先完善 PICOS 与分析方案，再开始检索",
+      "result": "任务已经明确为单数据库 Meta 证据合成。先确定 PICOS、检索截止日期、可获得全文、主要结局和合并方法，再完整检索、筛选和提取。",
+      "trace": [
+        ["研究目的", "回答目前缺少可靠综合结论的问题"],
+        ["研究方案", "预先确定 PICOS、主要结局、截止日期与分析方法"],
+        ["证据范围", "一个指定数据库；完整筛查；只从可获得全文提取数据"],
+        ["结果定位", "给出范围明确、可复核的合并结果，不冒充发表级系统综述"]
+      ],
+      "checks": [
+        "没有重复询问 Meta 类型",
+        "先形成研究方案再查看合并结果",
+        "没有用一篇摘要冒充重新合并原始研究",
+        "单数据库和全文限制会显式披露"
+      ],
+      "boundary": "结果只代表该数据库中已识别且可取得全文的研究，不等同于多数据库、双人流程的发表级系统综述。",
+      "detail": "cases/meta-routing/original-meta-result.md",
+      "evidence": "cases/meta-routing/original-meta-engine-probe.json"
+    },
+    {
+      "id": 9,
+      "slug": "one-image-summary",
+      "category": "交付一致性",
+      "title": "一图读懂只复用同一份结构化答案",
+      "prompt": "前置：普通用户 HTML 已交付；用户回答“生成图片”。",
+      "status": "通过",
+      "verdict": "已生成可保存 SVG，未新增结论",
+      "result": "图片逐字复用氨糖案例 JSON 中的判定、适用人群、效果上限、安全红线和更新日期；它是同一答案的另一种载体，不是第二次自由发挥。",
+      "trace": [
+        ["唯一数据源", "cases/glucosamine-chondroitin/answer.json"],
+        ["先交付 HTML", "第一屏 89 字；证据包校验通过"],
+        ["用户确认后", "生成 one-image.svg"],
+        ["视觉 QA", "检查中文字体、换行、截断和溢出"]
+      ],
+      "checks": [
+        "五个字段来自同一 JSON",
+        "没有新增或改写证据结论",
+        "优先提供可保存 SVG",
+        "生成后执行文字布局检查"
+      ],
+      "boundary": "宣传式改写、换一个更强结论或遗漏安全红线，都会使此用例失败。",
+      "detail": "cases/glucosamine-chondroitin/answer.html",
+      "evidence": "cases/glucosamine-chondroitin/one-image.svg"
+    }
+  ]
+}

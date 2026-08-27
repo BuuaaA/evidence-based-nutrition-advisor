@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>鱼油与血脂 · 营养证据卡</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --panel:#fff; --ink:#172033; --muted:#667085; --line:#dfe4ec;
+      --accent:#265d97; --accent-soft:#edf5ff; --danger:#9e332d; --danger-soft:#fff2f0;
+      --shadow:0 18px 50px rgba(23,32,51,.10);
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,"PingFang SC","Microsoft YaHei",sans-serif; }
+    main { width:min(760px,calc(100% - 24px)); margin:32px auto; }
+    .shell { background:var(--panel); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+    header { padding:28px 28px 8px; }
+    .eyebrow { color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:5px 0 0; font-size:22px; font-weight:650; }
+    .decision { padding:18px 28px 26px; }
+    .verdict { margin:0 0 20px; color:var(--VERDICT_COLOR__); font-size:clamp(30px,7vw,48px); line-height:1.16; letter-spacing:-.03em; }
+    .essentials { display:grid; gap:10px; }
+    .essential { border:1px solid var(--line); border-radius:14px; padding:13px 15px; background:#fff; }
+    .essential strong { display:block; margin-bottom:2px; font-size:13px; color:var(--muted); }
+    .essential.safety { border-color:#f2cbc7; background:var(--danger-soft); }
+    .actions { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:0 28px 28px; }
+    details { border-top:1px solid var(--line); background:var(--panel); }
+    summary { list-style:none; cursor:pointer; font-weight:650; }
+    summary::-webkit-details-marker { display:none; }
+    .actions summary { display:flex; justify-content:center; align-items:center; min-height:48px; padding:8px 10px; border:1px solid var(--accent); border-radius:12px; color:var(--accent); background:var(--accent-soft); text-align:center; }
+    .actions summary:focus-visible { outline:3px solid rgba(38,93,151,.28); outline-offset:2px; }
+    .actions details[open] { grid-column:1/-1; }
+    .actions details[open] summary { color:#fff; background:var(--accent); }
+    .action-body { margin-top:4px; padding:20px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .action-body h2 { margin:0 0 10px; font-size:20px; }
+    .action-body h3 { margin:20px 0 6px; font-size:16px; }
+    .action-body p { margin:7px 0; }
+    .action-body ul { margin:7px 0; padding-left:1.35em; }
+    .action-body li + li { margin-top:5px; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:12px 0; }
+    .research-grid div { border:1px solid var(--line); border-radius:12px; padding:11px 12px; }
+    .research-grid strong { display:block; color:var(--muted); font-size:12px; }
+    .table-wrap { width:100%; overflow-x:auto; margin:10px 0 14px; }
+    table { width:100%; border-collapse:collapse; min-width:650px; font-size:14px; }
+    th,td { border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+    th { color:var(--muted); background:var(--accent-soft); font-size:12px; }
+    .nested { margin-top:12px; border:1px solid var(--line); border-radius:12px; }
+    .nested summary { padding:11px 13px; }
+    .nested .inner { padding:0 13px 13px; color:var(--muted); }
+    .sources { padding-left:1.2em; }
+    .access-warning { margin:12px 0; padding:14px 16px; border:1px solid #e8b96b; border-radius:14px; background:#fff7e8; color:#5f4515; }
+    .access-warning strong { display:block; margin-bottom:4px; }
+    .access-dialog { width:min(620px,calc(100% - 28px)); border:1px solid #e8b96b; border-radius:18px; padding:24px; background:#fffdf8; color:#172033; box-shadow:0 24px 70px rgba(23,32,51,.22); }
+    .access-dialog::backdrop { background:rgba(23,32,51,.36); }
+    .access-dialog h2 { margin:3px 0 10px; font-size:22px; }
+    .access-dialog p { margin:8px 0; }
+    .dialog-kicker { color:#8a5c0a; font-size:13px; font-weight:700; letter-spacing:.08em; }
+    .dialog-close { float:right; border:1px solid var(--line); border-radius:10px; padding:7px 11px; background:#fff; color:#475467; cursor:pointer; }
+    a { color:var(--accent); overflow-wrap:anywhere; }
+    @media (max-width:620px) {
+      main { margin:12px auto; }
+      header,.decision { padding-left:18px; padding-right:18px; }
+      .actions { grid-template-columns:1fr; padding:0 18px 20px; }
+      .action-body { grid-column:auto; }
+      .research-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .action-body { animation:reveal .16s ease-out; }
+      @keyframes reveal { from { opacity:.35; transform:translateY(-3px); } }
+    }
+    @media (prefers-color-scheme:dark) {
+      :root { --bg:#111827; --panel:#182132; --ink:#f2f4f7; --muted:#aab4c4; --line:#344054; --accent:#8fc2ff; --accent-soft:#203b5b; --danger:#ffaaa2; --danger-soft:#442624; --shadow:none; }
+      .essential,.action-body { background:#182132; }
+    }
+    @media print {
+      body { background:#fff; }
+      main { width:100%; margin:0; }
+      .shell { border:0; box-shadow:none; }
+      .actions { display:block; }
+      .actions details { display:block; margin-top:12px; }
+      .actions summary { justify-content:flex-start; border:0; padding:0; background:none!important; color:#000!important; }
+      .action-body { display:block!important; border:0; padding:8px 0 16px; }
+      .access-dialog { position:static; width:100%; box-shadow:none; }
+    }
+  </style>
+</head>
+<body>
+<dialog open class="access-dialog" data-testid="full-text-dialog" aria-labelledby="access-dialog-title"><form method="dialog"><button class="dialog-close" aria-label="关闭提示">稍后处理</button></form><p class="dialog-kicker">暂定评级提醒</p><h2 id="access-dialog-title">还有 13 篇候选文献未取得全文</h2><p>这13篇报告可能改变效应量、偏倚风险或异质性判断，因此当前逐结局等级不是最终等级。无法取得全文本身不等于研究阴性或质量差。</p><p>如果你能取得这些全文，请回到对话中上传；Skill会重新完成全文筛选、提取和GRADE，并标出等级是否改变。</p><details><summary>查看缺失记录</summary><ul><li>PMID 42115081：Effect of omega-3 supplementation vs. placebo on blood lipid levels in patients with ischemic heart disease: a systematic review and meta-analysis.</li><li>PMID 42497400：Efficacy of Omega-3 Polyunsaturated Fatty Acid Supplementation on the Lipid and Glycemic Profile in Type 1 Diabetes: A Systematic Review and Meta-Analysis.</li><li>PMID 41500861：Efficacy and safety of highly purified ethyl icosapentate soft capsules (MND-21) for the treatment of severe hypertriglyceridemia: A 12-week, multi-center, placebo-controlled, randomized, double-blind, phase III clinical trial in China.</li><li>PMID 41676815：Crossover Trial of Pemafibrate and Omega-3-Acid Ethyl Esters for Hypertriglyceridemia in Patients with Cardiovascular Disease.</li><li>PMID 41514392：Efficacy of phospholipid-bound omega-3 versus standard omega-3 in patients with hypertriglyceridemia: a randomized clinical trial.</li><li>PMID 41156531：Marine-Based Omega-3 Fatty Acids and Metabolic Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.</li><li>PMID 39163858：Impact of omega-3 fatty acids on hypertriglyceridemia, lipidomics, and gut microbiome in patients with type 2 diabetes.</li><li>PMID 38830807：Efficacy and safety of omega-3-acid ethyl acetate 90 capsules in severe hypertriglyceridemia: A randomized, controlled, multicenter study.</li><li>PMID 37301827：Icosapent ethyl therapy for very high triglyceride levels: a 12-week, multi-center, placebo-controlled, randomized, double-blinded, phase III clinical trial in China.</li><li>PMID 36982461：Eicosapentaenoic and Docosahexaenoic Acid Supplementation Increases HDL Content in n-3 Fatty Acids and Improves Endothelial Function in Hypertriglyceridemic Patients.</li><li>PMID 36760560：The effects of pemafibrate and omega-3 fatty acid ethyl on apoB-48 in dyslipidemic patients treated with statin: A prospective, multicenter, open-label, randomized, parallel group trial in Japan (PROUD48 study).</li><li>PMID 36641259：Does Omega-3 Fatty Acid Supplementation Have Favorable Effects on the Lipid Profile in Postmenopausal Women? A Systematic Review and Dose-response Meta-analysis of Randomized Controlled Trials.</li><li>PMID 35871058：Efficacy and safety of self-emulsifying formulation of highly purified eicosapentaenoic acid ethyl ester (MND-2119) versus highly purified eicosapentaenoic acid ethyl ester in patients with hypertriglyceridemia: Results from a 12-week randomized, double-blind, active-controlled, phase 3 study.</li></ul></details></dialog>
+<main>
+  <article class="shell" aria-labelledby="title">
+    <header>
+      <div class="eyebrow">营养证据卡</div>
+      <h1 id="title">鱼油与血脂</h1>
+    </header>
+    <section class="decision" aria-label="购买与使用建议">
+      <p class="verdict" data-testid="verdict">只对特定人群值得。</p>
+      <div class="essentials">
+        <div class="essential" data-testid="for-whom"><strong>对谁可能有用</strong>现有证据主要对准甘油三酯升高，不等于全面改善所有血脂。</div>
+        <div class="essential" data-testid="effect-ceiling"><strong>效果上限</strong>高剂量处方级制剂可降低甘油三酯；普通鱼油不一定达到同样剂量和质量。</div>
+        <div class="essential safety" data-testid="safety-red-line"><strong>安全红线</strong>甘油三酯很高或正在用降脂、抗凝药时，不要自行用鱼油替代治疗。</div>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="展开详细内容">
+      <details data-testid="why">
+        <summary>为什么</summary>
+        <div class="action-body"><h2>为什么</h2><p>历史证据足以给出方向和暂定等级，但13篇更新候选尚缺全文，评级可能在补齐后改变。</p><h3>决定结论的事实</h3><ul><li>2023年剂量反应Meta纳入90项随机试验，支持甘油三酯随剂量下降。</li><li>作用并不等于降低LDL或证明普通保健品能预防心血管事件。</li><li>更新检索69条全部完成题录筛选，但13条候选报告当前只有摘要。</li></ul><h3>更优先的路径</h3><ul><li>先确认异常的是甘油三酯还是LDL，并排查饮酒、糖尿病和药物等继发原因。</li></ul></div>
+      </details>
+      <details data-testid="suitability">
+        <summary>适不适合我</summary>
+        <div class="action-body"><h2>适不适合我</h2><h3>本次已采用的信息</h3><ul><li>用户选择跳过点击式关键信息收集，本页按不知道血脂分项、数值、用药和产品类型的一般情境生成。</li></ul><h3>当前暂定情境</h3><p>暂按不知道具体血脂分项、数值、剂量和用药的一般提问处理。</p><h3>与研究人群的匹配度</h3><p>未知：普通鱼油、处方EPA和EPA+DHA制剂不能视为同一种干预。</p><h3>可能匹配</h3><ul><li>经评估后确有甘油三酯升高，并使用剂量和纯度明确制剂的人。</li></ul><h3>避免或先确认</h3><ul><li>严重高甘油三酯涉及胰腺炎风险，需要医学处理。</li><li>使用抗凝药、计划手术或存在出血风险时先核对。</li></ul><h3>仍可能改变建议的信息</h3><ul><li>主要异常的是甘油三酯还是LDL，最近数值多少？这决定鱼油是否对准目标。</li><li>正在使用哪些降脂或抗凝药？这会改变剂型选择和安全建议。</li></ul></div>
+      </details>
+      <details data-testid="research">
+        <summary>证据怎么裁决</summary>
+        <div class="action-body"><h2>证据怎么裁决</h2><p>这里评价的是整组证据如何共同支持结论，不用单篇论文或期刊名代替裁决。</p><div class="research-grid"><div><strong>PICOS 与随访</strong>P：成人高甘油三酯或血脂异常；I：口服EPA、DHA或鱼油；C：安慰剂、常规治疗或其他降脂干预；O：甘油三酯及其他血脂；S：系统综述和随机对照试验。</div><div><strong>检索或更新</strong>2026-08-27</div></div><h3>来源为何看似矛盾</h3><div class="table-wrap"><table><thead><tr><th scope="col">来源或观点</th><th scope="col">得出的结论</th><th scope="col">为何不同</th><th scope="col">本次权重</th></tr></thead><tbody><tr><td>2023年剂量反应Meta</td><td>omega-3可随剂量降低甘油三酯</td><td>合并了90项随机试验并按剂量建模，但包含多种人群和制剂</td><td>高于单项研究；作为历史基座使用</td></tr><tr><td>普通鱼油宣传</td><td>暗示全面改善血脂和心血管健康</td><td>把处方剂量、特定成分和替代指标外推到任意保健品及临床事件</td><td>很低：产品剂量和临床结局通常不匹配</td></tr></tbody></table></div><h3>按关键结局综合判断</h3><div class="table-wrap"><table><thead><tr><th scope="col">关键结局</th><th scope="col">实际效应</th><th scope="col">证据体确定性</th><th scope="col">GRADE 五域与理由</th></tr></thead><tbody><tr><td>甘油三酯</td><td>历史证据提示剂量依赖性下降，尤其在基线升高和每日超过2克omega-3时更明显。</td><td>暂定中等</td><td>偏倚风险：可能不严重至严重：历史试验质量不一，需结合完整RoB表。；不一致性：可能严重：剂型、剂量、基线血脂和共用降脂药差异明显。；间接性：不严重于甘油三酯结局；若外推到心血管事件或普通低剂量鱼油则严重。；不精确性：历史Meta总体较精确，但更新研究尚未完成全文核查。；传播偏倚：无法完整判断：本次未检索注册库和灰色文献。；结论：历史随机试验证据体大、剂量反应方向稳定；因13篇候选更新缺全文，风险偏倚、不一致性和传播偏倚判断不完整，当前等级为暂定。</td></tr><tr><td>LDL及整体血脂</td><td>不能假定同步改善；含DHA制剂在部分人群可能升高LDL。</td><td>暂定低</td><td>偏倚风险：无法完整判断。；不一致性：可能严重：不同制剂呈不同方向。；间接性：严重：整体血脂不是单一结局。；不精确性：无法完整判断。；传播偏倚：无法完整判断。；结论：结果依制剂和剂量变化，不能用甘油三酯结论代替全部血脂。</td></tr></tbody></table></div><h3>全文获取情况</h3><div class="access-warning"><strong>13 篇候选文献尚未取得全文</strong><p>这13篇报告可能改变效应量、偏倚风险或异质性判断，因此当前逐结局等级不是最终等级。无法取得全文本身不等于研究阴性或质量差。</p><p>如果你能取得这些全文，请回到对话中上传；Skill会重新完成全文筛选、提取和GRADE，并标出等级是否改变。</p></div><details class="nested"><summary>查看尚缺全文的记录</summary><div class="inner"><p>PMID 42115081：Effect of omega-3 supplementation vs. placebo on blood lipid levels in patients with ischemic heart disease: a systematic review and meta-analysis.；PMID 42497400：Efficacy of Omega-3 Polyunsaturated Fatty Acid Supplementation on the Lipid and Glycemic Profile in Type 1 Diabetes: A Systematic Review and Meta-Analysis.；PMID 41500861：Efficacy and safety of highly purified ethyl icosapentate soft capsules (MND-21) for the treatment of severe hypertriglyceridemia: A 12-week, multi-center, placebo-controlled, randomized, double-blind, phase III clinical trial in China.；PMID 41676815：Crossover Trial of Pemafibrate and Omega-3-Acid Ethyl Esters for Hypertriglyceridemia in Patients with Cardiovascular Disease.；PMID 41514392：Efficacy of phospholipid-bound omega-3 versus standard omega-3 in patients with hypertriglyceridemia: a randomized clinical trial.；PMID 41156531：Marine-Based Omega-3 Fatty Acids and Metabolic Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.；PMID 39163858：Impact of omega-3 fatty acids on hypertriglyceridemia, lipidomics, and gut microbiome in patients with type 2 diabetes.；PMID 38830807：Efficacy and safety of omega-3-acid ethyl acetate 90 capsules in severe hypertriglyceridemia: A randomized, controlled, multicenter study.；PMID 37301827：Icosapent ethyl therapy for very high triglyceride levels: a 12-week, multi-center, placebo-controlled, randomized, double-blinded, phase III clinical trial in China.；PMID 36982461：Eicosapentaenoic and Docosahexaenoic Acid Supplementation Increases HDL Content in n-3 Fatty Acids and Improves Endothelial Function in Hypertriglyceridemic Patients.；PMID 36760560：The effects of pemafibrate and omega-3 fatty acid ethyl on apoB-48 in dyslipidemic patients treated with statin: A prospective, multicenter, open-label, randomized, parallel group trial in Japan (PROUD48 study).；PMID 36641259：Does Omega-3 Fatty Acid Supplementation Have Favorable Effects on the Lipid Profile in Postmenopausal Women? A Systematic Review and Dose-response Meta-analysis of Randomized Controlled Trials.；PMID 35871058：Efficacy and safety of self-emulsifying formulation of highly purified eicosapentaenoic acid ethyl ester (MND-2119) versus highly purified eicosapentaenoic acid ethyl ester in patients with hypertriglyceridemia: Results from a 12-week randomized, double-blind, active-controlled, phase 3 study.</p></div></details><h3>历史证据基座</h3><div class="research-grid"><div><strong>采用方式</strong>现有系统综述 + PubMed 更新检索</div><div><strong>原综述检索截止</strong>2022-06-30</div></div><p>采用2023年JAHA剂量反应Meta作为历史基座；其纳入90项成人随机试验、72598人，检索至2022年6月。</p><p>双人风险偏倚评价并按剂量建模，证据体大；但人群、制剂、共用降脂药和结局差异明显，且未直接给出本问题可引用的GRADE。</p><h3>可复现的 PubMed 检索</h3><div class="research-grid"><div><strong>数据库与日期</strong>PubMed · 2026-08-27</div><div><strong>完整导出 / 完整筛查</strong>是 / 是</div></div><details class="nested"><summary>完整检索式</summary><div class="inner"><p>((&quot;Fatty Acids, Omega-3&quot;[Mesh] OR omega-3[tiab] OR omega 3[tiab] OR fish oil[tiab] OR eicosapentaenoic acid[tiab] OR docosahexaenoic acid[tiab]) AND (&quot;Triglycerides&quot;[Mesh] OR triglyceride*[tiab]) AND (hypertriglyceridemi*[tiab] OR dyslipidemi*[tiab]) AND (random*[tiab] OR trial[tiab] OR &quot;Systematic Review&quot;[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (&quot;2022/07/01&quot;[Date - Publication] : &quot;3000&quot;[Date - Publication])</p></div></details><details class="nested"><summary>PubMed Query Translation</summary><div class="inner"><p>(&quot;fatty acids, omega 3&quot;[MeSH Terms] OR &quot;omega-3&quot;[Title/Abstract] OR &quot;omega-3&quot;[Title/Abstract] OR &quot;fish oil&quot;[Title/Abstract] OR &quot;eicosapentaenoic acid&quot;[Title/Abstract] OR &quot;docosahexaenoic acid&quot;[Title/Abstract]) AND (&quot;Triglycerides&quot;[MeSH Terms] OR &quot;triglyceride*&quot;[Title/Abstract]) AND (&quot;hypertriglyceridemi*&quot;[Title/Abstract] OR &quot;dyslipidemi*&quot;[Title/Abstract]) AND (&quot;random*&quot;[Title/Abstract] OR &quot;trial&quot;[Title/Abstract] OR &quot;Systematic Review&quot;[Publication Type] OR &quot;Systematic Review&quot;[Title/Abstract] OR &quot;meta analy*&quot;[Title/Abstract]) AND 2022/07/01:3000/12/31[Date - Publication]</p></div></details><h3>筛选流程</h3><div class="table-wrap"><table><thead><tr><th scope="col">命中</th><th scope="col">导出</th><th scope="col">题录筛查</th><th scope="col">全文评估</th><th scope="col">纳入报告</th><th scope="col">纳入研究</th></tr></thead><tbody><tr><td>69</td><td>69</td><td>69</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div><p>PubMed-only、单人题录筛选；13条候选更新报告仅取得摘要，未完成全文筛选；未检索Embase、CENTRAL、注册库或灰色文献。</p><h3>PICOS 纳入与排除</h3><h4>纳入标准</h4><ul><li>P：成人高甘油三酯或血脂异常。</li><li>I：口服EPA、DHA或鱼油制剂。</li><li>C：安慰剂、常规治疗或其他降脂干预。</li><li>O：甘油三酯及其他血脂。</li><li>S：系统综述或随机对照试验。</li></ul><h4>排除标准</h4><ul><li>儿童、动物、体外或观察性研究。</li><li>方案、叙述性综述或无目标血脂结局。</li><li>无法分离omega-3作用的复杂共干预。</li></ul><h4>实际排除记录</h4><div class="table-wrap"><table><thead><tr><th scope="col">排除原因</th><th scope="col">数量</th></tr></thead><tbody><tr><td>历史基座本身，不重复计入更新</td><td>1</td></tr><tr><td>题名摘要PICOS或研究设计不匹配</td><td>55</td></tr><tr><td>候选更新仅有摘要，待全文核查</td><td>13</td></tr></tbody></table></div><h3>证据体总览</h3><div class="research-grid"><div><strong>实际效应</strong>历史Meta显示omega-3与甘油三酯呈近线性剂量反应，较高剂量在高脂血症和超重人群更明显；LDL反应依剂型而异。</div><div><strong>证据体确定性</strong>甘油三酯暂定中等；LDL及整体血脂暂定低（逐结局）</div></div><h3>确定性评价方法</h3><div class="research-grid"><div><strong>评价路径</strong>基于当前可得证据的暂定 GRADE</div><div><strong>范围与流程简化</strong>历史基座覆盖至2022年6月；本次完整导出并单人完成PubMed更新检索69条的题录筛查，13条候选更新报告仅取得摘要。评级基于历史Meta与当前可得信息，补齐全文后需重评。</div></div><h3>主要不确定性</h3><ul><li>历史证据体大且方向一致</li><li>更新候选全文未闭环</li><li>剂型、剂量和人群差异明显</li></ul><h3>什么会改变结论</h3><ul><li>获得13条更新候选全文并完成风险偏倚、效应和五域核查。</li><li>确认具体血脂分项、基线数值、制剂EPA/DHA含量和用药。</li></ul><h3>资金与利益冲突</h3><p>历史综述纳入试验的资金来源不一；本次未完成全部更新报告全文和资助审计。</p><h3>决定性来源</h3><ol class="sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/37264945/" target="_blank" rel="noopener noreferrer">2023年omega-3与血脂剂量反应Meta</a> — 历史证据基座 · 2023</li><li><a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423" target="_blank" rel="noopener noreferrer">2026年ACC/AHA血脂管理指南</a> — 剂型与临床使用边界 · 2026</li></ol><details class="nested"><summary>Meta 分析</summary><div class="inner"><p>引用现有Meta作为历史基座，未重新合并90项试验。</p></div></details><details class="nested"><summary>GRADE</summary><div class="inner"><p>基于历史随机试验证据体和当前可得更新信息进行暂定GRADE：甘油三酯暂定中等，LDL及整体血脂暂定低。13篇候选更新缺全文，补齐后必须重评。</p></div></details><details class="nested"><summary>偏倚风险（RoB）</summary><div class="inner"><p>主要待核查项是更新试验的随机化、盲法、剂型、剂量、共用降脂药和选择性报告。</p></div></details></div>
+      </details>
+    </section>
+  </article>
+</main>
+</body>
+</html>

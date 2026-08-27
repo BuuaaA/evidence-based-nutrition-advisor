@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>老年人是否需要钙片 · 营养证据卡</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --panel:#fff; --ink:#172033; --muted:#667085; --line:#dfe4ec;
+      --accent:#265d97; --accent-soft:#edf5ff; --danger:#9e332d; --danger-soft:#fff2f0;
+      --shadow:0 18px 50px rgba(23,32,51,.10);
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,"PingFang SC","Microsoft YaHei",sans-serif; }
+    main { width:min(760px,calc(100% - 24px)); margin:32px auto; }
+    .shell { background:var(--panel); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+    header { padding:28px 28px 8px; }
+    .eyebrow { color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:5px 0 0; font-size:22px; font-weight:650; }
+    .decision { padding:18px 28px 26px; }
+    .verdict { margin:0 0 20px; color:var(--VERDICT_COLOR__); font-size:clamp(30px,7vw,48px); line-height:1.16; letter-spacing:-.03em; }
+    .essentials { display:grid; gap:10px; }
+    .essential { border:1px solid var(--line); border-radius:14px; padding:13px 15px; background:#fff; }
+    .essential strong { display:block; margin-bottom:2px; font-size:13px; color:var(--muted); }
+    .essential.safety { border-color:#f2cbc7; background:var(--danger-soft); }
+    .actions { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:0 28px 28px; }
+    details { border-top:1px solid var(--line); background:var(--panel); }
+    summary { list-style:none; cursor:pointer; font-weight:650; }
+    summary::-webkit-details-marker { display:none; }
+    .actions summary { display:flex; justify-content:center; align-items:center; min-height:48px; padding:8px 10px; border:1px solid var(--accent); border-radius:12px; color:var(--accent); background:var(--accent-soft); text-align:center; }
+    .actions summary:focus-visible { outline:3px solid rgba(38,93,151,.28); outline-offset:2px; }
+    .actions details[open] { grid-column:1/-1; }
+    .actions details[open] summary { color:#fff; background:var(--accent); }
+    .action-body { margin-top:4px; padding:20px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .action-body h2 { margin:0 0 10px; font-size:20px; }
+    .action-body h3 { margin:20px 0 6px; font-size:16px; }
+    .action-body p { margin:7px 0; }
+    .action-body ul { margin:7px 0; padding-left:1.35em; }
+    .action-body li + li { margin-top:5px; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:12px 0; }
+    .research-grid div { border:1px solid var(--line); border-radius:12px; padding:11px 12px; }
+    .research-grid strong { display:block; color:var(--muted); font-size:12px; }
+    .table-wrap { width:100%; overflow-x:auto; margin:10px 0 14px; }
+    table { width:100%; border-collapse:collapse; min-width:650px; font-size:14px; }
+    th,td { border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+    th { color:var(--muted); background:var(--accent-soft); font-size:12px; }
+    .nested { margin-top:12px; border:1px solid var(--line); border-radius:12px; }
+    .nested summary { padding:11px 13px; }
+    .nested .inner { padding:0 13px 13px; color:var(--muted); }
+    .sources { padding-left:1.2em; }
+    .access-warning { margin:12px 0; padding:14px 16px; border:1px solid #e8b96b; border-radius:14px; background:#fff7e8; color:#5f4515; }
+    .access-warning strong { display:block; margin-bottom:4px; }
+    .access-dialog { width:min(620px,calc(100% - 28px)); border:1px solid #e8b96b; border-radius:18px; padding:24px; background:#fffdf8; color:#172033; box-shadow:0 24px 70px rgba(23,32,51,.22); }
+    .access-dialog::backdrop { background:rgba(23,32,51,.36); }
+    .access-dialog h2 { margin:3px 0 10px; font-size:22px; }
+    .access-dialog p { margin:8px 0; }
+    .dialog-kicker { color:#8a5c0a; font-size:13px; font-weight:700; letter-spacing:.08em; }
+    .dialog-close { float:right; border:1px solid var(--line); border-radius:10px; padding:7px 11px; background:#fff; color:#475467; cursor:pointer; }
+    a { color:var(--accent); overflow-wrap:anywhere; }
+    @media (max-width:620px) {
+      main { margin:12px auto; }
+      header,.decision { padding-left:18px; padding-right:18px; }
+      .actions { grid-template-columns:1fr; padding:0 18px 20px; }
+      .action-body { grid-column:auto; }
+      .research-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .action-body { animation:reveal .16s ease-out; }
+      @keyframes reveal { from { opacity:.35; transform:translateY(-3px); } }
+    }
+    @media (prefers-color-scheme:dark) {
+      :root { --bg:#111827; --panel:#182132; --ink:#f2f4f7; --muted:#aab4c4; --line:#344054; --accent:#8fc2ff; --accent-soft:#203b5b; --danger:#ffaaa2; --danger-soft:#442624; --shadow:none; }
+      .essential,.action-body { background:#182132; }
+    }
+    @media print {
+      body { background:#fff; }
+      main { width:100%; margin:0; }
+      .shell { border:0; box-shadow:none; }
+      .actions { display:block; }
+      .actions details { display:block; margin-top:12px; }
+      .actions summary { justify-content:flex-start; border:0; padding:0; background:none!important; color:#000!important; }
+      .action-body { display:block!important; border:0; padding:8px 0 16px; }
+      .access-dialog { position:static; width:100%; box-shadow:none; }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <article class="shell" aria-labelledby="title">
+    <header>
+      <div class="eyebrow">营养证据卡</div>
+      <h1 id="title">老年人是否需要钙片</h1>
+    </header>
+    <section class="decision" aria-label="购买与使用建议">
+      <p class="verdict" data-testid="verdict">只对特定人群值得。</p>
+      <div class="essentials">
+        <div class="essential" data-testid="for-whom"><strong>对谁可能有用</strong>仅对摄入不足、骨质疏松治疗或特定高风险老人可能值得。</div>
+        <div class="essential" data-testid="effect-ceiling"><strong>效果上限</strong>对多数社区老人，常规补钙几乎不能带来有意义的骨折减少。</div>
+        <div class="essential safety" data-testid="safety-red-line"><strong>安全红线</strong>肾结石、肾功能异常、高钙血症或正在服相关药物时不要自行补。</div>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="展开详细内容">
+      <details data-testid="why">
+        <summary>为什么</summary>
+        <div class="action-body"><h2>为什么</h2><p>年龄本身不是补钙指征，居住环境、膳食摄入和骨折风险才会改变结论。</p><h3>决定结论的事实</h3><ul><li>2026年BMJ系统综述纳入69项随机试验、153902人，并完成GRADE。</li><li>钙片对任何骨折的RR为0.91，95%CI 0.81至1.01，属于中等确定性的很小或无重要作用。</li><li>养老机构、摄入不足和接受骨质疏松治疗的人群不能与一般社区老人混为一谈。</li></ul><h3>更优先的路径</h3><ul><li>先估算膳食钙、评估骨质疏松和跌倒风险，再决定是否补足缺口。</li></ul></div>
+      </details>
+      <details data-testid="suitability">
+        <summary>适不适合我</summary>
+        <div class="action-body"><h2>适不适合我</h2><h3>本次已采用的信息</h3><ul><li>用户选择跳过点击式关键信息收集，本页按普通社区老年人的一般情境生成。</li></ul><h3>当前暂定情境</h3><p>暂按居住在社区、未确诊骨质疏松、没有明确钙缺口的老年人判断。</p><h3>与研究人群的匹配度</h3><p>未知：缺少骨密度/骨折史、膳食钙和肾结石或肾病信息。</p><h3>可能匹配</h3><ul><li>膳食钙明显不足，或骨质疏松治疗方案要求补足钙摄入的人。</li><li>机构照护、摄入不足且骨折风险高者需要单独评估。</li></ul><h3>避免或先确认</h3><ul><li>肾结石、慢性肾病、高钙血症或正在用甲状腺素、铁剂及部分抗生素者先核对。</li></ul><h3>仍可能改变建议的信息</h3><ul><li>有没有骨质疏松、低骨密度或既往脆性骨折？这会改变补充目标。</li><li>每天奶类、豆制品等钙来源大概多少，并且有肾病或结石吗？这会改变收益和风险。</li></ul></div>
+      </details>
+      <details data-testid="research">
+        <summary>证据怎么裁决</summary>
+        <div class="action-body"><h2>证据怎么裁决</h2><p>这里评价的是整组证据如何共同支持结论，不用单篇论文或期刊名代替裁决。</p><div class="research-grid"><div><strong>PICOS 与随访</strong>P：多数为社区居住、未接受骨质疏松药物治疗的成人和老年人；I：钙、维生素D或二者补充；C：安慰剂或不补充；O：任何骨折、髋部骨折和跌倒；S：随机对照试验及系统综述。</div><div><strong>检索或更新</strong>2026-08-27</div></div><h3>来源为何看似矛盾</h3><div class="table-wrap"><table><thead><tr><th scope="col">来源或观点</th><th scope="col">得出的结论</th><th scope="col">为何不同</th><th scope="col">本次权重</th></tr></thead><tbody><tr><td>2026年BMJ系统综述</td><td>多数成人常规补钙、维生素D或二者对骨折和跌倒几乎无重要作用</td><td>以绝对效应阈值解释，并覆盖多库、注册库和会议摘要</td><td>高：69项试验、双人流程、RoB 2和GRADE</td></tr><tr><td>养老机构膳食干预试验</td><td>提高奶制品、钙和蛋白摄入可减少骨折</td><td>对象为高龄机构居民且基线摄入不足，干预也不只是钙片</td><td>中：直接但只适用于不同人群和复合膳食干预</td></tr></tbody></table></div><h3>按关键结局综合判断</h3><div class="table-wrap"><table><thead><tr><th scope="col">关键结局</th><th scope="col">实际效应</th><th scope="col">证据体确定性</th><th scope="col">GRADE 五域与理由</th></tr></thead><tbody><tr><td>钙片预防任何骨折</td><td>RR 0.91（95%CI 0.81至1.01），平均效应未达到临床重要阈值。</td><td>中等</td><td>偏倚风险：不严重：综述使用RoB 2并进行敏感性分析。；不一致性：不严重：广泛亚组分析未改变总体判断。；间接性：不严重于一般社区成人；对机构高风险老人存在间接性。；不精确性：严重：置信区间仍跨越无效线并允许小幅获益。；传播偏倚：不严重：检索包含注册库、会议摘要和参考文献追踪。；结论：引用BMJ综述GRADE；因区间仍允许小幅差异而非高确定性。</td></tr><tr><td>钙加维生素D预防任何骨折</td><td>RR 0.91（95%CI 0.84至0.99），统计差异未转化为达到预设阈值的临床重要获益。</td><td>高</td><td>偏倚风险：不严重。；不一致性：不严重：多项亚组分析结果稳健。；间接性：不严重于多数社区成人；高风险和机构人群资料较少。；不精确性：不严重：区间足以排除达到预设阈值的明显获益。；传播偏倚：不严重：检索覆盖注册库和未正式发表来源。；结论：大量试验和较窄区间支持很小或无重要作用。</td></tr></tbody></table></div><h3>历史证据基座</h3><div class="research-grid"><div><strong>采用方式</strong>现有系统综述 + PubMed 更新检索</div><div><strong>原综述检索截止</strong>2025-02-19</div></div><p>采用2026年BMJ系统综述作为历史基座；覆盖Medline、Embase、CENTRAL、试验注册库、会议摘要和参考文献，检索至2025-02-19。</p><p>纳入69项随机试验、153902人，双人筛选提取、RoB 2、随机效应合成和GRADE，并以绝对效应阈值判断临床重要性。</p><h3>可复现的 PubMed 检索</h3><div class="research-grid"><div><strong>数据库与日期</strong>PubMed · 2026-08-27</div><div><strong>完整导出 / 完整筛查</strong>是 / 是</div></div><details class="nested"><summary>完整检索式</summary><div class="inner"><p>((&quot;Calcium, Dietary&quot;[Mesh] OR calcium supplement*[tiab] OR calcium supplementation[tiab]) AND (&quot;Fractures, Bone&quot;[Mesh] OR fracture*[tiab]) AND (random*[tiab] OR trial[tiab] OR &quot;Systematic Review&quot;[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (&quot;2025/02/20&quot;[Date - Publication] : &quot;3000&quot;[Date - Publication])</p></div></details><details class="nested"><summary>PubMed Query Translation</summary><div class="inner"><p>(&quot;calcium, dietary&quot;[MeSH Terms] OR &quot;calcium supplement*&quot;[Title/Abstract] OR &quot;calcium supplementation&quot;[Title/Abstract]) AND (&quot;fractures, bone&quot;[MeSH Terms] OR &quot;fracture*&quot;[Title/Abstract]) AND (&quot;random*&quot;[Title/Abstract] OR &quot;trial&quot;[Title/Abstract] OR &quot;Systematic Review&quot;[Publication Type] OR &quot;Systematic Review&quot;[Title/Abstract] OR &quot;meta analy*&quot;[Title/Abstract]) AND 2025/02/20:3000/12/31[Date - Publication]</p></div></details><h3>筛选流程</h3><div class="table-wrap"><table><thead><tr><th scope="col">命中</th><th scope="col">导出</th><th scope="col">题录筛查</th><th scope="col">全文评估</th><th scope="col">纳入报告</th><th scope="col">纳入研究</th></tr></thead><tbody><tr><td>11</td><td>11</td><td>11</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div><p>PubMed更新检索由单人筛选；更新期未发现符合PICOS且未被历史基座覆盖的直接随机试验。</p><h3>PICOS 纳入与排除</h3><h4>纳入标准</h4><ul><li>P：普通成人和老年人，重点关注社区居住者。</li><li>I：钙补充或钙加维生素D。</li><li>C：安慰剂或不补充。</li><li>O：骨折或跌倒。</li><li>S：随机对照试验、系统综述或Meta分析。</li></ul><h4>排除标准</h4><ul><li>仅骨密度、知识态度或非骨折结局。</li><li>动物研究、叙述性综述或其他复合干预。</li><li>仅限正在接受骨质疏松药物治疗且无法外推到一般老人。</li></ul><h4>实际排除记录</h4><div class="table-wrap"><table><thead><tr><th scope="col">排除原因</th><th scope="col">数量</th></tr></thead><tbody><tr><td>历史基座本身，不重复计入更新</td><td>1</td></tr><tr><td>较早证据已被历史基座覆盖</td><td>1</td></tr><tr><td>骨质疏松治疗人群不匹配</td><td>2</td></tr><tr><td>其他PICOS或研究设计不匹配</td><td>7</td></tr></tbody></table></div><h3>证据体总览</h3><div class="research-grid"><div><strong>实际效应</strong>钙补充对任何骨折RR 0.91（95%CI 0.81至1.01，中等确定性）；钙加维生素D RR 0.91（0.84至0.99，高确定性），绝对获益低于预设临床重要阈值。</div><div><strong>证据体确定性</strong>中等至高（按结局）</div></div><h3>确定性评价方法</h3><div class="research-grid"><div><strong>评价路径</strong>引用来源已有 GRADE</div><div><strong>范围与流程简化</strong>引用2026年BMJ多库系统综述的GRADE；其检索至2025-02-19。本次完整导出并单人筛查截止日期后的PubMed 11条命中，未发现新的直接随机试验改变结论。</div></div><h3>主要不确定性</h3><ul><li>大型多库综述、双人筛选和RoB 2</li><li>使用绝对效应临床重要阈值</li><li>高风险和机构照护人群证据仍有限</li></ul><h3>什么会改变结论</h3><ul><li>高风险、机构照护或明确低钙摄入人群中出现足够直接的新随机证据。</li><li>用户确认骨质疏松治疗需要、膳食钙明显不足或存在补钙禁忌。</li></ul><h3>资金与利益冲突</h3><p>BMJ综述声明无行业资金支持本研究；部分作者有非行业教育活动报酬。</p><h3>决定性来源</h3><ol class="sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/42161415/" target="_blank" rel="noopener noreferrer">2026年BMJ钙/维生素D骨折与跌倒系统综述</a> — 历史证据基座与来源GRADE · 2026</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/34670754/" target="_blank" rel="noopener noreferrer">机构老人奶制品、钙和蛋白质集群随机试验</a> — 适用性边界 · 2021</li></ol><details class="nested"><summary>Meta 分析</summary><div class="inner"><p>直接引用并审计现有多库系统综述，不重复计算其69项试验。</p></div></details><details class="nested"><summary>GRADE</summary><div class="inner"><p>引用2026年BMJ综述的结局级GRADE：钙片预防任何骨折为中等确定性，钙加维生素D为高确定性，均为很小或无重要作用。</p></div></details><details class="nested"><summary>偏倚风险（RoB）</summary><div class="inner"><p>关键适用性问题是多数参与者为社区居住且非高风险，不能简单外推到机构照护、严重缺乏或骨质疏松治疗情境。</p></div></details></div>
+      </details>
+    </section>
+  </article>
+</main>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Neuriva 脑活素 · 营养证据卡</title>
+  <style>
+    :root {
+      --bg:#f5f7fb; --panel:#fff; --ink:#172033; --muted:#667085; --line:#dfe4ec;
+      --accent:#265d97; --accent-soft:#edf5ff; --danger:#9e332d; --danger-soft:#fff2f0;
+      --shadow:0 18px 50px rgba(23,32,51,.10);
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,"PingFang SC","Microsoft YaHei",sans-serif; }
+    main { width:min(760px,calc(100% - 24px)); margin:32px auto; }
+    .shell { background:var(--panel); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+    header { padding:28px 28px 8px; }
+    .eyebrow { color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:5px 0 0; font-size:22px; font-weight:650; }
+    .decision { padding:18px 28px 26px; }
+    .verdict { margin:0 0 20px; color:var(--VERDICT_COLOR__); font-size:clamp(30px,7vw,48px); line-height:1.16; letter-spacing:-.03em; }
+    .essentials { display:grid; gap:10px; }
+    .essential { border:1px solid var(--line); border-radius:14px; padding:13px 15px; background:#fff; }
+    .essential strong { display:block; margin-bottom:2px; font-size:13px; color:var(--muted); }
+    .essential.safety { border-color:#f2cbc7; background:var(--danger-soft); }
+    .actions { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:0 28px 28px; }
+    details { border-top:1px solid var(--line); background:var(--panel); }
+    summary { list-style:none; cursor:pointer; font-weight:650; }
+    summary::-webkit-details-marker { display:none; }
+    .actions summary { display:flex; justify-content:center; align-items:center; min-height:48px; padding:8px 10px; border:1px solid var(--accent); border-radius:12px; color:var(--accent); background:var(--accent-soft); text-align:center; }
+    .actions summary:focus-visible { outline:3px solid rgba(38,93,151,.28); outline-offset:2px; }
+    .actions details[open] { grid-column:1/-1; }
+    .actions details[open] summary { color:#fff; background:var(--accent); }
+    .action-body { margin-top:4px; padding:20px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .action-body h2 { margin:0 0 10px; font-size:20px; }
+    .action-body h3 { margin:20px 0 6px; font-size:16px; }
+    .action-body p { margin:7px 0; }
+    .action-body ul { margin:7px 0; padding-left:1.35em; }
+    .action-body li + li { margin-top:5px; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:12px 0; }
+    .research-grid div { border:1px solid var(--line); border-radius:12px; padding:11px 12px; }
+    .research-grid strong { display:block; color:var(--muted); font-size:12px; }
+    .table-wrap { width:100%; overflow-x:auto; margin:10px 0 14px; }
+    table { width:100%; border-collapse:collapse; min-width:650px; font-size:14px; }
+    th,td { border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+    th { color:var(--muted); background:var(--accent-soft); font-size:12px; }
+    .nested { margin-top:12px; border:1px solid var(--line); border-radius:12px; }
+    .nested summary { padding:11px 13px; }
+    .nested .inner { padding:0 13px 13px; color:var(--muted); }
+    .sources { padding-left:1.2em; }
+    a { color:var(--accent); overflow-wrap:anywhere; }
+    @media (max-width:620px) {
+      main { margin:12px auto; }
+      header,.decision { padding-left:18px; padding-right:18px; }
+      .actions { grid-template-columns:1fr; padding:0 18px 20px; }
+      .action-body { grid-column:auto; }
+      .research-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .action-body { animation:reveal .16s ease-out; }
+      @keyframes reveal { from { opacity:.35; transform:translateY(-3px); } }
+    }
+    @media (prefers-color-scheme:dark) {
+      :root { --bg:#111827; --panel:#182132; --ink:#f2f4f7; --muted:#aab4c4; --line:#344054; --accent:#8fc2ff; --accent-soft:#203b5b; --danger:#ffaaa2; --danger-soft:#442624; --shadow:none; }
+      .essential,.action-body { background:#182132; }
+    }
+    @media print {
+      body { background:#fff; }
+      main { width:100%; margin:0; }
+      .shell { border:0; box-shadow:none; }
+      .actions { display:block; }
+      .actions details { display:block; margin-top:12px; }
+      .actions summary { justify-content:flex-start; border:0; padding:0; background:none!important; color:#000!important; }
+      .action-body { display:block!important; border:0; padding:8px 0 16px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <article class="shell" aria-labelledby="title">
+    <header>
+      <div class="eyebrow">营养证据卡</div>
+      <h1 id="title">Neuriva 脑活素</h1>
+    </header>
+    <section class="decision" aria-label="购买与使用建议">
+      <p class="verdict" data-testid="verdict">不太值得买。</p>
+      <div class="essentials">
+        <div class="essential" data-testid="for-whom"><strong>对谁可能有用</strong>仅可能适合40至65岁、自觉记忆下降但无认知障碍者。</div>
+        <div class="essential" data-testid="effect-ceiling"><strong>效果上限</strong>即使有效，也可能只是部分电脑测试小幅改善，未必能在生活中感觉到。</div>
+        <div class="essential safety" data-testid="safety-red-line"><strong>安全红线</strong>记忆持续恶化或影响生活时应就医，不要用补充剂代替评估。</div>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="展开详细内容">
+      <details data-testid="why">
+        <summary>为什么</summary>
+        <div class="action-body"><h2>为什么</h2><p>有初步阳性信号，但证据尚不足以支持普通人常规购买。</p><h3>决定结论的事实</h3><ul><li>直接产品证据主要来自一项短期随机试验。</li><li>部分电脑测试改善，但主观日常记忆没有优于安慰剂。</li><li>研究由产品所属公司资助，尚缺独立重复。</li></ul><h3>更优先的路径</h3><ul><li>先检查睡眠、压力、活动和可能影响认知的药物或疾病。</li></ul></div>
+      </details>
+      <details data-testid="suitability">
+        <summary>适不适合我</summary>
+        <div class="action-body"><h2>适不适合我</h2><h3>当前暂定情境</h3><p>暂按40至65岁、无认知障碍、考虑使用当前示例配方的一般成人判断。</p><h3>与研究人群的匹配度</h3><p>未知：尚未确认具体产品版本，也不知道记忆问题是否正在进展或影响日常生活。</p><h3>可能匹配</h3><ul><li>与试验年龄、健康状态和产品配方相近，且接受效果可能很小的人。</li></ul><h3>避免或先确认</h3><ul><li>有进行性记忆下降、认知障碍或希望替代正规治疗时，不应自行试用。</li></ul><h3>回答这些问题会进一步改变建议</h3><ul><li>你手上的具体版本和每日配方是什么？这决定它是否与研究产品匹配。</li><li>记忆问题是否正在加重或影响日常生活？如果是，建议会转为优先就医评估。</li></ul></div>
+      </details>
+      <details data-testid="research">
+        <summary>证据怎么裁决</summary>
+        <div class="action-body"><h2>证据怎么裁决</h2><p>这里评价的是整组证据如何共同支持结论，不用单篇论文或期刊名代替裁决。</p><div class="research-grid"><div><strong>PICOS 与随访</strong>P：40至65岁健康成人；I：100 mg全咖啡果提取物加100 mg磷脂酰丝氨酸；C：安慰剂；O：认知结局；S：随机双盲安慰剂对照试验；随访：42天。</div><div><strong>检索或更新</strong>2026-08-27</div></div><h3>来源为何看似矛盾</h3><div class="table-wrap"><table><thead><tr><th scope="col">来源或观点</th><th scope="col">得出的结论</th><th scope="col">为何不同</th><th scope="col">本次权重</th></tr></thead><tbody><tr><td>产品随机试验</td><td>部分电脑工作记忆指标出现小幅改善</td><td>试验同时测量多个结局，阳性结果集中在部分测试，日常记忆等结局未改善</td><td>中低：产品最直接，但单项、短期且缺少独立重复</td></tr><tr><td>产品宣传</td><td>暗示可广泛改善记忆与专注</td><td>把少数测试中的信号外推为日常可感知的整体认知获益</td><td>很低：宣传材料不是独立效果证据</td></tr></tbody></table></div><h3>按关键结局综合判断</h3><div class="table-wrap"><table><thead><tr><th scope="col">关键结局</th><th scope="col">实际效应</th><th scope="col">证据体确定性</th><th scope="col">GRADE 五域与理由</th></tr></thead><tbody><tr><td>部分电脑工作记忆测试</td><td>出现小幅组间差异</td><td>极低</td><td>偏倚风险：严重：以符合方案人群为主要分析，并在大量认知指标中仅部分阳性。；不一致性：无法判断：只有一项符合条件的人体试验，未因同一问题重复降级。；间接性：严重：电脑任务表现不等于日常可感知的记忆或生活功能改善。；不精确性：严重：单项短期试验、样本量小，缺少稳定的效应区间。；传播偏倚：疑似：产品公司资助且未发现独立重复；检索未覆盖注册库和灰色文献。；结论：从随机试验的高起点，因选择性结果风险、替代结局间接性和不精确性降至极低。</td></tr><tr><td>主观日常记忆</td><td>未优于安慰剂</td><td>低</td><td>偏倚风险：严重：商业资助、符合方案分析和多结局报告增加选择性结果风险。；不一致性：无法判断：只有一项符合条件的人体试验。；间接性：不严重：该结局较接近用户在日常生活中的主观记忆体验。；不精确性：严重：单项短期试验，无法排除小幅获益或伤害。；传播偏倚：疑似但未额外降级：缺少独立重复，且未检索注册库与灰色文献。；结论：从随机试验的高起点，因研究局限和不精确性各降一级。</td></tr></tbody></table></div><h3>历史证据基座</h3><div class="research-grid"><div><strong>采用方式</strong>无合格综述基座，从头 PubMed 快速证据普查</div><div><strong>原综述检索截止</strong>不适用：未发现合格产品级系统综述</div></div><p>未发现可作为历史基座的 Neuriva 产品级系统综述，因此对预定义产品功效问题进行了从头 PubMed 快速证据普查。</p><p>检索到的一项人体随机试验构成当前 PubMed 可识别的直接产品证据体；另一项体外研究仅支持机制层，不纳入临床效果合成。</p><h3>可复现的 PubMed 检索</h3><div class="research-grid"><div><strong>数据库与日期</strong>PubMed · 2026-08-27</div><div><strong>完整导出 / 完整筛查</strong>是 / 是</div></div><details class="nested"><summary>完整检索式</summary><div class="inner"><p>(Neuriva[tiab] OR (&quot;coffee cherry&quot;[tiab] AND phosphatidylserine[tiab])) AND (&quot;Cognition&quot;[Mesh] OR cognition[tiab] OR memory[tiab] OR attention[tiab])</p></div></details><details class="nested"><summary>PubMed Query Translation</summary><div class="inner"><p>(&quot;Neuriva&quot;[Title/Abstract] OR (&quot;coffee cherry&quot;[Title/Abstract] AND &quot;phosphatidylserine&quot;[Title/Abstract])) AND (&quot;Cognition&quot;[MeSH Terms] OR &quot;Cognition&quot;[Title/Abstract] OR &quot;memory&quot;[Title/Abstract] OR &quot;attention&quot;[Title/Abstract])</p></div></details><h3>筛选流程</h3><div class="table-wrap"><table><thead><tr><th scope="col">命中</th><th scope="col">导出</th><th scope="col">题录筛查</th><th scope="col">全文评估</th><th scope="col">纳入报告</th><th scope="col">纳入研究</th></tr></thead><tbody><tr><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>1</td></tr></tbody></table></div><p>单人筛选；仅 PubMed 与公开全文；未检索 Embase、CENTRAL、试验注册库、监管申报资料和灰色文献。</p><h3>PICOS 纳入与排除</h3><h4>纳入标准</h4><ul><li>P：无确诊认知障碍、关注记忆或认知表现的成年人。</li><li>I：含 Neuriva 对应全咖啡果提取物与磷脂酰丝氨酸的口服成品配方。</li><li>C：安慰剂或无该产品对照。</li><li>O：日常记忆、认知测试、专注或学习等人体结局。</li><li>S：随机或非随机对照人体研究。</li></ul><h4>排除标准</h4><ul><li>体外、动物或仅机制研究。</li><li>不含目标产品配方，或无法分离 Neuriva 效果的研究。</li><li>没有比较组或未报告目标认知结局的记录。</li></ul><h4>实际排除记录</h4><div class="table-wrap"><table><thead><tr><th scope="col">排除原因</th><th scope="col">数量</th></tr></thead><tbody><tr><td>体外研究，不能回答口服产品的人体认知效果</td><td>1</td></tr></tbody></table></div><h3>证据体总览</h3><div class="research-grid"><div><strong>实际效应</strong>部分工作记忆指标出现小幅组间差异，日常记忆、Go/No-Go和BDNF未显示组间获益。</div><div><strong>证据体确定性</strong>低至极低（逐结局）</div></div><h3>确定性评价方法</h3><div class="research-grid"><div><strong>评价路径</strong>基于快速证据综合的 GRADE 评级</div><div><strong>范围与流程简化</strong>以预定义检索式完整导出并单人筛查 PubMed 的 2 条命中，评估 2 篇全文；未检索 Embase、CENTRAL、注册库或灰色文献。</div></div><h3>主要不确定性</h3><ul><li>单项短期直接试验</li><li>多结局比较</li><li>厂商资助且缺少独立重复</li></ul><h3>什么会改变结论</h3><ul><li>出现预注册、样本充分且由独立团队完成的产品级随机试验，并重复日常可感知的获益。</li><li>确认用户、产品版本和目标结局与研究条件高度匹配。</li></ul><h3>资金与利益冲突</h3><p>研究由Reckitt资助，部分作者为公司员工。</p><h3>决定性来源</h3><ol class="sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/36929344/" target="_blank" rel="noopener noreferrer">Neuriva随机双盲安慰剂试验</a> — 直接产品证据 · 2023</li><li><a href="https://www.govinfo.gov/content/pkg/USCOURTS-flsd-1_20-cv-23564/pdf/USCOURTS-flsd-1_20-cv-23564-1.pdf" target="_blank" rel="noopener noreferrer">美国法院Neuriva营销和解文件</a> — 营销背景 · 2021</li></ol><details class="nested"><summary>Meta 分析</summary><div class="inner"><p>未发现足以支持直接产品结论的独立产品级Meta分析。</p></div></details><details class="nested"><summary>GRADE</summary><div class="inner"><p>本例完成了 PubMed-only、单人快速证据综合后的逐结局 GRADE。电脑工作记忆测试为极低确定性；主观日常记忆为低确定性。未检索其他数据库和注册库是明确的方法限制。</p></div></details><details class="nested"><summary>偏倚风险（RoB）</summary><div class="inner"><p>主要关注多重比较、符合方案分析和商业资助。</p></div></details></div>
+      </details>
+    </section>
+  </article>
+</main>
+</body>
+</html>

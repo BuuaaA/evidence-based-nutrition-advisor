@@ -1,0 +1,15 @@
+{
+  "schema_version": "pubmed-search-v1",
+  "database": "PubMed",
+  "searched_at_utc": "2026-08-27T10:51:42+00:00",
+  "query": "((\"Fatty Acids, Omega-3\"[Mesh] OR omega-3[tiab] OR omega 3[tiab] OR fish oil[tiab] OR eicosapentaenoic acid[tiab] OR docosahexaenoic acid[tiab]) AND (\"Triglycerides\"[Mesh] OR triglyceride*[tiab]) AND (hypertriglyceridemi*[tiab] OR dyslipidemi*[tiab]) AND (random*[tiab] OR trial[tiab] OR \"Systematic Review\"[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (\"2022/07/01\"[Date - Publication] : \"3000\"[Date - Publication])",
+  "query_translation": "(\"fatty acids, omega 3\"[MeSH Terms] OR \"omega-3\"[Title/Abstract] OR \"omega-3\"[Title/Abstract] OR \"fish oil\"[Title/Abstract] OR \"eicosapentaenoic acid\"[Title/Abstract] OR \"docosahexaenoic acid\"[Title/Abstract]) AND (\"Triglycerides\"[MeSH Terms] OR \"triglyceride*\"[Title/Abstract]) AND (\"hypertriglyceridemi*\"[Title/Abstract] OR \"dyslipidemi*\"[Title/Abstract]) AND (\"random*\"[Title/Abstract] OR \"trial\"[Title/Abstract] OR \"Systematic Review\"[Publication Type] OR \"Systematic Review\"[Title/Abstract] OR \"meta analy*\"[Title/Abstract]) AND 2022/07/01:3000/12/31[Date - Publication]",
+  "total_hits": 69,
+  "exported_records": 69,
+  "retrieved_all_hits": true,
+  "explicit_truncation": false,
+  "sort": "pub date",
+  "abstracts_available": 69,
+  "warnings": {},
+  "ris_sha256": "fe1d3a400b441f096582fe182d86ec40d6d512e3bfe9daf5fb66947341c6f213"
+}

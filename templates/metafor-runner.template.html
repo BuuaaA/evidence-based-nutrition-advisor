@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+  :root { --brand:#1a56a0; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f8fafc; }
+  body { font-family: "Microsoft YaHei", system-ui, sans-serif; max-width: 980px; margin: 0 auto; padding: 24px; background:#fff; color:var(--ink); }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  h2 { font-size: 17px; margin-top: 28px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .steps { border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin:16px 0; background:var(--bg); font-size:14px; }
+  .step { padding:4px 0; }
+  .step.pending::before { content:"\25CB\00A0"; color:var(--muted); }
+  .step.running::before { content:"\25C9\00A0"; color:var(--brand); }
+  .step.done::before { content:"\2713\00A0"; color:#059669; }
+  .step.error::before { content:"\2717\00A0"; color:#dc2626; }
+  .step.error { color:#dc2626; }
+  pre { background:#0f172a; color:#e2e8f0; padding:16px; border-radius:10px; overflow:auto; font-size:12.5px; line-height:1.55; white-space:pre-wrap; }
+  .plot-box { border:1px solid var(--line); border-radius:10px; padding:12px; margin:14px 0; text-align:center; min-height:60px; }
+  .plot-box canvas { max-width:100%; height:auto; }
+  .note { font-size:13px; color:var(--muted); line-height:1.7; }
+</style>
+</head>
+<body>
+
+<h1>__TITLE__</h1>
+<p class="meta">__SUBTITLE__</p>
+<p class="meta">引擎：在线 webR 0.6.0 + R + metafor（第 3 级回退）。仅在本机 R 与 Python 都无法完成分析后使用；首次打开需从官方 webR/R-Wasm 资源下载运行环境。</p>
+
+<div class="steps" id="steps"></div>
+
+<h2>R 控制台输出</h2>
+<pre id="rout">（等待 R 运行，首次可能需要数分钟，请勿关闭页面）</pre>
+
+<h2>森林图</h2>
+<div class="plot-box" id="p-forest"></div>
+
+<h2>漏斗图</h2>
+<div class="plot-box" id="p-funnel"></div>
+
+<h2>本报告使用的 R 代码</h2>
+<pre id="rcode"></pre>
+
+<p class="note">__NOTES__</p>
+
+<script type="text/plain" id="csv-data">__CSV_DATA__</script>
+<script type="text/plain" id="r-load">__R_LOAD_DATA__</script>
+<script type="text/plain" id="r-analysis">__R_ANALYSIS__</script>
+<script type="text/plain" id="r-forest">__R_FOREST__</script>
+<script type="text/plain" id="r-funnel">__R_FUNNEL__</script>
+
+<script type="module">
+const CSV = document.getElementById('csv-data').textContent.trim();
+const R_LOAD = document.getElementById('r-load').textContent.trim();
+const R_ANALYSIS = document.getElementById('r-analysis').textContent.trim();
+const R_FOREST = document.getElementById('r-forest').textContent.trim();
+const R_FUNNEL = document.getElementById('r-funnel').textContent.trim();
+
+document.getElementById('rcode').textContent =
+  '# ==== 1. 数据载入与效应量计算 ====\n' + R_LOAD +
+  '\n\n# ==== 2. 合并分析 ====\n' + R_ANALYSIS +
+  '\n\n# ==== 3. 森林图 ====\n' + R_FOREST +
+  '\n\n# ==== 4. 漏斗图 ====\n' + R_FUNNEL;
+
+const stepsBox = document.getElementById('steps');
+function addStep(name) {
+  const div = document.createElement('div');
+  div.className = 'step pending';
+  div.textContent = name;
+  stepsBox.appendChild(div);
+  return div;
+}
+function setStep(el, state, extra) {
+  el.className = 'step ' + state;
+  if (extra) el.textContent += ' — ' + extra;
+}
+function log(text) {
+  const el = document.getElementById('rout');
+  if (el.textContent.startsWith('（')) el.textContent = '';
+  el.textContent += text + '\n';
+}
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+let webr = null;
+let WebRClass = null;
+
+const sLoad = addStep('加载 webR 运行时（webr.r-wasm.org，首次约 30–60 MB）');
+try {
+  const m = await import('https://webr.r-wasm.org/v0.6.0/webr.mjs');
+  WebRClass = m.WebR;
+} catch (e) {
+  setStep(sLoad, 'error', '无法加载 webR（' + String(e && e.message || e) + '）。请检查网络后刷新重试；若长期失败，请将下方 R 代码复制到本地 R 运行。');
+  throw e;
+}
+try {
+  webr = new WebRClass();
+  await webr.init();
+  setStep(sLoad, 'done');
+} catch (e) {
+  setStep(sLoad, 'error', String(e));
+  throw e;
+}
+
+const run = async (code) => {
+  if (typeof webr.evalRVoid === 'function') return webr.evalRVoid(code);
+  return webr.evalR(code);
+};
+const runStr = async (code) => {
+  if (typeof webr.evalRString === 'function') return webr.evalRString(code);
+  return String(await webr.evalR(code));
+};
+function writeFile(path, text) {
+  webr.FS.writeFile(path, new TextEncoder().encode(text));
+}
+
+// 绘图消息泵：把 R 图形设备的 canvas 事件渲染到页面
+const plotBoxes = [document.getElementById('p-forest'), document.getElementById('p-funnel')];
+let boxIdx = 0;
+let activeCanvas = null;
+function newPlotCanvas() {
+  const c = document.createElement('canvas');
+  c.width = 1008; c.height = 1008;
+  const box = boxIdx < plotBoxes.length ? plotBoxes[boxIdx] : plotBoxes[plotBoxes.length - 1];
+  box.appendChild(c);
+  boxIdx++;
+  activeCanvas = c;
+}
+(async function pump() {
+  for (;;) {
+    let msg;
+    try { msg = await webr.read(); } catch (e) { break; }
+    if (!msg) continue;
+    if (msg.type === 'closed') break;
+    if (msg.type === 'canvas' && msg.data) {
+      if (msg.data.event === 'canvasNewPage') {
+        newPlotCanvas();
+      } else if (msg.data.event === 'canvasImage' && msg.data.image) {
+        if (!activeCanvas) newPlotCanvas();
+        activeCanvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+      }
+    }
+  }
+})();
+
+const sPkg = addStep('安装 metafor（repo.r-wasm.org，约 10–30 MB）');
+try {
+  await run("webr::install('metafor')");
+  await run("options(device = webr::canvas)");
+  log(await runStr("paste('ENGINE=online_webr_metafor', paste0('R=', R.version.string), paste0('metafor=', as.character(packageVersion('metafor'))), sep='\\n')"));
+  setStep(sPkg, 'done');
+} catch (e) {
+  setStep(sPkg, 'error', '无法安装 metafor（多为 repo.r-wasm.org 不可达）。请检查网络后刷新；或改用本地 R。');
+  throw e;
+}
+
+const sData = addStep('载入研究数据');
+try {
+  try { webr.FS.mkdir('/input'); } catch (e) {}
+  if (CSV) writeFile('/input/data.csv', CSV);
+  writeFile('/input/load.R', R_LOAD);
+  writeFile('/input/analysis.R', R_ANALYSIS);
+  writeFile('/input/forest.R', R_FOREST);
+  writeFile('/input/funnel.R', R_FUNNEL);
+  await run("source('/input/load.R')");
+  setStep(sData, 'done');
+} catch (e) {
+  setStep(sData, 'error', String(e));
+  log('数据载入失败：' + String(e));
+  throw e;
+}
+
+const sAna = addStep('执行合并分析（rma, REML）');
+try {
+  const out = await runStr("paste(capture.output(source('/input/analysis.R', echo=TRUE)), collapse='\\n')");
+  log(out);
+  setStep(sAna, 'done');
+} catch (e) {
+  setStep(sAna, 'error', String(e));
+  log(String(e));
+  throw e;
+}
+
+const sF = addStep('绘制森林图');
+try {
+  await run("source('/input/forest.R')");
+  await sleep(1000);
+  if (document.getElementById('p-forest').querySelector('canvas')) {
+    setStep(sF, 'done');
+  } else {
+    setStep(sF, 'error', '未捕获到图形输出（可将 R 代码复制到本地 R 出图）');
+  }
+} catch (e) {
+  setStep(sF, 'error', String(e));
+}
+
+const sFn = addStep('绘制漏斗图');
+try {
+  await run("source('/input/funnel.R')");
+  await sleep(1000);
+  if (document.getElementById('p-funnel').querySelector('canvas')) {
+    setStep(sFn, 'done');
+  } else {
+    setStep(sFn, 'error', '未捕获到图形输出（可将 R 代码复制到本地 R 出图）');
+  }
+} catch (e) {
+  setStep(sFn, 'error', String(e));
+}
+
+const sEnd = addStep('完成');
+setStep(sEnd, 'done');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "schema_version": "pubmed-search-v1",
+  "database": "PubMed",
+  "searched_at_utc": "2026-08-27T10:22:08+00:00",
+  "query": "(Neuriva[tiab] OR (\"coffee cherry\"[tiab] AND phosphatidylserine[tiab])) AND (\"Cognition\"[Mesh] OR cognition[tiab] OR memory[tiab] OR attention[tiab])",
+  "query_translation": "(\"Neuriva\"[Title/Abstract] OR (\"coffee cherry\"[Title/Abstract] AND \"phosphatidylserine\"[Title/Abstract])) AND (\"Cognition\"[MeSH Terms] OR \"Cognition\"[Title/Abstract] OR \"memory\"[Title/Abstract] OR \"attention\"[Title/Abstract])",
+  "total_hits": 2,
+  "exported_records": 2,
+  "retrieved_all_hits": true,
+  "explicit_truncation": false,
+  "sort": "pub date",
+  "abstracts_available": 2,
+  "warnings": {},
+  "ris_sha256": "9f08ed8fc4b5069c75b9b7b5984b3e4e70d572986372b7daf56b9c372ffb4684"
+}

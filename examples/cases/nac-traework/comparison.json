@@ -1,0 +1,22 @@
+{
+  "tested_at": "2026-08-28",
+  "platform": "TraeWork",
+  "model": "Qwen 3.8 Max",
+  "question": "我看见营养补剂 NAC 的宣传，很心动，值得购买吗？",
+  "before": {
+    "label": "未安装 Skill",
+    "verdict": "健康人若只为泛化的抗氧化、排毒或增强免疫，不太值得买。",
+    "search": "10 个网页",
+    "strength": "能区分急诊解毒、呼吸道祛痰等药用场景与日常保健宣传，也提示了胃肠不适和硝酸酯类相互作用。",
+    "limit": "没有先确认具体购买目标；未提供可复现检索式、全量筛选记录、PICOS 纳排或逐结局 GRADE。"
+  },
+  "after": {
+    "label": "已安装 evidence-based-nutrition-advisor",
+    "intake": "先确认：健康成人、无处方药，购买目标为美白/抗衰。",
+    "verdict": "不建议为美白/抗衰购买",
+    "direct_result": "直接口服 RCT（n=50）：NAC 与安慰剂的 mMASI 均下降 12%，p=0.613。",
+    "search": "PubMed 命中 225 条，完整导出并逐条筛查 225 条；17 条进入全文评估，16 条纳入。",
+    "grade": "美白获益证据极低；对黄褐斑“无额外获益”的确定性为中等。",
+    "safety": "常规剂量总体耐受良好；胃肠不适最常见，避免与硝酸酯类同用。"
+  }
+}
