@@ -5,6 +5,10 @@ __pycache__/
 .venv/
 .DS_Store
 
+# Local design-review artifacts
+.hallmark/
+tokens.css
+
 # Generated outputs and working data
 outputs/
 work/
@@ -18,4 +22,3 @@ webr-offline/
 .r-meta-lib/
 .Rhistory
 .RData
-
