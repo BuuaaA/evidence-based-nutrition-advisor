@@ -2,7 +2,7 @@
 
 以下案例用于展示 Skill 如何路由任务和组织交付，不应当作针对任何个人的当前医疗建议。真实使用时应重新检索截至当日的证据，并结合产品版本、剂量、疾病、用药和地区监管状态。
 
-[在线查看 14 个行为验收用例的结果说明图](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)。其中包括三个普通功效问题、产品审计、检索/GRADE 护栏、Meta 路由、图文一致性、结构化个体试用、安全拦截、N-of-1 命名边界和完整产品事实采用。
+[在线查看 14 个行为验收用例的结果说明图](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)。其中包括三个普通功效问题、产品审计、检索/GRADE 护栏、Meta 路由、图文一致性、结构化个体试用、安全拦截、单病例随机交叉试验命名边界和完整产品事实采用。画廊顶部另有一张可操作的 [L1-Quick 证据卡](../examples/consumer-answer-quick-demo.html)，用于展示“申请完整审计”按钮。
 
 ## 案例 1：模糊的关节疼痛问题
 
@@ -12,23 +12,25 @@
 使用 $evidence-based-nutrition-advisor：补充氨糖软骨素能缓解关节疼痛吗？
 ```
 
-**路由**：快速证据审计；先用不超过 5 项的点击选择判断是否与膝骨关节炎证据集匹配。
+**路由**：普通用户默认进入 L1-Quick；先用不超过 5 项的点击选择判断是否与膝骨关节炎证据集匹配。
 
 **交付重点**
 
 - 证据生成前一次点击确认疼痛关节、是否确诊、危险症状、相关用药和配方信息；
 - 用户跳过时，按一般情境说明证据主要针对已确诊膝骨关节炎，不能外推到所有关节痛；
-- 把疼痛与功能分开评价，并用临床重要阈值解释统计差异；
-- 后台复用历史系统综述基座，再完整导出和筛查 PubMed 更新检索的 7 条命中；
-- 展开层显示检索式、Query Translation、筛选计数、PICOS 纳排和逐结局 GRADE 五域。
+- 先查已审计缓存；缓存未命中时核验本地标准、可靠指南或综述、权威安全资料；
+- 先生成明确标注“快速核验，未正式评级”的 HTML 卡，不等待 PubMed 全量筛查；
+- 卡片展开层显示三类来源、核验日期、覆盖范围、剩余不确定性和改判条件；
+- 行动栏提供“申请完整审计”。用户申请后，才继续 PubMed 全量导出筛查、全文边界和逐结局确定性。
 
 **可查看产物**
 
-- [结构化输入 JSON](../examples/cases/glucosamine-chondroitin/answer.json)
-- [详细 HTML 结果](../examples/cases/glucosamine-chondroitin/answer.html)
+- [普通用户 L1-Quick 证据卡](../examples/consumer-answer-quick-demo.html)
+- [升级后的氨糖完整审计](../examples/cases/glucosamine-chondroitin/answer.html)
+- [完整审计结构化输入 JSON](../examples/cases/glucosamine-chondroitin/answer.json)
 - [14 个用例可视化画廊](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)
 
-示例来自仓库的行为测试与证据包，用来验证交付结构；真实回答必须刷新检索日期并核对诊断、剂型和剂量。
+快速卡用于验证普通用户首答；氨糖详细页用于验证用户申请完整审计后的状态。真实回答必须刷新核验或检索日期，并核对诊断、剂型和剂量。
 
 ## 案例 2：模糊问题的点击式个性化
 
@@ -38,15 +40,16 @@
 吃鱼油能改善血脂吗？
 ```
 
-**路由**：快速证据审计；个人意图尚不明确。
+**路由**：个人意图尚不明确，先收集会翻转决策的信息，再进入 L1-Quick。
 
 **预期交付**
 
 1. 先用 4 项点击选择确认目标血脂、最近甘油三酯档位、相关用药和产品类型；
-2. 收到选择后据此确定 PICOS，再运行 PubMed 检索和证据综合；
-3. 用户跳过时才按一般情境说明鱼油主要作用于甘油三酯，不把“血脂”当成单一结局；
-4. 不先发送年龄、性别和完整病史问卷；
-5. 分开表达该结局的证据体确定性、当前用户匹配度和最终决策价值。
+2. 收到选择后据此确定问题边界，并先查已审计缓存；
+3. 缓存未命中时核验三类高权重来源，生成 L1-Quick 卡；
+4. 用户跳过时按一般情境说明鱼油主要作用于甘油三酯，避免把“血脂”当成单一结局；
+5. 不先发送年龄、性别和完整病史问卷；
+6. L1-Quick 不显示自建 GRADE；需要完整审计时由用户通过卡片按钮申请。
 
 ## 案例 3：用户含糊地要求重新做 Meta
 

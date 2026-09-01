@@ -1,10 +1,12 @@
 # evidence-based-nutrition-advisor V1.0.1
 
-网上从来不缺“有论文证明”的营养建议。真正麻烦的是：论文彼此矛盾、研究对象并不一样、统计学差异未必有实际意义，保健品宣传又常把其中一段结论讲得过满。
+网上随手就能找到“有论文证明”的营养建议。论文可能互相矛盾，研究对象也常常不同；统计学差异未必达到实际可感知的程度，产品宣传还会把有限结论讲得过满。
 
-evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先界定问题，在 90 秒目标内生成一张明确标注证据等级的个性化 HTML 证据卡；需要时，同一张卡再升级为包含可复现 PubMed 检索、全量题录筛查和逐结局确定性的完整审计。
+evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先界定问题，目标是在 90 秒内生成一张标明核验层级的个性化 HTML 证据卡。用户申请完整审计，或风险需要更高保证时，同一张卡再加入可复现的 PubMed 检索、全量题录筛查和逐结局确定性评价。
 
-它不是“帮你多找几篇论文”，而是回答这些更实际的问题：
+`普通问题 → L1-Quick 快速核验 → 申请或风险升级 → L1-Audited 完整审计 → 需要重新合并研究时进入 L2-Research`
+
+它处理的是几个更实际的问题：
 
 - 证据到底适用于谁；
 - 效果有多大，是否达到值得在意的程度；
@@ -15,26 +17,29 @@ evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先�
 > [!IMPORTANT]
 > 本项目用于证据检索、审计和决策支持，不用于诊断或替代治疗。孕哺、未成年人、肝肾疾病、处方药、手术、明显异常化验或进行性症状，应优先咨询医生、药师或注册营养专业人员。
 
-## 三类使用场景
+## 三种任务
 
-| 场景 | 例子 | 你会得到什么 |
+路径由任务决定，与用户的职业头衔无关。普通用户可以申请完整审计，专业人员也可以只要一张快速购买卡。
+
+| 任务 | 什么时候使用 | 交付结果 |
 |---|---|---|
-| 普通用户 | “补充氨糖软骨素能缓解关节疼痛吗？” | 第一屏先给决定；展开后可查看检索式、筛选记录、PICOS 纳排和逐结局 GRADE |
-| 营养师及其他专业人员 | “常规补钙能预防老年人骨折吗？” | 效应量与置信区间、临床重要阈值、GRADE 五域和适用性边界 |
-| 研究人员和专业用户 | “目前没有可靠结论，能否重新合并现有研究？” | 预先限定一个数据库，完整筛查并提取可获得全文，完成偏倚评价、统计合并、敏感性分析和 GRADE |
+| 快速判断（L1-Quick） | “补充氨糖软骨素能缓解关节疼痛吗？”“这个产品值不值得买？” | 先查已审计缓存；未命中时核验本地标准、可靠指南或综述、权威安全资料，生成一张明确标注“快速核验，未正式评级”的 HTML 证据卡。卡片提供“申请完整审计”按钮。 |
+| 完整证据审计（L1-Audited） | 用户明确要求专业或完整审计，或当前风险需要更高保证 | 历史证据基座、可复现的 PubMed 更新检索、限定范围内的全部题录筛查、全文边界、PICOS 纳排，以及逐关键结局的效应和确定性。 |
+| 研究级合成（L2-Research） | 需要重新提取原始研究、重新合并数据或形成研究方案 | 预先指定数据库和方案，完整导出与筛查，提取可核查全文，完成偏倚评价、统计合并、敏感性分析、GRADE 和复现记录。 |
 
 可直接查看：
 
-- [普通用户可视化示例](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)
-- [氨糖软骨素详细答案](examples/cases/glucosamine-chondroitin/answer.html)
+- [普通用户 L1-Quick 证据卡（含“申请完整审计”按钮）](examples/consumer-answer-quick-demo.html)
+- [14 个行为验收用例](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)
+- [氨糖软骨素完整审计示例](examples/cases/glucosamine-chondroitin/answer.html)
 - [专业证据展示：老年人补钙](examples/cases/calcium-older-adults/professional-evidence.md)
 - [单数据库 Meta 证据合成示例](examples/cases/meta-routing/original-meta-result.md)
 
-## 使用前后有什么不同
+## 一张图看懂交付差异
 
 ![氨糖软骨素问题：普通回答与本 Skill 的回答对比](assets/glucosamine-chondroitin-before-after.png)
 
-左侧是常见的概括式回答；右侧进一步回答了证据适用于哪类关节痛、平均效果是否达到临床重要阈值，以及为什么不应把膝骨关节炎研究外推到所有关节疼痛。[查看对比图的生成口径](examples/glucosamine-chondroitin-before-after.md)。
+左侧保留常见的概括式回答。右侧展示当前普通用户路径：先给决定和适用边界，再显示 L1-Quick 的三类核验来源，并提供“申请完整审计”按钮。普通提问不会自动触发 PubMed 全量筛查或 GRADE；这些步骤在用户申请完整审计或风险需要更高保证时启动。[查看对比图的生成口径](examples/glucosamine-chondroitin-before-after.md)。
 
 ## 方法底线
 
@@ -47,11 +52,11 @@ evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先�
 5. 完整审计才按关键结局评价 GRADE；若改判，在同一张卡显示改判原因。
 6. 始终把证据确定性、当前用户匹配度和最终决策分开表达。
 
-历史系统综述是证据基座，不是跳过更新检索的理由。PubMed 是普通功效问题的最低检索来源。多数据库、注册平台、灰色文献和双人流程属于发表级系统综述的要求，不是本 Skill 单数据库 Meta 证据合成所声称达到的范围。
+进入完整审计后，历史系统综述用于建立证据基座，PubMed 更新检索负责核查其截止日期之后的新记录。L1-Quick 首卡不等待这套流程。多数据库、注册平台、灰色文献和双人流程属于发表级系统综述的要求；本 Skill 的单数据库 Meta 证据合成只对预先声明的数据库和可得全文负责。
 
 ### 为什么先点几项再生成证据
 
-“血脂”“关节痛”“老年人补钙”都不是单一问题：异常分项、诊断、剂型、关键用药或风险状态可能直接换掉检索人群和最终建议。Skill 会先做“决策翻转测试”，只保留会改变 PICOS、安全边界或购买判定的问题。
+“血脂”“关节痛”“老年人补钙”背后可能对应不同的异常分项、诊断、剂型、关键用药和风险状态，这些信息会直接改变检索人群与建议。Skill 会先做“决策翻转测试”，只保留会改变 PICOS、安全边界或购买判定的问题。
 
 - 宿主支持选择卡或表单时，直接使用原生点击控件；
 - 本地环境可运行脚本时，可用一次性 localhost 问卷收集选择，答案只写入临时文件；
@@ -73,9 +78,7 @@ evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先�
 
 ## 单数据库 Meta 证据合成
 
-这项功能主要面对目前**没有可靠综合结论**的问题，例如：没有系统综述、现有 Meta 已明显过时、纳排或统计方法存在严重缺陷，或者出现了可能改变旧结论的新研究。
-
-它不是为了替代发表级系统综述，而是用 Meta 分析的方法，对一个边界清楚的证据集重新进行合成：
+这项功能主要面对目前**没有可靠综合结论**的问题，例如：没有系统综述、现有 Meta 已明显过时、纳排或统计方法存在严重缺陷，或者出现了可能改变旧结论的新研究。它用 Meta 分析方法重新合成边界清楚的证据集，交付范围始终限定在预先指定的数据库和可获得全文：
 
 1. 预先确定 PICOS、主要结局、检索截止日期和分析方案；
 2. 根据问题和访问条件指定一个数据库，保存完整检索式并导出全部命中；
@@ -115,21 +118,21 @@ evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先�
 
 ## 怎么提问
 
-普通用户：
+快速判断：
 
 ```text
 使用 $evidence-based-nutrition-advisor：吃鱼油能改善血脂吗？
 如果这是个人决策且关键信息会改变建议，请先让我点击选择最关键的 3 至 5 项；至多 5 项，不要为凑数提问。收到选择后再生成证据。
 ```
 
-专业审计：
+完整证据审计：
 
 ```text
 使用 $evidence-based-nutrition-advisor 做专业证据审计：
 比较近期指南与系统综述对维生素 D 预防跌倒的结论，给出 PICOS、效应量、GRADE 五域和冲突原因。
 ```
 
-单数据库 Meta 证据合成：
+研究级合成：
 
 ```text
 使用 $evidence-based-nutrition-advisor，基于 PubMed 和可获得全文，
@@ -139,9 +142,9 @@ evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先�
 
 ## 示例与验收
 
-仓库内置 14 个行为验收用例，覆盖模糊提问、产品审计、全文缺失、检索截断、Meta 意图分流、图文一致性、结构化个体试用、安全拦截、N-of-1 命名边界和完整产品事实采用。每个用例都有 PNG 与 SVG 结果图，并统一收在[可视化示例页](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)。商品名案例只出现在案例页，不作为首页代表问题。
+仓库内置 14 个行为验收用例，覆盖模糊提问、产品审计、全文缺失、检索截断、Meta 意图分流、图文一致性、结构化个体试用、安全拦截、单病例随机交叉试验命名边界和完整产品事实采用。每个用例都有 PNG 与 SVG 结果图，并统一收在[可视化示例页](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)。商品名案例只出现在案例页，不作为首页代表问题。
 
-普通功效案例的 HTML 不是手写页面，而是由结构化答案、PubMed search manifest、原始 RIS 和逐条筛选 CSV 共同生成。生成器会核对检索式、Query Translation、命中数、筛选数、RIS 散列和全文缺失记录；任一项对不上即拒绝生成。
+[L1-Quick 证据卡](examples/consumer-answer-quick-demo.html)由结构化答案和三类核验来源生成，不需要 PubMed manifest、RIS 或筛选日志，并会展示“申请完整审计”按钮。完整审计示例再由结构化答案、PubMed search manifest、原始 RIS 和逐条筛选 CSV 共同生成；生成器会核对检索式、Query Translation、命中数、筛选数、RIS 散列和全文缺失记录，任一项不一致都会拒绝生成。
 
 ## 开发与验证
 
@@ -164,7 +167,7 @@ SKILL.md       Skill 入口和模式路由
 references/    检索、证据评价、GRADE、研究合成与隐私规则
 scripts/       PubMed 检索、HTML 生成、去重和 Meta 工具
 templates/     证据卡、筛选日志、提取表和报告模板
-examples/      三类用户场景与可复现证据包
+examples/      三类任务路径、快速证据卡与可复现审计包
 tests/         行为用例、单元测试和统计引擎校验
 ```
 

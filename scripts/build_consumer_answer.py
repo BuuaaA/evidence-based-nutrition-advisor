@@ -26,6 +26,14 @@ VERDICTS = {
     "avoid": ("不建议自行使用。", "#9e332d"),
     "insufficient": ("暂不能可靠判断。", "#7a5812"),
 }
+HTML_VERDICT_COLORS = {
+    "priority": "var(--color-accent)",
+    "conditional": "var(--color-accent)",
+    "trial": "var(--color-warning)",
+    "not_worth": "var(--color-danger)",
+    "avoid": "var(--color-danger)",
+    "insufficient": "var(--color-warning)",
+}
 PERSONAL_MATCHES = {"unknown", "matched", "not_matched"}
 MATCHED_CONDITIONAL_ACTION = re.compile(
     r"(?:值得(?:试一试|尝试|补充)|可以(?:试一试|尝试|补充|使用|服用))"
@@ -333,6 +341,7 @@ def validate(data: dict) -> dict:
             "requires_bundle": False,
             "requires_pack": False,
             "verdict": verdict,
+            "verdict_key": verdict_key,
             "verdict_color": verdict_color,
             "personal_match": personal_match,
             "for_whom": for_whom,
@@ -524,6 +533,7 @@ def validate(data: dict) -> dict:
         "requires_pack": certainty_method == "cached_audit",
         "cache_topic_id": clean_text(research.get("cache_topic_id", ""), "research.cache_topic_id") if certainty_method == "cached_audit" else "",
         "verdict": verdict,
+        "verdict_key": verdict_key,
         "verdict_color": verdict_color,
         "personal_match": personal_match,
         "for_whom": for_whom,
@@ -819,7 +829,7 @@ def build_html(d: dict) -> str:
     replacements = {
         "__TITLE__": html.escape(d["title"]),
         "__VERDICT__": html.escape(d["verdict"]),
-        "__VERDICT_COLOR__": d["verdict_color"],
+        "__VERDICT_COLOR__": HTML_VERDICT_COLORS[d["verdict_key"]],
         "__FOR_WHOM__": html.escape(d["for_whom"]),
         "__EFFECT_CEILING__": html.escape(d["effect_ceiling"]),
         "__SAFETY_RED_LINE__": html.escape(d["safety_red_line"]),

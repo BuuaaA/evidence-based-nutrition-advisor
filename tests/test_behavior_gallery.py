@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "examples" / "behavior-case-results.json"
 GALLERY = ROOT / "examples" / "consumer-answer-demo.html"
+QUICK_DEMO = ROOT / "examples" / "consumer-answer-quick-demo.html"
 README = ROOT / "README.md"
 
 
@@ -49,12 +50,13 @@ class BehaviorGalleryTests(unittest.TestCase):
         self.assertIn("暂定 GRADE", by_id[5]["verdict"])
         self.assertIn("暂不能可靠判断", by_id[6]["verdict"])
         self.assertIn("一个预先指定的数据库", by_id[7]["result"])
-        self.assertIn("200 是每批获取数量", by_id[6]["result"])
+        self.assertIn("每批获取 200 条", by_id[6]["result"])
         self.assertIn("不冒充发表级系统综述", by_id[8]["trace"][3][1])
         self.assertIn("四道门", by_id[10]["verdict"])
         self.assertIn("不能包装", by_id[11]["verdict"])
         self.assertIn("专业评估", by_id[12]["verdict"])
-        self.assertIn("不是 N-of-1", by_id[13]["verdict"])
+        self.assertIn("结构化个体试用", by_id[13]["verdict"])
+        self.assertNotIn("N-of-1", json.dumps(by_id[13], ensure_ascii=False))
         self.assertIn("Shoden® 280 mg", by_id[14]["verdict"])
 
     def test_ordinary_personal_cases_collect_clickable_information_first(self):
@@ -65,6 +67,24 @@ class BehaviorGalleryTests(unittest.TestCase):
         self.assertIn("4 项", by_id[1]["trace"][0][1])
         self.assertIn("首次关键问题不藏", by_id[1]["checks"][0])
         self.assertIn("跳过", by_id[1]["boundary"])
+
+    def test_ordinary_cases_show_quick_path_and_audit_upgrade(self):
+        by_id = {case["id"]: case for case in self.cases}
+        for case_id in (1, 2, 3, 4):
+            serialized = json.dumps(by_id[case_id], ensure_ascii=False)
+            self.assertIn("L1-Quick", serialized)
+            self.assertTrue("申请完整审计" in serialized or "完整审计" in serialized)
+        gallery = GALLERY.read_text(encoding="utf-8")
+        self.assertIn("consumer-answer-quick-demo.html", gallery)
+        self.assertIn("申请完整审计", gallery)
+
+    def test_quick_demo_exposes_audit_request_without_claiming_full_screening(self):
+        page = QUICK_DEMO.read_text(encoding="utf-8")
+        self.assertIn("L1-Quick 快速核验", page)
+        self.assertIn('data-testid="request-full-audit"', page)
+        self.assertIn("申请完整审计", page)
+        self.assertIn("快速核验，未正式评级", page)
+        self.assertNotIn("可复现的 PubMed 检索", page)
 
 
 if __name__ == "__main__":

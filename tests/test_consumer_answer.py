@@ -73,7 +73,7 @@ class ConsumerAnswerTests(unittest.TestCase):
         for marker in ('data-testid="why"', 'data-testid="suitability"', 'data-testid="research"'):
             self.assertIn(marker, page)
         self.assertIn("不太值得买。", page)
-        self.assertIn("color:#9e332d", page)
+        self.assertIn("color:var(--color-danger)", page)
         self.assertNotIn("var(--#", page)
         self.assertIn("PICOS 与随访", page)
         self.assertIn("证据怎么裁决", page)

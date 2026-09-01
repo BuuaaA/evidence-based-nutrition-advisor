@@ -82,7 +82,7 @@ def draw_wrapped(
     return y
 
 
-def draw_pill(
+def draw_label(
     draw: ImageDraw.ImageDraw,
     xy: tuple[int, int],
     label: str,
@@ -90,10 +90,10 @@ def draw_pill(
     foreground: str,
 ) -> None:
     x, y = xy
-    pill_font = font(26, True)
-    width = int(text_width(draw, label, pill_font)) + 44
-    draw.rounded_rectangle((x, y, x + width, y + 52), radius=26, fill=background)
-    draw.text((x + 22, y + 9), label, font=pill_font, fill=foreground)
+    label_font = font(24, True)
+    width = int(text_width(draw, label, label_font)) + 34
+    draw.rectangle((x, y, x + width, y + 46), fill=background)
+    draw.text((x + 17, y + 7), label, font=label_font, fill=foreground)
 
 
 def draw_bullet(
@@ -104,10 +104,11 @@ def draw_bullet(
     value: str,
     accent: str,
     max_width: int,
+    font_size: int = 27,
 ) -> int:
     draw.ellipse((x, y + 10, x + 13, y + 23), fill=accent)
-    label_font = font(27, True)
-    body_font = font(27)
+    label_font = font(font_size, True)
+    body_font = font(font_size)
     draw.text((x + 29, y), label, font=label_font, fill="#162033")
     label_width = int(text_width(draw, label, label_font))
     value_x = x + 29 + label_width + 10
@@ -129,80 +130,82 @@ def main() -> None:
     data = json.loads(DATA.read_text(encoding="utf-8"))
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
-    image = Image.new("RGB", (WIDTH, HEIGHT), "#F4F7FB")
+    image = Image.new("RGB", (WIDTH, HEIGHT), "#F4F1E9")
     draw = ImageDraw.Draw(image)
 
-    draw.text((MARGIN, 58), "同一个问题，使用 Skill 前后有什么不同？", font=font(50, True), fill="#101828")
-    draw.text((MARGIN, 132), "问题：补充氨糖软骨素能缓解关节疼痛吗？", font=font(34), fill="#475467")
-    draw.rounded_rectangle((MARGIN, 194, WIDTH - MARGIN, 200), radius=3, fill="#D0D5DD")
+    draw.text((MARGIN, 42), "EVIDENCE DELIVERY · BEFORE / AFTER", font=font(20, True), fill="#65716C")
+    draw.text((MARGIN, 82), "同一个问题，两种交付结构", font=font(50, True), fill="#1A2823")
+    draw.text((MARGIN, 154), "补充氨糖软骨素能缓解关节疼痛吗？", font=font(32), fill="#45524D")
+    draw.line((MARGIN, 208, WIDTH - MARGIN, 208), fill="#1A2823", width=3)
+    draw.line((MARGIN, 216, WIDTH - MARGIN, 216), fill="#C9D0C8", width=1)
 
     left_x = MARGIN
     right_x = MARGIN + CARD_WIDTH + GAP
-    for x in (left_x, right_x):
-        draw.rounded_rectangle((x, CARD_TOP, x + CARD_WIDTH, CARD_BOTTOM), radius=28, fill="#FFFFFF", outline="#D8DEE9", width=2)
+    draw.rectangle((left_x, CARD_TOP, left_x + CARD_WIDTH, CARD_BOTTOM), fill="#EAE7DF")
+    draw.rectangle((right_x, CARD_TOP, right_x + CARD_WIDTH, CARD_BOTTOM), fill="#FBFAF5")
+    divider_x = left_x + CARD_WIDTH + GAP // 2
+    draw.line((divider_x, CARD_TOP, divider_x, CARD_BOTTOM), fill="#AEB8B0", width=2)
 
     # Baseline card: a representative ordinary-answer structure, not a benchmark run.
-    draw_pill(draw, (left_x + 38, CARD_TOP + 34), "未调用 Skill · 常见回答形态", "#F2F4F7", "#344054")
+    draw_label(draw, (left_x + 38, CARD_TOP + 34), "常见短答", "#D8DCD6", "#34433D")
     y = CARD_TOP + 112
     draw.text((left_x + 38, y), "方向正确，但信息停在概括层", font=font(32, True), fill="#101828")
     y += 62
     baseline = (
         "氨糖和软骨素可能对部分骨关节炎患者的关节疼痛有一定帮助，但研究结果并不一致，效果通常比较有限，"
-        "也不是每个人都会有效。\n\n"
+        "个体感受也会有差异。\n\n"
         "如果想尝试，可以选择成分和剂量清楚的产品，连续服用一段时间观察；如果没有改善就停止。"
         "正在服用抗凝药、有慢性病或疼痛严重的人，最好先咨询医生。运动、控制体重和规范治疗通常更重要。"
     )
     y = draw_wrapped(draw, (left_x + 38, y), baseline, font(28), "#344054", CARD_WIDTH - 76, 14)
     y += 30
-    draw.rounded_rectangle((left_x + 38, y, left_x + CARD_WIDTH - 38, y + 174), radius=20, fill="#FFF7ED")
+    draw.rectangle((left_x + 38, y, left_x + CARD_WIDTH - 38, y + 174), fill="#F5E9DA")
     draw.text((left_x + 62, y + 22), "尚未展开", font=font(27, True), fill="#9A3412")
     draw_wrapped(
         draw,
         (left_x + 62, y + 67),
-        "证据究竟针对哪类关节痛 · 效果是否达到临床重要阈值\n检索式与全量筛查 · 逐结局 GRADE · 可核查来源",
+        "证据针对哪类关节痛 · 效果是否值得在意\n核验了哪些来源 · 哪些信息会改变建议 · 如何继续审计",
         font(26),
         "#7C2D12",
         CARD_WIDTH - 124,
         12,
     )
 
-    # Skill card: first-screen decision plus traceability.
-    draw_pill(draw, (right_x + 38, CARD_TOP + 34), "调用 evidence-based-nutrition-advisor", "#DCFCE7", "#166534")
+    # Skill card: the current ordinary-user quick path.
+    draw_label(draw, (right_x + 38, CARD_TOP + 34), "普通用户默认路径", "#E4F0EB", "#0B6657")
     y = CARD_TOP + 112
     draw.text((right_x + 38, y), "先交付决定，再展开证据", font=font(32, True), fill="#101828")
-    y += 60
-    draw.rounded_rectangle((right_x + 38, y, right_x + CARD_WIDTH - 38, y + 92), radius=20, fill="#ECFDF3")
+    y += 54
+    draw.rectangle((right_x + 38, y, right_x + CARD_WIDTH - 38, y + 62), fill="#E7F0EC")
+    draw.text((right_x + 62, y + 14), "L1-Quick · 快速核验完成，未正式评级", font=font(24, True), fill="#0B6657")
+    y += 82
+    draw.rectangle((right_x + 38, y, right_x + CARD_WIDTH - 38, y + 92), fill="#EDF3EC")
     draw.text((right_x + 62, y + 17), "购买结论", font=font(25, True), fill="#067647")
     draw.text((right_x + 200, y + 10), "只对特定人群值得", font=font(35, True), fill="#05603A")
     y += 126
     inner_width = CARD_WIDTH - 92
-    y = draw_bullet(draw, right_x + 46, y, "对谁可能有用", data["for_whom"], "#12B76A", inner_width)
-    y = draw_bullet(draw, right_x + 46, y, "效果上限", data["effect_ceiling"], "#12B76A", inner_width)
-    y = draw_bullet(draw, right_x + 46, y, "安全红线", data["safety_red_line"], "#F04438", inner_width)
-    draw.rounded_rectangle((right_x + 38, CARD_BOTTOM - 176, right_x + CARD_WIDTH - 38, CARD_BOTTOM - 34), radius=20, fill="#F0F9FF")
-    draw.text((right_x + 62, CARD_BOTTOM - 158), "为什么", font=font(25, True), fill="#026AA2")
+    y = draw_bullet(draw, right_x + 46, y, "对谁可能有用", data["for_whom"], "#12B76A", inner_width, 25)
+    y = draw_bullet(draw, right_x + 46, y, "效果上限", data["effect_ceiling"], "#12B76A", inner_width, 25)
+    y = draw_bullet(draw, right_x + 46, y, "安全红线", data["safety_red_line"], "#F04438", inner_width, 25)
+    draw.rectangle((right_x + 38, CARD_BOTTOM - 180, right_x + CARD_WIDTH - 38, CARD_BOTTOM - 96), fill="#E7F0EC")
+    draw.text((right_x + 62, CARD_BOTTOM - 162), "证据护照", font=font(24, True), fill="#0B6657")
     draw_wrapped(
         draw,
-        (right_x + 170, CARD_BOTTOM - 158),
-        data["why"]["summary"],
-        font(24),
-        "#075985",
-        CARD_WIDTH - 246,
+        (right_x + 208, CARD_BOTTOM - 162),
+        "本地标准 · 可靠指南/综述 · 权威安全资料",
+        font(22),
+        "#31554D",
+        CARD_WIDTH - 270,
         8,
     )
-    draw.text((right_x + 62, CARD_BOTTOM - 88), "可继续展开", font=font(23, True), fill="#026AA2")
-    draw_wrapped(
-        draw,
-        (right_x + 210, CARD_BOTTOM - 88),
-        "PubMed检索 · 全量筛查 · PICOS · 逐结局GRADE",
-        font(23),
-        "#075985",
-        CARD_WIDTH - 272,
-        10,
-    )
+    draw.rectangle((right_x + 38, CARD_BOTTOM - 78, right_x + CARD_WIDTH - 38, CARD_BOTTOM - 28), outline="#0B6657", width=3)
+    button_label = "申请完整审计"
+    button_font = font(25, True)
+    button_width = text_width(draw, button_label, button_font)
+    draw.text((right_x + (CARD_WIDTH - button_width) / 2, CARD_BOTTOM - 69), button_label, font=button_font, fill="#0B6657")
 
-    footer = "同一问题的交付结构对比，不是模型能力基准。左侧是常见短答形态；右侧来自已保存检索式、全量筛选、PICOS 与逐结局 GRADE 的仓库案例。"
-    draw_wrapped(draw, (MARGIN, 1110), footer, font(23), "#667085", WIDTH - MARGIN * 2, 8)
+    footer = "这张图比较交付结构，不衡量模型能力。普通问题默认停在快速核验；用户申请或风险需要更高保证时，才进入全量筛查与逐结局 GRADE。"
+    draw_wrapped(draw, (MARGIN, 1110), footer, font(23), "#65716C", WIDTH - MARGIN * 2, 8)
 
     image.save(OUTPUT, format="PNG", optimize=True)
     print(f"Wrote {OUTPUT} ({image.width}x{image.height})")
