@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>氨糖软骨素与关节疼痛 | 营养证据卡</title>
+  <style>
+    /* Hallmark · component: evidence-card action rail · genre: editorial · theme: existing
+     * states: default · hover · focus · active · disabled · loading · error · success
+     * contrast: pass · pre-emit critique: P5 H5 E5 S5 R5 V4
+     */
+    :root {
+      --bg:#f3f1eb; --panel:#fffefa; --ink:#17231f; --muted:#626d69; --line:#dcded7;
+      --accent:#075f52; --accent-ink:var(--panel); --accent-soft:#e5f1ed; --danger:#8b332d; --danger-soft:#fff0ec;
+      --warning:#765516; --warning-soft:#fff5dc; --radius:20px;
+      --shadow:0 30px 90px rgba(34,42,37,.11);
+    }
+    * { box-sizing:border-box; }
+    html,body { overflow-x:clip; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.68 ui-sans-serif,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif; }
+    main { width:min(940px,calc(100% - 28px)); margin:40px auto; }
+    .shell { overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); box-shadow:var(--shadow); }
+    header { display:grid; grid-template-columns:minmax(0,1fr) minmax(290px,.76fr); gap:38px; padding:40px 42px 34px; border-bottom:1px solid var(--line); }
+    .kicker { margin:0 0 10px; color:var(--accent); font-size:12px; font-weight:760; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { min-width:0; margin:0; max-width:17ch; font:650 clamp(28px,4.7vw,46px)/1.16 ui-serif,"Noto Serif CJK SC","Songti SC",serif; letter-spacing:-.025em; overflow-wrap:anywhere; }
+    .passport { display:grid; grid-template-columns:1fr 1fr; align-self:start; border-top:2px solid var(--accent); }
+    .passport div { min-width:0; padding:11px 0; border-bottom:1px solid var(--line); }
+    .passport div:nth-child(odd) { padding-right:14px; }
+    .passport span { display:block; margin-bottom:2px; color:var(--muted); font-size:11px; }
+    .passport strong { display:block; font-size:13px; font-weight:650; overflow-wrap:anywhere; }
+    .status-band { display:flex; align-items:flex-start; gap:14px; padding:18px 42px; border-bottom:1px solid var(--line); background:#f8faf7; }
+    .status-dot { flex:0 0 auto; width:10px; height:10px; margin-top:7px; border-radius:999px; background:var(--accent); box-shadow:0 0 0 5px var(--accent-soft); }
+    .status-band strong { display:block; font-size:15px; }
+    .status-band p { margin:2px 0 0; color:var(--muted); font-size:13px; }
+    .status-band[data-state="working"] .status-dot { background:#a36d12; box-shadow:0 0 0 5px #f6e8c9; }
+    .status-band[data-state="limited"] .status-dot,.status-band[data-state="safety"] .status-dot { background:var(--danger); box-shadow:0 0 0 5px var(--danger-soft); }
+    .status-band[data-state="changed"] { background:#fff8e8; }
+    .revision-notice { margin:26px 42px 0; padding:18px 20px; border:1px solid #d8b66e; border-radius:14px; background:#fff8e8; }
+    .revision-notice strong { color:#694b13; }
+    .revision-notice dl { display:grid; grid-template-columns:100px 1fr; gap:8px 14px; margin:12px 0 0; }
+    .revision-notice dt { color:var(--muted); font-size:13px; }.revision-notice dd { margin:0; }
+    .access-notice { margin:24px 42px 0; padding:15px 17px; border-left:3px solid #b27c22; background:var(--warning-soft); color:var(--warning); }
+    .access-notice strong { display:block; margin-bottom:3px; color:var(--ink); }
+    .access-notice p { margin:4px 0; }
+    .access-notice details { margin-top:8px; border:0; }
+    .decision { padding:42px 42px 34px; }
+    .verdict { margin:0 0 32px; max-width:16ch; color:#265d97; font:680 clamp(38px,7vw,66px)/1.03 ui-serif,"Noto Serif CJK SC","Songti SC",serif; letter-spacing:-.045em; }
+    .essentials { border-top:1px solid var(--line); }
+    .essential { display:grid; grid-template-columns:160px 1fr; gap:20px; padding:18px 0; border-bottom:1px solid var(--line); }
+    .essential strong { color:var(--muted); font-size:13px; font-weight:620; }
+    .essential.safety { margin-top:12px; padding:16px; border:0; border-radius:var(--radius); background:var(--danger-soft); color:var(--danger); }
+    .next-actions { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px 24px; margin-top:28px; padding:20px; border:1px solid var(--line); border-radius:14px; background:var(--accent-soft); color:var(--ink); }
+    .next-actions__copy strong { display:block; font-size:16px; }
+    .next-actions__copy p { margin:3px 0 0; color:var(--muted); font-size:13px; }
+    .next-actions__buttons { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:10px; }
+    .handoff-button { position:relative; min-height:44px; padding:0 16px; border:1px solid var(--accent); border-radius:10px; color:var(--accent); background:var(--panel); font:650 14px/1 ui-sans-serif,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif; white-space:nowrap; cursor:pointer; transition:background-color 160ms cubic-bezier(.16,1,.3,1),color 160ms cubic-bezier(.16,1,.3,1),transform 100ms cubic-bezier(.16,1,.3,1); }
+    .handoff-button--primary { background:var(--accent); color:var(--accent-ink); }
+    .handoff-button:focus-visible { outline:3px solid var(--panel); outline-offset:2px; box-shadow:0 0 0 5px var(--accent); }
+    .handoff-button:active,.handoff-button[data-state="active"] { transform:translateY(1px); }
+    .handoff-button:disabled,.handoff-button[data-state="disabled"] { opacity:.55; cursor:not-allowed; transform:none; }
+    .handoff-button[data-state="loading"] { padding-inline-start:40px; cursor:wait; }
+    .handoff-button[data-state="loading"]::before { content:""; position:absolute; inset-inline-start:16px; top:50%; width:13px; height:13px; margin-top:-8px; border:2px solid var(--accent-ink); border-inline-end-color:transparent; border-radius:50%; animation:handoff-spin .8s linear infinite; }
+    .handoff-button:not(.handoff-button--primary)[data-state="loading"]::before { border-color:var(--accent); border-inline-end-color:transparent; }
+    .handoff-button[data-state="error"] { border-color:var(--danger); background:var(--danger); color:var(--accent-ink); }
+    .handoff-button[data-state="success"] { border-color:var(--accent); background:var(--accent); color:var(--accent-ink); }
+    .next-actions__note,.handoff-status { grid-column:1/-1; margin:0; color:var(--muted); font-size:12px; }
+    .handoff-status:empty { display:none; }
+    .handoff-fallback { grid-column:1/-1; padding-top:4px; }
+    .handoff-fallback label { display:block; margin-bottom:6px; color:var(--ink); font-size:13px; font-weight:650; }
+    .handoff-fallback textarea { width:100%; min-height:118px; resize:vertical; padding:11px 12px; border:1px solid var(--line); border-radius:10px; outline:2px solid transparent; outline-offset:1px; background:var(--panel); color:var(--ink); font:13px/1.55 ui-monospace,"SFMono-Regular",Consolas,monospace; }
+    .handoff-fallback textarea:focus-visible { outline-color:var(--accent); }
+    @media (hover:hover) and (pointer:fine) {
+      .handoff-button--primary:hover { background:var(--ink); color:var(--accent-ink); }
+      .handoff-button:not(.handoff-button--primary):hover { background:var(--panel); color:var(--ink); }
+    }
+    @keyframes handoff-spin { to { transform:rotate(360deg); } }
+    .actions { padding:0 42px 42px; }
+    details { border-top:1px solid var(--line); background:transparent; }
+    summary { list-style:none; cursor:pointer; font-weight:650; }
+    summary::-webkit-details-marker { display:none; }
+    .actions > details > summary { display:flex; align-items:center; justify-content:space-between; min-height:62px; color:var(--ink); }
+    .actions > details > summary::after { content:"＋"; color:var(--accent); font-size:21px; font-weight:400; }
+    .actions > details[open] > summary::after { content:"−"; }
+    summary:focus-visible { outline:3px solid rgba(11,107,93,.22); outline-offset:4px; border-radius:6px; }
+    .action-body { padding:2px 0 28px; max-width:76ch; }
+    .action-body h2 { margin:8px 0 12px; font-size:23px; }
+    .action-body h3 { margin:26px 0 7px; font-size:16px; }
+    .action-body h4 { margin:20px 0 5px; font-size:14px; }
+    .action-body p { margin:8px 0; }
+    .action-body ul { margin:8px 0; padding-left:1.25em; }
+    .action-body li + li { margin-top:6px; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:14px 0; background:var(--line); border:1px solid var(--line); }
+    .research-grid div { padding:13px 14px; background:var(--panel); }
+    .research-grid strong { display:block; color:var(--muted); font-size:12px; font-weight:600; }
+    .table-wrap { width:100%; overflow-x:auto; margin:12px 0 18px; }
+    table { width:100%; min-width:650px; border-collapse:collapse; font-size:14px; }
+    th,td { padding:10px 11px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { color:var(--muted); background:var(--accent-soft); font-size:12px; font-weight:650; }
+    .nested { margin-top:12px; border:1px solid var(--line); border-radius:var(--radius); }
+    .nested summary { padding:12px 14px; }
+    .nested .inner { padding:0 14px 14px; color:var(--muted); }
+    .sources { padding-left:1.2em; }
+    .access-warning { margin:12px 0; padding:14px 16px; border-left:3px solid #b27c22; background:var(--warning-soft); color:var(--warning); }
+    .access-warning strong { display:block; margin-bottom:4px; color:var(--ink); }
+    .quick-boundary { margin:10px 0 20px; padding:16px 18px; border:1px solid #d7c48f; border-radius:14px; background:#fffaec; }
+    .quick-boundary p { color:#6d5a2b; }
+    .quick-sources li { padding:9px 0; border-bottom:1px solid var(--line); }
+    .quick-sources strong,.quick-sources small { display:block; }.quick-sources small { color:var(--muted); font-size:12px; }
+    a { color:var(--accent); text-underline-offset:3px; overflow-wrap:anywhere; }
+    @media (max-width:700px) {
+      main { margin:12px auto; }
+      header { grid-template-columns:1fr; gap:22px; padding:24px 20px; }
+      h1 { max-width:none; }
+      .decision,.actions { padding-left:20px; padding-right:20px; }
+      .status-band { padding:16px 20px; }.revision-notice,.access-notice { margin:20px 20px 0; }
+      .essential { grid-template-columns:1fr; gap:3px; }
+      .next-actions { grid-template-columns:1fr; }
+      .next-actions__buttons { display:grid; grid-template-columns:1fr; justify-content:stretch; }
+      .handoff-button { width:100%; }
+      .research-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .action-body { animation:reveal .18s ease-out; }
+      @keyframes reveal { from { opacity:.45; transform:translateY(-3px); } }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .handoff-button { transition:none; }
+      .handoff-button[data-state="loading"]::before { animation:none; border-inline-end-color:var(--panel); opacity:.55; }
+    }
+    @media print {
+      body { background:#fff; }
+      main { width:100%; margin:0; }
+      .shell { border:0; box-shadow:none; }
+      header { grid-template-columns:1fr 1fr; }
+      .actions details { display:block; }
+      .actions summary { min-height:auto; padding:10px 0; }
+      .actions summary::after { display:none; }
+      .action-body { display:block!important; }
+      .next-actions { display:none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <article class="shell" aria-labelledby="title">
+    <header>
+      <div>
+        <p class="kicker">营养证据卡</p>
+        <h1 id="title">氨糖软骨素与关节疼痛</h1>
+      </div>
+      <div class="passport" aria-label="证据护照">
+        <div><span>审计层级</span><strong>快速证据审计</strong></div>
+        <div><span>更新日期</span><strong>2026-09-01</strong></div>
+        <div><span>检索覆盖</span><strong>7/7 条题录已筛查</strong></div>
+        <div><span>确定性路径</span><strong>引用来源已有 GRADE</strong></div>
+      </div>
+    </header>
+    <section class="status-band" data-state="audited" aria-label="证据卡状态">
+      <span class="status-dot" aria-hidden="true"></span>
+      <div><strong>完整审计完成</strong><p>已完成可复核的证据审计。</p></div>
+    </section>
+    
+    
+    <section class="decision" aria-label="购买与使用建议">
+      <p class="verdict" data-testid="verdict">只对特定人群值得。</p>
+      <div class="essentials">
+        <div class="essential" data-testid="for-whom"><strong>对谁可能有用</strong><span>只适用于已确诊膝骨关节炎、且产品配方与研究接近的人。</span></div>
+        <div class="essential" data-testid="effect-ceiling"><strong>效果上限</strong><span>即使有效，疼痛改善通常也很小，功能未见稳定改善。</span></div>
+        <div class="essential safety" data-testid="safety-red-line"><strong>安全红线</strong><span>关节红肿发热、外伤后剧痛或正在用抗凝药时，先就医或咨询药师。</span></div>
+      </div>
+      <aside class="next-actions" data-testid="next-actions" aria-label="继续探询与审计升级"><div class="next-actions__copy"><strong>你的情况会改变结论吗？</strong><p>补充未确认或后来变化的信息，重新判断是否匹配。</p></div><div class="next-actions__buttons"><button type="button" class="handoff-button handoff-button--primary" data-testid="continue-inquiry" data-copy-request="请继续评估《氨糖软骨素与关节疼痛》这张营养证据卡。当前结论是：只对特定人群值得。
+我想确认自己是否符合会改变结论的条件。请只追问尚未确认、后来变化或此前跳过的高价值信息，优先使用点击式选择；不要重复已经确认的信息。
+卡片中列出的可能匹配条件或剩余不确定性：
+- 已确诊轻中度膝骨关节炎，了解预期收益很小，并愿意设置8至12周停止规则的人。
+- 疼的是哪个关节，医生是否确诊骨关节炎？这决定证据集是否匹配。
+- 产品里氨糖和软骨素各是什么形式、每天多少量？这决定能否外推研究结果。
+收到答案后请更新同一张证据卡；如果建议改变，明确显示此前建议、当前建议和改判原因。" data-state="default">更新我的情况</button></div><p class="next-actions__note">按钮会复制一段已整理好的请求；回到聊天直接发送即可，不会在后台自动运行。</p><p class="handoff-status" data-handoff-status aria-live="polite"></p><div class="handoff-fallback" data-handoff-fallback hidden><label for="handoff-fallback-text">请求文本</label><textarea id="handoff-fallback-text" data-handoff-fallback-text readonly></textarea></div></aside>
+    </section>
+    <section class="actions" aria-label="展开详细内容">
+      <details data-testid="why"><summary>为什么</summary><div class="action-body"><h2>为什么</h2><p>证据只对准膝骨关节炎，而且平均收益很小，不能外推到所有关节痛。</p><h3>决定结论的事实</h3><ul><li>2026年伞状综述纳入19份综述；多数方法学质量低或极低。</li><li>VAS疼痛出现小幅改善，但WOMAC疼痛和功能没有稳定改善。</li><li>氨糖与软骨素联用的结果并不比单一成分更确定，配方差异很大。</li></ul><h3>更优先的路径</h3><ul><li>确诊膝骨关节炎后，运动、减重和规范止痛通常比盲买补充剂更优先。</li></ul></div></details>
+      <details data-testid="suitability"><summary>适不适合我</summary><div class="action-body"><h2>适不适合我</h2><h3>本次已采用的信息</h3><ul><li>用户选择跳过点击式关键信息收集，本页按未确认疼痛关节、诊断和产品配方的一般情境生成。</li></ul><h3>当前暂定情境</h3><p>暂按尚未确诊病因的一般关节疼痛提问处理。</p><h3>与研究人群的匹配度</h3><p>未知：尚不知道疼痛关节、是否确诊膝骨关节炎以及具体配方。</p><h3>可能匹配</h3><ul><li>已确诊轻中度膝骨关节炎，了解预期收益很小，并愿意设置8至12周停止规则的人。</li></ul><h3>避免或先确认</h3><ul><li>急性红肿热痛、创伤后疼痛、感染或炎症性关节病不能按膝骨关节炎证据自行处理。</li><li>使用华法林等抗凝药时先核对相互作用。</li></ul><h3>仍可能改变建议的信息</h3><ul><li>疼的是哪个关节，医生是否确诊骨关节炎？这决定证据集是否匹配。</li><li>产品里氨糖和软骨素各是什么形式、每天多少量？这决定能否外推研究结果。</li></ul></div></details>
+      <details data-testid="research"><summary>证据怎么裁决</summary><div class="action-body"><h2>证据怎么裁决</h2><p>这里评价的是整组证据如何共同支持结论，不用单篇论文或期刊名代替裁决。</p><div class="research-grid"><div><strong>PICOS 与随访</strong>P：成人膝骨关节炎；I：口服氨糖、软骨素或二者组合；C：安慰剂或非手术对照；O：疼痛、功能和不良事件；S：系统综述及随机对照试验；随访：数周至12个月。</div><div><strong>检索或更新</strong>2026-09-01</div></div><h3>来源为何看似矛盾</h3><div class="table-wrap"><table><thead><tr><th scope="col">来源或观点</th><th scope="col">得出的结论</th><th scope="col">为何不同</th><th scope="col">本次权重</th></tr></thead><tbody><tr><td>2026年伞状综述</td><td>最多只有很小的疼痛改善，功能无稳定获益</td><td>按最小临床重要差异解释，并处理了综述间试验重叠</td><td>高：多库检索、预注册、双人筛选，但底层综述质量偏低</td></tr><tr><td>2026年网络Meta</td><td>部分排名看似有利于氨糖软骨素</td><td>排名混合了直接和间接比较，且多数辅助比较为低或极低确定性</td><td>中低：可作更新交叉核对，不能靠SUCRA排名替代效应与确定性</td></tr></tbody></table></div><h3>按关键结局综合判断</h3><div class="table-wrap"><table><thead><tr><th scope="col">关键结局</th><th scope="col">实际效应</th><th scope="col">证据体确定性</th><th scope="col">GRADE 五域与理由</th></tr></thead><tbody><tr><td>膝骨关节炎疼痛</td><td>VAS平均改善很小；WOMAC疼痛未显示稳定差异，效应处于或低于临床重要阈值。</td><td>低</td><td>偏倚风险：严重：多数底层综述被AMSTAR-2评为低或极低质量。；不一致性：严重：VAS与WOMAC结果不同，配方与随访差异明显。；间接性：严重：证据主要针对膝骨关节炎及特定盐型，不能外推到所有关节痛或商品。；不精确性：严重性有限：总体样本不少，但效应靠近临床重要阈值且部分比较区间较宽。；传播偏倚：疑似：补充剂领域存在商业研究和阳性结果传播优势。；结论：来源评级与方法审计均提示效应小、结果不一致且底层综述质量有限。</td></tr><tr><td>身体功能</td><td>WOMAC总分和功能分量表未见明确改善。</td><td>低</td><td>偏倚风险：严重：底层综述与试验质量参差。；不一致性：不严重：主要综合结果均未显示稳定功能获益。；间接性：严重：仅直接适用于膝骨关节炎和研究配方。；不精确性：严重：不能排除小幅获益或伤害。；传播偏倚：疑似但未单独追加降级：商业研究与选择性传播风险存在。；结论：结果较一致地显示缺少可感知功能获益，但底层证据方法学局限仍降低确信度。</td></tr></tbody></table></div><h3>历史证据基座</h3><div class="research-grid"><div><strong>采用方式</strong>现有系统综述 + PubMed 更新检索</div><div><strong>原综述检索截止</strong>2025-11-25</div></div><p>采用2026年《Frontiers in Nutrition》氨糖膝骨关节炎伞状综述作为历史基座；其检索覆盖MEDLINE、Embase、Web of Science和Cochrane Library至2025-11-25。</p><p>综述预注册、双人筛选、使用AMSTAR-2并处理重叠试验；但纳入的19份综述多数为低或极低质量，剂型和剂量报告不充分。</p><h3>可复现的 PubMed 检索</h3><div class="research-grid"><div><strong>数据库与日期</strong>PubMed / 2026-09-01</div><div><strong>完整导出 / 完整筛查</strong>是 / 是</div></div><details class="nested"><summary>完整检索式</summary><div class="inner"><p>((&quot;Glucosamine&quot;[Mesh] OR glucosamine[tiab] OR &quot;Chondroitin Sulfates&quot;[Mesh] OR chondroitin[tiab]) AND (&quot;Osteoarthritis, Knee&quot;[Mesh] OR knee osteoarthriti*[tiab]) AND (pain[tiab] OR function[tiab]) AND (random*[tiab] OR trial[tiab] OR &quot;Systematic Review&quot;[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (&quot;2025/11/26&quot;[Date - Publication] : &quot;3000&quot;[Date - Publication])</p></div></details><details class="nested"><summary>PubMed Query Translation</summary><div class="inner"><p>(&quot;Glucosamine&quot;[MeSH Terms] OR &quot;Glucosamine&quot;[Title/Abstract] OR &quot;Chondroitin Sulfates&quot;[MeSH Terms] OR &quot;chondroitin&quot;[Title/Abstract]) AND (&quot;osteoarthritis, knee&quot;[MeSH Terms] OR &quot;knee osteoarthriti*&quot;[Title/Abstract]) AND (&quot;pain&quot;[Title/Abstract] OR &quot;function&quot;[Title/Abstract]) AND (&quot;random*&quot;[Title/Abstract] OR &quot;trial&quot;[Title/Abstract] OR &quot;Systematic Review&quot;[Publication Type] OR &quot;Systematic Review&quot;[Title/Abstract] OR &quot;meta analy*&quot;[Title/Abstract]) AND 2025/11/26:3000/12/31[Date - Publication] AND 2016/09/01:2026/09/01[Date - Publication]</p></div></details><h3>筛选流程</h3><div class="table-wrap"><table><thead><tr><th scope="col">命中</th><th scope="col">导出</th><th scope="col">题录筛查</th><th scope="col">全文评估</th><th scope="col">纳入报告</th><th scope="col">纳入研究</th></tr></thead><tbody><tr><td>7</td><td>7</td><td>7</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><p>PubMed更新检索由单人筛选；历史基座覆盖多库，但本次未重新提取其全部底层试验。</p><h3>PICOS 纳入与排除</h3><h4>纳入标准</h4><ul><li>P：成人膝骨关节炎。</li><li>I：口服氨糖、软骨素或二者组合。</li><li>C：安慰剂、无补充或非手术对照。</li><li>O：疼痛、身体功能或不良事件。</li><li>S：系统综述、Meta分析或随机对照试验。</li></ul><h4>排除标准</h4><ul><li>其他关节痛病因、动物或体外研究。</li><li>关节腔注射或无法分离氨糖软骨素作用的复杂共干预。</li><li>方案、叙述性综述或未报告目标结局。</li></ul><h4>实际排除记录</h4><div class="table-wrap"><table><thead><tr><th scope="col">排除原因</th><th scope="col">数量</th></tr></thead><tbody><tr><td>历史基座本身，不重复计入更新</td><td>1</td></tr><tr><td>PICOS或研究设计不匹配</td><td>5</td></tr></tbody></table></div><h3>证据体总览</h3><div class="research-grid"><div><strong>实际效应</strong>2026年伞状综述显示VAS疼痛SMD -0.36，但WOMAC疼痛和功能无明确改善；显著效应处于或低于最小临床重要差异。</div><div><strong>证据体确定性</strong>低至极低（逐结局）</div></div><h3>确定性评价方法</h3><div class="research-grid"><div><strong>评价路径</strong>引用来源已有 GRADE</div><div><strong>范围与流程简化</strong>以检索至2025-11-25的多库伞状综述为历史基座；随后完整导出并单人筛查PubMed更新检索7条命中，纳入1份更新网络Meta。</div></div><h3>主要不确定性</h3><ul><li>底层综述多数质量低或极低</li><li>盐型、剂量和结局测量差异大</li><li>平均效应小且部分比较依赖间接证据</li></ul><h3>什么会改变结论</h3><ul><li>出现由独立团队完成、配方明确、样本充分并达到临床重要差异的长期随机试验。</li><li>确认用户已诊断膝骨关节炎且产品盐型、剂量与获益试验高度匹配。</li></ul><h3>资金与利益冲突</h3><p>历史基座未报告行业资助本综述；底层补充剂试验的商业资助情况不一。</p><h3>决定性来源</h3><ol class="sources"><li><a href="https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2026.1806413/full" target="_blank" rel="noopener noreferrer">2026年氨糖膝骨关节炎伞状综述</a>：历史证据基座 / 2026</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/42558409/" target="_blank" rel="noopener noreferrer">2026年氨糖软骨素膝骨关节炎网络Meta</a>：更新证据 / 2026</li></ol><details class="nested"><summary>Meta 分析</summary><div class="inner"><p>本案例审计现有综述，不重复进行原创Meta或重复计算底层试验。</p></div></details><details class="nested"><summary>GRADE</summary><div class="inner"><p>采用来源已有的GRADE/CINeMA判断并核查更新证据；疼痛和功能总体为低至极低确定性。</p></div></details><details class="nested"><summary>偏倚风险（RoB）</summary><div class="inner"><p>主要局限为底层综述质量低、试验重叠、配方异质性以及小效应接近临床重要阈值。</p></div></details></div></details>
+    </section>
+  </article>
+</main>
+<script>
+  (() => {
+    const buttons = document.querySelectorAll("[data-copy-request]");
+    if (!buttons.length) return;
+    const status = document.querySelector("[data-handoff-status]");
+    const fallback = document.querySelector("[data-handoff-fallback]");
+    const fallbackText = document.querySelector("[data-handoff-fallback-text]");
+
+    const copyText = async (value) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(value);
+          return;
+        } catch (error) {
+          // Local file pages can deny the modern Clipboard API. Try the user-gesture fallback below.
+        }
+      }
+      const scratch = document.createElement("textarea");
+      scratch.value = value;
+      scratch.setAttribute("readonly", "");
+      scratch.style.position = "fixed";
+      scratch.style.opacity = "0";
+      document.body.appendChild(scratch);
+      scratch.select();
+      const copied = document.execCommand("copy");
+      scratch.remove();
+      if (!copied) throw new Error("clipboard unavailable");
+    };
+
+    buttons.forEach((button) => {
+      const originalLabel = button.textContent.trim();
+      button.addEventListener("click", async () => {
+        const request = button.dataset.copyRequest || "";
+        button.disabled = true;
+        button.setAttribute("aria-busy", "true");
+        button.dataset.state = "loading";
+        button.textContent = "正在准备";
+        if (status) status.textContent = "";
+        try {
+          await copyText(request);
+          button.disabled = false;
+          button.removeAttribute("aria-busy");
+          button.dataset.state = "success";
+          button.textContent = "已复制，回聊天发送";
+          if (status) status.textContent = "请求已复制。回到聊天粘贴并发送即可继续。";
+        } catch (error) {
+          button.disabled = false;
+          button.removeAttribute("aria-busy");
+          button.dataset.state = "error";
+          button.textContent = "请手动复制";
+          if (fallback && fallbackText) {
+            fallback.hidden = false;
+            fallbackText.value = request;
+            fallbackText.focus();
+            fallbackText.select();
+          }
+          if (status) status.textContent = "浏览器未允许自动复制，已在下方准备好请求文本。";
+        }
+        window.setTimeout(() => {
+          button.disabled = false;
+          button.dataset.state = "default";
+          button.textContent = originalLabel;
+        }, 3200);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

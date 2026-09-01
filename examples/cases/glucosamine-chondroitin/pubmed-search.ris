@@ -1,0 +1,134 @@
+TY  - JOUR
+AU  - Li, Y
+AU  - Wang, R
+AU  - Xu, J
+AU  - Shen, Y
+AU  - Hu, G
+AU  - Lu, S
+M3  - Journal Article
+M3  - Systematic Review
+TI  - Glucosamine for knee osteoarthritis: an umbrella review.
+JO  - Frontiers in nutrition
+PY  - 2026
+VL  - 13
+SP  - 1806413
+DO  - 10.3389/fnut.2026.1806413
+AB  - BACKGROUND: Knee osteoarthritis (OA) is a common cause of pain and disability without a cure. Glucosamine is widely used as a symptomatic treatment owing to its safety, yet its clinical efficacy remains uncertain amid mixed trial results and conflicting guidelines. This umbrella review synthesized evidence from published systematic reviews and meta-analyses on the effectiveness and safety of glucosamine in knee OA. METHODS: We searched MEDLINE (via PubMed), Embase, Web of Science, and the Cochrane Library up to November 2025. Eligible studies were systematic reviews or meta-analyses of randomized trials in adults with knee OA comparing glucosamine (any formulation) with placebo or other non-surgical comparators and reporting pain, physical function, or joint structure. Two reviewers independently screened, extracted data, and assessed quality (AMSTAR-2). Key outcomes were pain (visual analog scale [VAS] and WOMAC [Western Ontario and McMaster Universities Osteoarthritis Index]), functional measures, joint space narrowing (JSN), and adverse events. Overlap among shared primary trials was quantified using the corrected covered area, and the resulting dependence was addressed using robust variance estimation to pool standardized mean differences (SMDs), with p < 0.05 considered significant. Effect sizes were interpreted against minimal clinically important difference (MCID) thresholds. RESULTS: Nineteen reviews were included (most low or critically low quality). Glucosamine produced a small but statistically significant reduction in VAS pain (SMD - 0.36, p = 0.02), whereas WOMAC pain showed no significant difference. Functional outcomes (WOMAC total and function) showed no significant improvement. Glucosamine was associated with significant slowing of JSN progression (SMD - 0.32, p = 0.01), though this signal derived mainly from long-duration sulfate trials. The magnitude of the significant effects was at or below accepted MCID thresholds. Adverse event rates did not differ from placebo. CONCLUSION: Glucosamine demonstrated at most minimal-to-modest efficacy for knee OA, yielding a small pain reduction and possible slowing of radiographic progression but no clear functional benefit, with effects at or below the threshold of clinical importance. Given the low quality of evidence, extensive overlap among reviews, and the predominantly out-of-pocket nature of glucosamine use, these findings should be interpreted with caution and weighed against cost in shared decision-making. SYSTEMATIC REVIEW REGISTRATION: https://www.crd.york.ac.uk/prospero/, identifier (CRD420251207513).
+ID  - PMID:42643227
+UR  - https://pubmed.ncbi.nlm.nih.gov/42643227/
+N1  - PMCID:PMC13503159
+ER  - 
+
+TY  - JOUR
+AU  - Chen, K
+AU  - Sun, Y
+AU  - Cui, L
+AU  - Zhu, Y
+AU  - Zhang, B
+AU  - Wang, H
+M3  - Journal Article
+M3  - Systematic Review
+TI  - Network meta-analysis of metformin, probiotics, krill oil, celecoxib, and glucosamine/chondroitin in the treatment of knee osteoarthritis.
+JO  - Frontiers in medicine
+PY  - 2026
+VL  - 13
+SP  - 1862817
+DO  - 10.3389/fmed.2026.1862817
+AB  - PURPOSE: Knee osteoarthritis (KOA) creates a substantial global socioeconomic burden. Celecoxib remains a standard pharmacological treatment, but its long-term safety profile raises concerns. Several adjuvant therapies-probiotics, metformin, krill oil, and glucosamine/chondroitin (CS+GH)-have produced encouraging results in individual trials; however, direct head-to-head comparisons are absent. This network meta-analysis (NMA) compares the efficacy and safety of these five interventions to inform individualized treatment decisions in clinical practice. METHODS: RCTs published from database inception through February 2026 were retrieved from PubMed, Web of Science, Embase, and the Cochrane Library. A random-effects NMA was conducted using Stata 18.0 and R (MetaInsight). Continuous outcomes were synthesized as mean differences (MD) and dichotomous safety endpoints as risk ratios (RR). Interventions were ranked by surface under the cumulative ranking curve (SUCRA), and evidence quality was assessed using the GRADE framework. RESULTS: Twenty-three RCTs met the inclusion criteria. No significant network inconsistency (P > 0.05) or publication bias was detected. For analgesic efficacy, celecoxib ranked highest on VAS pain improvement (MD = -0.48, 95% CI -0.78 to -0.17, SUCRA = 0.93) and WOMAC total scores (SUCRA = 0.912), followed by CS+GH (0.756). Probiotics (0.66) and metformin (0.63) showed potential efficacy, but the final network certainty for most of these auxiliary comparisons was low or very low, mainly due to severe imprecision and the absence of direct head-to-head trials. These SUCRA-based rankings should therefore be interpreted cautiously in clinical settings. On WOMAC subscales, celecoxib was associated with the largest improvements in pain and physical function; krill oil ranked highest on the pain subscale (SUCRA = 0.99), while probiotics and metformin had the most favorable safety profiles (SUCRA = 0.885 and 0.724, respectively). SYSTEMATIC REVIEW REGISTRATION: https://www.crd.york.ac.uk/prospero/display_record.php?ID=CRD420261345598, identifier: CRD420261345598.
+ID  - PMID:42558409
+UR  - https://pubmed.ncbi.nlm.nih.gov/42558409/
+N1  - PMCID:PMC13437381
+ER  - 
+
+TY  - JOUR
+AU  - Park, D
+AU  - Koh, HS
+AU  - Choi, YH
+AU  - Moon, JW
+AU  - Park, I
+M3  - Journal Article
+M3  - Review
+TI  - Reframing Nutraceuticals in Knee Osteoarthritis with Sarcopenia: A Muscle-Joint-Centered Narrative Review.
+JO  - Nutrients
+PY  - 2026
+VL  - 18
+IS  - 12
+DO  - 10.3390/nu18121871
+AB  - BACKGROUND/OBJECTIVES: Knee osteoarthritis (KOA) is increasingly recognized as a function-limiting condition in which pain, neuromuscular impairment, and reduced physical activity interact with sarcopenic vulnerability to accelerate functional decline. This review reappraises commonly used oral nutraceuticals through a muscle-joint framework and examines whether they can be conservatively positioned as adjuncts that reduce symptom-related barriers to exercise-based care rather than as disease-modifying therapies. METHODS: This review was conducted as a structured narrative synthesis informed by SANRA principles, using a structured and transparent search process and dual-independent study selection, without quantitative meta-analysis or formal certainty-of-evidence grading. PubMed/MEDLINE, Embase, and the Cochrane Library were searched for English-language studies published from January 2000 to March 2026, supplemented by reference screening of key reviews and international guidelines. RESULTS: Mechanistic and clinical evidence supports a plausible pathway linking KOA pain, arthrogenic muscle inhibition, reduced loading, physical inactivity, and sarcopenic vulnerability. Across glucosamine/chondroitin, collagen peptides, omega-3 fatty acids, curcumin, and Boswellia, symptomatic benefits were modest, heterogeneous, and formulation-dependent, with no consistent evidence of structural disease modification. Direct evidence that nutraceuticals improve exercise adherence or long-term physical activity remains limited; however, selected exercise-integrated or function-oriented studies show participation-relevant signals in gait speed, activity volume, and performance-based outcomes. CONCLUSIONS: Nutraceuticals should be interpreted as optional, time-limited adjuncts within exercise-centered KOA management. Their potential value lies in modest symptom support that may facilitate rehabilitation participation in selected patients, not in stand-alone treatment of KOA or sarcopenia.
+ID  - PMID:42356259
+UR  - https://pubmed.ncbi.nlm.nih.gov/42356259/
+N1  - PMCID:PMC13304766
+ER  - 
+
+TY  - JOUR
+AU  - Altıntaş, M
+AU  - Ateş, O
+AU  - Soy, F
+AU  - Mirzaoğlu, T
+AU  - Sarıyıldız, MA
+M3  - Journal Article
+M3  - Comparative Study
+TI  - Comparison of the Efficacy of Intra-Articular Polyacrylamide Hydrogel and the Cross-Linked Hyaluronic Acid/Chondroitin Sulfate Combination in Treating Advanced-Stage Knee Osteoarthritis.
+JO  - Medicina (Kaunas, Lithuania)
+PY  - 2026
+VL  - 62
+IS  - 6
+DO  - 10.3390/medicina62061091
+AB  - Background and Objectives: Polyacrylamide hydrogel (PAAG) is still underresearched, and few human studies have validated its efficacy in knee osteoarthritis (OA), particularly in advanced stages. The aim of this study was to compare the efficacy of intra-articular PAAG with that of the widely used cross-linked chondroitin sulfate/hyaluronic acid (HA/CS) combination in treating knee OA in a retrospective trial. Materials and Methods: A total of 127 patients diagnosed with grade 3 or 4 knee OA according to the Kellgren-Lawrence scale were included. The first group received an intra-articular injection of the cross-linked HA (60 mg)/CS (90 mg) combination, whereas the second group was administered 6 mL of PAAG. The outcome measures, which were assessed at baseline, 3 months, and 12 months, were knee pain severity measured with the visual analog scale (VAS), range of motion (ROM), the Western Ontario and McMaster Universities Osteoarthritis Index (WOMAC) scale score, and the Pittsburgh Sleep Quality Index (PSQI). Results: At three months, the PAAG group demonstrated significantly lower pain and WOMAC scores than the HA/CS group, while ROM and sleep quality scores were not significantly different at either 3 or 12 months. Within-group comparisons revealed significant reductions in pain, WOMAC, and sleep scores in both groups over time, but no significant improvement in ROM was detected in either group. Conclusions: Compared with HA/CS injection, intra-articular PAAG injection significantly improved the VAS and WOMAC scores in advanced knee OA patients at three months. However, the outcomes for all the parameters were similar in the two groups at 12 months.
+ID  - PMID:42356104
+UR  - https://pubmed.ncbi.nlm.nih.gov/42356104/
+N1  - PMCID:PMC13304332
+ER  - 
+
+TY  - JOUR
+AU  - Ruan, J
+AU  - Li, X
+M3  - Journal Article
+M3  - Randomized Controlled Trial
+TI  - Effectiveness of glucosamine hydrochloride and eperisone with exercise therapy on inflammatory factors and knee joint function in patients with knee osteoarthritis.
+JO  - Journal of drug targeting
+PY  - 2025
+VL  - 34
+IS  - 4
+SP  - 696-701
+DO  - 10.1080/1061186X.2025.2573055
+AB  - OBJECTIVE: This study aimed to unveil the effect of glucosamine hydrochloride (GAH) and eperisone combined with exercise therapy on inflammatory markers and knee joint function in patients with knee osteoarthritis (KOA). METHODS: Sixty KOA patients were randomly assigned into two groups. Group A (n = 30) received GAH plus exercise therapy, while Group B (n = 30) received GAH combined with eperisone and exercise therapy. Serum inflammatory factors, knee symptom scores (pain, stiffness, daily function), and functional measures [knee flexion range of motion (ROM), Lysholm score, five-time sit-to-stand test, and 15-meter walking time] were assessed before and after treatment. Clinical efficacy was also evaluated. RESULTS: Post-treatment, both groups showed decreased serum MMP-3, TNF-α, and IL-6 levels, with significantly greater reductions in Group B (p < 0.001). Group B had lower symptom scores (p < 0.05), greater ROM and Lysholm improvements (p < 0.001), and better functional performance (p < 0.001). The effective rate was higher in Group B (100.00%) than in Group A (86.67%) (p = 0.038). CONCLUSION: GAH combined with eperisone and exercise therapy is more effective than GAH alone in patients with KOA. It significantly reduces inflammatory markers and symptoms, and enhances knee joint function.
+ID  - PMID:41063709
+UR  - https://pubmed.ncbi.nlm.nih.gov/41063709/
+ER  - 
+
+TY  - JOUR
+AU  - Čeh, T
+AU  - Završnik, J
+AU  - Šarabon, N
+M3  - Journal Article
+M3  - Clinical Trial Protocol
+TI  - Complementary effect of a combined exercise and dietary supplement intervention in individuals with knee osteoarthritis: study protocol for a randomized, double-blind, placebo-controlled trial.
+JO  - Trials
+PY  - 2026
+VL  - 27
+IS  - 1
+DO  - 10.1186/s13063-026-09594-7
+AB  - BACKGROUND: Osteoarthritis is a common joint disease, especially among individuals aged 50 and older, leading to symptoms such as pain, stiffness, and functional limitations, particularly in weight-bearing joints like the knees. Knee osteoarthritis (KOA) is increasingly prevalent, making effective treatment strategies critical. Exercise and dietary supplements are commonly used to manage symptoms, but the combination of these two approaches has not been widely studied. This study aims to evaluate the effects of combining exercise with dietary supplements on pain, physical function, and quality of life in individuals with KOA. METHODS: This trial will involve KOA patients, aged 55 and older. Participants will be assigned to one of three groups: (1) dietary supplement, (2) exercise with dietary supplement, (3) exercise with placebo dietary supplement. Randomization and double-blinding apply only to the dietary supplement in the exercise groups, while the supplement-only group serves as a non-randomized group. The exercise regimen will consist of resistance training, conducted under supervision. The dietary supplement will be a combination of glucosamine and collagen. The primary outcomes include pain levels and physical function, which will be assessed through questionnaires (WOMAC, SF-36), numeric rating scale, and various physical function tests (30 s chair stand test, 40-m fast-paced walk, timed up and go test, star climbing test, 6-min walk test, static balance, and maximal isometric voluntary contraction of knee flexor and extensor). Data will be collected at baseline (week 0), after completion of the 12-week intervention (week 13), and at 6 weeks post intervention (week 18). DISCUSSION: This study seeks to provide valuable insights into the combined effects of exercise and dietary supplements in managing KOA. It will fill the gap in current research by exploring whether the addition of a dietary supplement to an exercise regimen provides additional benefits. The findings could have important implications for clinical practices, offering a potential, non-invasive treatment strategy for improving pain management, physical function, and quality of life in individuals with KOA. TRIAL REGISTRATION: ClinicalTrials.gov, NCT06269549. Registered on 13th February 2024, https://inclinicaltrials.com/osteoarthritis-knee/NCT06269549/.
+ID  - PMID:41772729
+UR  - https://pubmed.ncbi.nlm.nih.gov/41772729/
+N1  - PMCID:PMC13063509
+ER  - 
+
+TY  - JOUR
+AU  - Gupta, A
+AU  - Maffulli, N
+M3  - Journal Article
+M3  - Review
+TI  - Undenatured type II collagen for knee osteoarthritis.
+JO  - Annals of medicine
+PY  - 2025
+VL  - 57
+IS  - 1
+SP  - 2493306
+DO  - 10.1080/07853890.2025.2493306
+AB  - INTRODUCTION: Knee Osteoarthritis (OA) leads to significant pain and reduced function and affects patients' overall quality of life (QoL). Conservative modalities are the first line of management, resorting to surgery only if they fail. However, these modalities have limitations, and do not address the underlying cause of knee OA. The use of nutraceuticals, including native/undenatured type II collagen (UC-2), has evolved and shown promise in the conservative management of knee OA. This article highlights the mechanism of action, and qualitatively presents the pre-clinical, clinical and on-going scientific literature exploring the safety and efficacy of UC-2 for the management of knee OA. METHODS: A search was performed using multiple databases (PubMed, Web of Science, Embase and Scopus) employing terms for UC-2 and Knee OA for articles published in English language, while adhering to Preferred Reporting Items for Systematic Reviews and Meta-Analysis (PRISMA) guidelines. All pre-clinical and clinical studies utilizing UC-2 for knee OA were included. Studies not using UC-2 alone or not focusing on the management of knee OA were excluded. RESULTS: Twelve studies (3 pre-clinical studies, 8 clinical studies and 1 study with both pre-clinical and clinical component) met our pre-defined search and inclusion criteria, and were included in this review. DISCUSSION: UC-2 acts via a specific immune mediated mechanism, known as oral tolerance, which can lead to reduced inflammation and enhanced cartilage repair in the knee joint. In addition, administration of UC-2 (40 mg daily) is safe and efficacious in the short- and mid-term, reducing inflammation and pain, and improving function, range of motion (ROM) and overall QoL. Nonetheless, more adequately powered, prospective, multi-center, non-randomized and randomized controlled trials with longer follow-up are warranted to establish the long-term efficacy of UC-2 in knee OA patients and justify its routine clinical use.
+ID  - PMID:40253594
+UR  - https://pubmed.ncbi.nlm.nih.gov/40253594/
+N1  - PMCID:PMC12010644
+ER  - 

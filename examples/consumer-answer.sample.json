@@ -1,0 +1,150 @@
+{
+  "title": "Neuriva 脑活素",
+  "verdict": "not_worth",
+  "for_whom": "仅可能适合40至65岁、自觉记忆下降但无认知障碍者。",
+  "effect_ceiling": "即使有效，也可能只是部分电脑测试小幅改善，未必能在生活中感觉到。",
+  "safety_red_line": "记忆持续恶化或影响生活时应就医，不要用补充剂代替评估。",
+  "why": {
+    "summary": "有初步阳性信号，但证据尚不足以支持普通人常规购买。",
+    "key_points": [
+      "直接产品证据主要来自一项短期随机试验。",
+      "部分电脑测试改善，但主观日常记忆没有优于安慰剂。",
+      "研究由产品所属公司资助，尚缺独立重复。"
+    ],
+    "better_options": [
+      "先检查睡眠、压力、活动和可能影响认知的药物或疾病。"
+    ]
+  },
+  "suitability": {
+    "intake_summary": [
+      "示例用户选择跳过关键信息收集，按一般成人情境生成。"
+    ],
+    "assumption": "暂按40至65岁、无认知障碍、考虑使用当前示例配方的一般成人判断。",
+    "user_match": "未知：尚未确认具体产品版本，也不知道记忆问题是否正在进展或影响日常生活。",
+    "may_fit": [
+      "与试验年龄、健康状态和产品配方相近，且接受效果可能很小的人。"
+    ],
+    "avoid_or_check": [
+      "有进行性记忆下降、认知障碍或希望替代正规治疗时，不应自行试用。"
+    ],
+    "remaining_uncertainties": [
+      "你手上的具体版本和每日配方是什么？这决定它是否与研究产品匹配。",
+      "记忆问题是否正在加重或影响日常生活？如果是，建议会转为优先就医评估。"
+    ]
+  },
+  "research": {
+    "picos": "P：40至65岁健康成人；I：100 mg全咖啡果提取物加100 mg磷脂酰丝氨酸；C：安慰剂；O：认知结局；S：随机双盲安慰剂对照试验；随访：42天。",
+    "effect": "部分工作记忆指标出现小幅组间差异，日常记忆、Go/No-Go和BDNF未显示组间获益。",
+    "certainty": "低至极低（逐结局）",
+    "certainty_method": "rapid_grade",
+    "certainty_scope": "以预定义检索式完整导出并单人筛查 PubMed 的 2 条命中，评估 2 篇全文；未检索 Embase、CENTRAL、注册库或灰色文献。",
+    "certainty_reasons": [
+      "单项短期直接试验",
+      "多结局比较",
+      "厂商资助且缺少独立重复"
+    ],
+    "adjudication": [
+      {
+        "source": "产品随机试验",
+        "finding": "部分电脑工作记忆指标出现小幅改善",
+        "why_differs": "试验同时测量多个结局，阳性结果集中在部分测试，日常记忆等结局未改善",
+        "weight": "中低：产品最直接，但单项、短期且缺少独立重复"
+      },
+      {
+        "source": "产品宣传",
+        "finding": "暗示可广泛改善记忆与专注",
+        "why_differs": "把少数测试中的信号外推为日常可感知的整体认知获益",
+        "weight": "很低：宣传材料不是独立效果证据"
+      }
+    ],
+    "outcomes": [
+      {
+        "outcome": "部分电脑工作记忆测试",
+        "effect": "出现小幅组间差异",
+        "certainty": "极低",
+        "why": "从随机试验的高起点，因选择性结果风险、替代结局间接性和不精确性降至极低。",
+        "grade_domains": {
+          "risk_of_bias": "严重：以符合方案人群为主要分析，并在大量认知指标中仅部分阳性。",
+          "inconsistency": "无法判断：只有一项符合条件的人体试验，未因同一问题重复降级。",
+          "indirectness": "严重：电脑任务表现不等于日常可感知的记忆或生活功能改善。",
+          "imprecision": "严重：单项短期试验、样本量小，缺少稳定的效应区间。",
+          "dissemination_bias": "疑似：产品公司资助且未发现独立重复；检索未覆盖注册库和灰色文献。"
+        }
+      },
+      {
+        "outcome": "主观日常记忆",
+        "effect": "未优于安慰剂",
+        "certainty": "低",
+        "why": "从随机试验的高起点，因研究局限和不精确性各降一级。",
+        "grade_domains": {
+          "risk_of_bias": "严重：商业资助、符合方案分析和多结局报告增加选择性结果风险。",
+          "inconsistency": "无法判断：只有一项符合条件的人体试验。",
+          "indirectness": "不严重：该结局较接近用户在日常生活中的主观记忆体验。",
+          "imprecision": "严重：单项短期试验，无法排除小幅获益或伤害。",
+          "dissemination_bias": "疑似但未额外降级：缺少独立重复，且未检索注册库与灰色文献。"
+        }
+      }
+    ],
+    "evidence_base": {
+      "approach": "de_novo_pubmed",
+      "summary": "未发现可作为历史基座的 Neuriva 产品级系统综述，因此对预定义产品功效问题进行了从头 PubMed 快速证据普查。",
+      "appraisal": "检索到的一项人体随机试验构成当前 PubMed 可识别的直接产品证据体；另一项体外研究仅支持机制层，不纳入临床效果合成。",
+      "search_end": "不适用：未发现合格产品级系统综述"
+    },
+    "search": {
+      "database": "PubMed",
+      "query": "(Neuriva[tiab] OR (\"coffee cherry\"[tiab] AND phosphatidylserine[tiab])) AND (\"Cognition\"[Mesh] OR cognition[tiab] OR memory[tiab] OR attention[tiab])",
+      "query_translation": "(\"Neuriva\"[Title/Abstract] OR (\"coffee cherry\"[Title/Abstract] AND \"phosphatidylserine\"[Title/Abstract])) AND (\"Cognition\"[MeSH Terms] OR \"Cognition\"[Title/Abstract] OR \"memory\"[Title/Abstract] OR \"attention\"[Title/Abstract])",
+      "searched_at": "2026-08-27",
+      "records_found": 2,
+      "records_exported": 2,
+      "records_screened": 2,
+      "full_text_assessed": 2,
+      "reports_included": 1,
+      "studies_included": 1,
+      "complete_retrieval": true,
+      "screening_complete": true,
+      "limits": "单人筛选；仅 PubMed 与公开全文；未检索 Embase、CENTRAL、试验注册库、监管申报资料和灰色文献。"
+    },
+    "eligibility": {
+      "inclusion": [
+        "P：无确诊认知障碍、关注记忆或认知表现的成年人。",
+        "I：含 Neuriva 对应全咖啡果提取物与磷脂酰丝氨酸的口服成品配方。",
+        "C：安慰剂或无该产品对照。",
+        "O：日常记忆、认知测试、专注或学习等人体结局。",
+        "S：随机或非随机对照人体研究。"
+      ],
+      "exclusion": [
+        "体外、动物或仅机制研究。",
+        "不含目标产品配方，或无法分离 Neuriva 效果的研究。",
+        "没有比较组或未报告目标认知结局的记录。"
+      ],
+      "exclusion_log": [
+        {"reason": "体外研究，不能回答口服产品的人体认知效果", "count": "1"}
+      ]
+    },
+    "funding": "研究由Reckitt资助，部分作者为公司员工。",
+    "what_would_change": [
+      "出现预注册、样本充分且由独立团队完成的产品级随机试验，并重复日常可感知的获益。",
+      "确认用户、产品版本和目标结局与研究条件高度匹配。"
+    ],
+    "updated": "2026-08-27",
+    "sources": [
+      {
+        "label": "Neuriva随机双盲安慰剂试验",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36929344/",
+        "role": "直接产品证据",
+        "year": 2023
+      },
+      {
+        "label": "美国法院Neuriva营销和解文件",
+        "url": "https://www.govinfo.gov/content/pkg/USCOURTS-flsd-1_20-cv-23564/pdf/USCOURTS-flsd-1_20-cv-23564-1.pdf",
+        "role": "营销背景",
+        "year": 2021
+      }
+    ],
+    "meta": "未发现足以支持直接产品结论的独立产品级Meta分析。",
+    "grade": "本例完成了 PubMed-only、单人快速证据综合后的逐结局 GRADE。电脑工作记忆测试为极低确定性；主观日常记忆为低确定性。未检索其他数据库和注册库是明确的方法限制。",
+    "rob": "主要关注多重比较、符合方案分析和商业资助。"
+  }
+}

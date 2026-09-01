@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>老年人是否需要钙片 | 营养证据卡</title>
+  <style>
+    /* Hallmark · component: evidence-card action rail · genre: editorial · theme: existing
+     * states: default · hover · focus · active · disabled · loading · error · success
+     * contrast: pass · pre-emit critique: P5 H5 E5 S5 R5 V4
+     */
+    :root {
+      --bg:#f3f1eb; --panel:#fffefa; --ink:#17231f; --muted:#626d69; --line:#dcded7;
+      --accent:#075f52; --accent-ink:var(--panel); --accent-soft:#e5f1ed; --danger:#8b332d; --danger-soft:#fff0ec;
+      --warning:#765516; --warning-soft:#fff5dc; --radius:20px;
+      --shadow:0 30px 90px rgba(34,42,37,.11);
+    }
+    * { box-sizing:border-box; }
+    html,body { overflow-x:clip; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.68 ui-sans-serif,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif; }
+    main { width:min(940px,calc(100% - 28px)); margin:40px auto; }
+    .shell { overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); box-shadow:var(--shadow); }
+    header { display:grid; grid-template-columns:minmax(0,1fr) minmax(290px,.76fr); gap:38px; padding:40px 42px 34px; border-bottom:1px solid var(--line); }
+    .kicker { margin:0 0 10px; color:var(--accent); font-size:12px; font-weight:760; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { min-width:0; margin:0; max-width:17ch; font:650 clamp(28px,4.7vw,46px)/1.16 ui-serif,"Noto Serif CJK SC","Songti SC",serif; letter-spacing:-.025em; overflow-wrap:anywhere; }
+    .passport { display:grid; grid-template-columns:1fr 1fr; align-self:start; border-top:2px solid var(--accent); }
+    .passport div { min-width:0; padding:11px 0; border-bottom:1px solid var(--line); }
+    .passport div:nth-child(odd) { padding-right:14px; }
+    .passport span { display:block; margin-bottom:2px; color:var(--muted); font-size:11px; }
+    .passport strong { display:block; font-size:13px; font-weight:650; overflow-wrap:anywhere; }
+    .status-band { display:flex; align-items:flex-start; gap:14px; padding:18px 42px; border-bottom:1px solid var(--line); background:#f8faf7; }
+    .status-dot { flex:0 0 auto; width:10px; height:10px; margin-top:7px; border-radius:999px; background:var(--accent); box-shadow:0 0 0 5px var(--accent-soft); }
+    .status-band strong { display:block; font-size:15px; }
+    .status-band p { margin:2px 0 0; color:var(--muted); font-size:13px; }
+    .status-band[data-state="working"] .status-dot { background:#a36d12; box-shadow:0 0 0 5px #f6e8c9; }
+    .status-band[data-state="limited"] .status-dot,.status-band[data-state="safety"] .status-dot { background:var(--danger); box-shadow:0 0 0 5px var(--danger-soft); }
+    .status-band[data-state="changed"] { background:#fff8e8; }
+    .revision-notice { margin:26px 42px 0; padding:18px 20px; border:1px solid #d8b66e; border-radius:14px; background:#fff8e8; }
+    .revision-notice strong { color:#694b13; }
+    .revision-notice dl { display:grid; grid-template-columns:100px 1fr; gap:8px 14px; margin:12px 0 0; }
+    .revision-notice dt { color:var(--muted); font-size:13px; }.revision-notice dd { margin:0; }
+    .access-notice { margin:24px 42px 0; padding:15px 17px; border-left:3px solid #b27c22; background:var(--warning-soft); color:var(--warning); }
+    .access-notice strong { display:block; margin-bottom:3px; color:var(--ink); }
+    .access-notice p { margin:4px 0; }
+    .access-notice details { margin-top:8px; border:0; }
+    .decision { padding:42px 42px 34px; }
+    .verdict { margin:0 0 32px; max-width:16ch; color:#265d97; font:680 clamp(38px,7vw,66px)/1.03 ui-serif,"Noto Serif CJK SC","Songti SC",serif; letter-spacing:-.045em; }
+    .essentials { border-top:1px solid var(--line); }
+    .essential { display:grid; grid-template-columns:160px 1fr; gap:20px; padding:18px 0; border-bottom:1px solid var(--line); }
+    .essential strong { color:var(--muted); font-size:13px; font-weight:620; }
+    .essential.safety { margin-top:12px; padding:16px; border:0; border-radius:var(--radius); background:var(--danger-soft); color:var(--danger); }
+    .next-actions { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px 24px; margin-top:28px; padding:20px; border:1px solid var(--line); border-radius:14px; background:var(--accent-soft); color:var(--ink); }
+    .next-actions__copy strong { display:block; font-size:16px; }
+    .next-actions__copy p { margin:3px 0 0; color:var(--muted); font-size:13px; }
+    .next-actions__buttons { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:10px; }
+    .handoff-button { position:relative; min-height:44px; padding:0 16px; border:1px solid var(--accent); border-radius:10px; color:var(--accent); background:var(--panel); font:650 14px/1 ui-sans-serif,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif; white-space:nowrap; cursor:pointer; transition:background-color 160ms cubic-bezier(.16,1,.3,1),color 160ms cubic-bezier(.16,1,.3,1),transform 100ms cubic-bezier(.16,1,.3,1); }
+    .handoff-button--primary { background:var(--accent); color:var(--accent-ink); }
+    .handoff-button:focus-visible { outline:3px solid var(--panel); outline-offset:2px; box-shadow:0 0 0 5px var(--accent); }
+    .handoff-button:active,.handoff-button[data-state="active"] { transform:translateY(1px); }
+    .handoff-button:disabled,.handoff-button[data-state="disabled"] { opacity:.55; cursor:not-allowed; transform:none; }
+    .handoff-button[data-state="loading"] { padding-inline-start:40px; cursor:wait; }
+    .handoff-button[data-state="loading"]::before { content:""; position:absolute; inset-inline-start:16px; top:50%; width:13px; height:13px; margin-top:-8px; border:2px solid var(--accent-ink); border-inline-end-color:transparent; border-radius:50%; animation:handoff-spin .8s linear infinite; }
+    .handoff-button:not(.handoff-button--primary)[data-state="loading"]::before { border-color:var(--accent); border-inline-end-color:transparent; }
+    .handoff-button[data-state="error"] { border-color:var(--danger); background:var(--danger); color:var(--accent-ink); }
+    .handoff-button[data-state="success"] { border-color:var(--accent); background:var(--accent); color:var(--accent-ink); }
+    .next-actions__note,.handoff-status { grid-column:1/-1; margin:0; color:var(--muted); font-size:12px; }
+    .handoff-status:empty { display:none; }
+    .handoff-fallback { grid-column:1/-1; padding-top:4px; }
+    .handoff-fallback label { display:block; margin-bottom:6px; color:var(--ink); font-size:13px; font-weight:650; }
+    .handoff-fallback textarea { width:100%; min-height:118px; resize:vertical; padding:11px 12px; border:1px solid var(--line); border-radius:10px; outline:2px solid transparent; outline-offset:1px; background:var(--panel); color:var(--ink); font:13px/1.55 ui-monospace,"SFMono-Regular",Consolas,monospace; }
+    .handoff-fallback textarea:focus-visible { outline-color:var(--accent); }
+    @media (hover:hover) and (pointer:fine) {
+      .handoff-button--primary:hover { background:var(--ink); color:var(--accent-ink); }
+      .handoff-button:not(.handoff-button--primary):hover { background:var(--panel); color:var(--ink); }
+    }
+    @keyframes handoff-spin { to { transform:rotate(360deg); } }
+    .actions { padding:0 42px 42px; }
+    details { border-top:1px solid var(--line); background:transparent; }
+    summary { list-style:none; cursor:pointer; font-weight:650; }
+    summary::-webkit-details-marker { display:none; }
+    .actions > details > summary { display:flex; align-items:center; justify-content:space-between; min-height:62px; color:var(--ink); }
+    .actions > details > summary::after { content:"＋"; color:var(--accent); font-size:21px; font-weight:400; }
+    .actions > details[open] > summary::after { content:"−"; }
+    summary:focus-visible { outline:3px solid rgba(11,107,93,.22); outline-offset:4px; border-radius:6px; }
+    .action-body { padding:2px 0 28px; max-width:76ch; }
+    .action-body h2 { margin:8px 0 12px; font-size:23px; }
+    .action-body h3 { margin:26px 0 7px; font-size:16px; }
+    .action-body h4 { margin:20px 0 5px; font-size:14px; }
+    .action-body p { margin:8px 0; }
+    .action-body ul { margin:8px 0; padding-left:1.25em; }
+    .action-body li + li { margin-top:6px; }
+    .research-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:14px 0; background:var(--line); border:1px solid var(--line); }
+    .research-grid div { padding:13px 14px; background:var(--panel); }
+    .research-grid strong { display:block; color:var(--muted); font-size:12px; font-weight:600; }
+    .table-wrap { width:100%; overflow-x:auto; margin:12px 0 18px; }
+    table { width:100%; min-width:650px; border-collapse:collapse; font-size:14px; }
+    th,td { padding:10px 11px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { color:var(--muted); background:var(--accent-soft); font-size:12px; font-weight:650; }
+    .nested { margin-top:12px; border:1px solid var(--line); border-radius:var(--radius); }
+    .nested summary { padding:12px 14px; }
+    .nested .inner { padding:0 14px 14px; color:var(--muted); }
+    .sources { padding-left:1.2em; }
+    .access-warning { margin:12px 0; padding:14px 16px; border-left:3px solid #b27c22; background:var(--warning-soft); color:var(--warning); }
+    .access-warning strong { display:block; margin-bottom:4px; color:var(--ink); }
+    .quick-boundary { margin:10px 0 20px; padding:16px 18px; border:1px solid #d7c48f; border-radius:14px; background:#fffaec; }
+    .quick-boundary p { color:#6d5a2b; }
+    .quick-sources li { padding:9px 0; border-bottom:1px solid var(--line); }
+    .quick-sources strong,.quick-sources small { display:block; }.quick-sources small { color:var(--muted); font-size:12px; }
+    a { color:var(--accent); text-underline-offset:3px; overflow-wrap:anywhere; }
+    @media (max-width:700px) {
+      main { margin:12px auto; }
+      header { grid-template-columns:1fr; gap:22px; padding:24px 20px; }
+      h1 { max-width:none; }
+      .decision,.actions { padding-left:20px; padding-right:20px; }
+      .status-band { padding:16px 20px; }.revision-notice,.access-notice { margin:20px 20px 0; }
+      .essential { grid-template-columns:1fr; gap:3px; }
+      .next-actions { grid-template-columns:1fr; }
+      .next-actions__buttons { display:grid; grid-template-columns:1fr; justify-content:stretch; }
+      .handoff-button { width:100%; }
+      .research-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .action-body { animation:reveal .18s ease-out; }
+      @keyframes reveal { from { opacity:.45; transform:translateY(-3px); } }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .handoff-button { transition:none; }
+      .handoff-button[data-state="loading"]::before { animation:none; border-inline-end-color:var(--panel); opacity:.55; }
+    }
+    @media print {
+      body { background:#fff; }
+      main { width:100%; margin:0; }
+      .shell { border:0; box-shadow:none; }
+      header { grid-template-columns:1fr 1fr; }
+      .actions details { display:block; }
+      .actions summary { min-height:auto; padding:10px 0; }
+      .actions summary::after { display:none; }
+      .action-body { display:block!important; }
+      .next-actions { display:none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <article class="shell" aria-labelledby="title">
+    <header>
+      <div>
+        <p class="kicker">营养证据卡</p>
+        <h1 id="title">老年人是否需要钙片</h1>
+      </div>
+      <div class="passport" aria-label="证据护照">
+        <div><span>审计层级</span><strong>快速证据审计</strong></div>
+        <div><span>更新日期</span><strong>2026-09-01</strong></div>
+        <div><span>检索覆盖</span><strong>11/11 条题录已筛查</strong></div>
+        <div><span>确定性路径</span><strong>引用来源已有 GRADE</strong></div>
+      </div>
+    </header>
+    <section class="status-band" data-state="audited" aria-label="证据卡状态">
+      <span class="status-dot" aria-hidden="true"></span>
+      <div><strong>完整审计完成</strong><p>已完成可复核的证据审计。</p></div>
+    </section>
+    
+    
+    <section class="decision" aria-label="购买与使用建议">
+      <p class="verdict" data-testid="verdict">只对特定人群值得。</p>
+      <div class="essentials">
+        <div class="essential" data-testid="for-whom"><strong>对谁可能有用</strong><span>仅对摄入不足、骨质疏松治疗或特定高风险老人可能值得。</span></div>
+        <div class="essential" data-testid="effect-ceiling"><strong>效果上限</strong><span>对多数社区老人，常规补钙几乎不能带来有意义的骨折减少。</span></div>
+        <div class="essential safety" data-testid="safety-red-line"><strong>安全红线</strong><span>肾结石、肾功能异常、高钙血症或正在服相关药物时不要自行补。</span></div>
+      </div>
+      <aside class="next-actions" data-testid="next-actions" aria-label="继续探询与审计升级"><div class="next-actions__copy"><strong>你的情况会改变结论吗？</strong><p>补充未确认或后来变化的信息，重新判断是否匹配。</p></div><div class="next-actions__buttons"><button type="button" class="handoff-button handoff-button--primary" data-testid="continue-inquiry" data-copy-request="请继续评估《老年人是否需要钙片》这张营养证据卡。当前结论是：只对特定人群值得。
+我想确认自己是否符合会改变结论的条件。请只追问尚未确认、后来变化或此前跳过的高价值信息，优先使用点击式选择；不要重复已经确认的信息。
+卡片中列出的可能匹配条件或剩余不确定性：
+- 膳食钙明显不足，或骨质疏松治疗方案要求补足钙摄入的人。
+- 机构照护、摄入不足且骨折风险高者需要单独评估。
+- 有没有骨质疏松、低骨密度或既往脆性骨折？这会改变补充目标。
+- 每天奶类、豆制品等钙来源大概多少，并且有肾病或结石吗？这会改变收益和风险。
+收到答案后请更新同一张证据卡；如果建议改变，明确显示此前建议、当前建议和改判原因。" data-state="default">更新我的情况</button></div><p class="next-actions__note">按钮会复制一段已整理好的请求；回到聊天直接发送即可，不会在后台自动运行。</p><p class="handoff-status" data-handoff-status aria-live="polite"></p><div class="handoff-fallback" data-handoff-fallback hidden><label for="handoff-fallback-text">请求文本</label><textarea id="handoff-fallback-text" data-handoff-fallback-text readonly></textarea></div></aside>
+    </section>
+    <section class="actions" aria-label="展开详细内容">
+      <details data-testid="why"><summary>为什么</summary><div class="action-body"><h2>为什么</h2><p>年龄本身不是补钙指征，居住环境、膳食摄入和骨折风险才会改变结论。</p><h3>决定结论的事实</h3><ul><li>2026年BMJ系统综述纳入69项随机试验、153902人，并完成GRADE。</li><li>钙片对任何骨折的RR为0.91，95%CI 0.81至1.01，属于中等确定性的很小或无重要作用。</li><li>养老机构、摄入不足和接受骨质疏松治疗的人群不能与一般社区老人混为一谈。</li></ul><h3>更优先的路径</h3><ul><li>先估算膳食钙、评估骨质疏松和跌倒风险，再决定是否补足缺口。</li></ul></div></details>
+      <details data-testid="suitability"><summary>适不适合我</summary><div class="action-body"><h2>适不适合我</h2><h3>本次已采用的信息</h3><ul><li>用户选择跳过点击式关键信息收集，本页按普通社区老年人的一般情境生成。</li></ul><h3>当前暂定情境</h3><p>暂按居住在社区、未确诊骨质疏松、没有明确钙缺口的老年人判断。</p><h3>与研究人群的匹配度</h3><p>未知：缺少骨密度/骨折史、膳食钙和肾结石或肾病信息。</p><h3>可能匹配</h3><ul><li>膳食钙明显不足，或骨质疏松治疗方案要求补足钙摄入的人。</li><li>机构照护、摄入不足且骨折风险高者需要单独评估。</li></ul><h3>避免或先确认</h3><ul><li>肾结石、慢性肾病、高钙血症或正在用甲状腺素、铁剂及部分抗生素者先核对。</li></ul><h3>仍可能改变建议的信息</h3><ul><li>有没有骨质疏松、低骨密度或既往脆性骨折？这会改变补充目标。</li><li>每天奶类、豆制品等钙来源大概多少，并且有肾病或结石吗？这会改变收益和风险。</li></ul></div></details>
+      <details data-testid="research"><summary>证据怎么裁决</summary><div class="action-body"><h2>证据怎么裁决</h2><p>这里评价的是整组证据如何共同支持结论，不用单篇论文或期刊名代替裁决。</p><div class="research-grid"><div><strong>PICOS 与随访</strong>P：多数为社区居住、未接受骨质疏松药物治疗的成人和老年人；I：钙、维生素D或二者补充；C：安慰剂或不补充；O：任何骨折、髋部骨折和跌倒；S：随机对照试验及系统综述。</div><div><strong>检索或更新</strong>2026-09-01</div></div><h3>来源为何看似矛盾</h3><div class="table-wrap"><table><thead><tr><th scope="col">来源或观点</th><th scope="col">得出的结论</th><th scope="col">为何不同</th><th scope="col">本次权重</th></tr></thead><tbody><tr><td>2026年BMJ系统综述</td><td>多数成人常规补钙、维生素D或二者对骨折和跌倒几乎无重要作用</td><td>以绝对效应阈值解释，并覆盖多库、注册库和会议摘要</td><td>高：69项试验、双人流程、RoB 2和GRADE</td></tr><tr><td>养老机构膳食干预试验</td><td>提高奶制品、钙和蛋白摄入可减少骨折</td><td>对象为高龄机构居民且基线摄入不足，干预也不只是钙片</td><td>中：直接但只适用于不同人群和复合膳食干预</td></tr></tbody></table></div><h3>按关键结局综合判断</h3><div class="table-wrap"><table><thead><tr><th scope="col">关键结局</th><th scope="col">实际效应</th><th scope="col">证据体确定性</th><th scope="col">GRADE 五域与理由</th></tr></thead><tbody><tr><td>钙片预防任何骨折</td><td>RR 0.91（95%CI 0.81至1.01），平均效应未达到临床重要阈值。</td><td>中等</td><td>偏倚风险：不严重：综述使用RoB 2并进行敏感性分析。；不一致性：不严重：广泛亚组分析未改变总体判断。；间接性：不严重于一般社区成人；对机构高风险老人存在间接性。；不精确性：严重：置信区间仍跨越无效线并允许小幅获益。；传播偏倚：不严重：检索包含注册库、会议摘要和参考文献追踪。；结论：引用BMJ综述GRADE；因区间仍允许小幅差异而非高确定性。</td></tr><tr><td>钙加维生素D预防任何骨折</td><td>RR 0.91（95%CI 0.84至0.99），统计差异未转化为达到预设阈值的临床重要获益。</td><td>高</td><td>偏倚风险：不严重。；不一致性：不严重：多项亚组分析结果稳健。；间接性：不严重于多数社区成人；高风险和机构人群资料较少。；不精确性：不严重：区间足以排除达到预设阈值的明显获益。；传播偏倚：不严重：检索覆盖注册库和未正式发表来源。；结论：大量试验和较窄区间支持很小或无重要作用。</td></tr></tbody></table></div><h3>历史证据基座</h3><div class="research-grid"><div><strong>采用方式</strong>现有系统综述 + PubMed 更新检索</div><div><strong>原综述检索截止</strong>2025-02-19</div></div><p>采用2026年BMJ系统综述作为历史基座；覆盖Medline、Embase、CENTRAL、试验注册库、会议摘要和参考文献，检索至2025-02-19。</p><p>纳入69项随机试验、153902人，双人筛选提取、RoB 2、随机效应合成和GRADE，并以绝对效应阈值判断临床重要性。</p><h3>可复现的 PubMed 检索</h3><div class="research-grid"><div><strong>数据库与日期</strong>PubMed / 2026-09-01</div><div><strong>完整导出 / 完整筛查</strong>是 / 是</div></div><details class="nested"><summary>完整检索式</summary><div class="inner"><p>((&quot;Calcium, Dietary&quot;[Mesh] OR calcium supplement*[tiab] OR calcium supplementation[tiab]) AND (&quot;Fractures, Bone&quot;[Mesh] OR fracture*[tiab]) AND (random*[tiab] OR trial[tiab] OR &quot;Systematic Review&quot;[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (&quot;2025/02/20&quot;[Date - Publication] : &quot;3000&quot;[Date - Publication])</p></div></details><details class="nested"><summary>PubMed Query Translation</summary><div class="inner"><p>(&quot;calcium, dietary&quot;[MeSH Terms] OR &quot;calcium supplement*&quot;[Title/Abstract] OR &quot;calcium supplementation&quot;[Title/Abstract]) AND (&quot;fractures, bone&quot;[MeSH Terms] OR &quot;fracture*&quot;[Title/Abstract]) AND (&quot;random*&quot;[Title/Abstract] OR &quot;trial&quot;[Title/Abstract] OR &quot;Systematic Review&quot;[Publication Type] OR &quot;Systematic Review&quot;[Title/Abstract] OR &quot;meta analy*&quot;[Title/Abstract]) AND 2025/02/20:3000/12/31[Date - Publication] AND 2016/09/01:2026/09/01[Date - Publication]</p></div></details><h3>筛选流程</h3><div class="table-wrap"><table><thead><tr><th scope="col">命中</th><th scope="col">导出</th><th scope="col">题录筛查</th><th scope="col">全文评估</th><th scope="col">纳入报告</th><th scope="col">纳入研究</th></tr></thead><tbody><tr><td>11</td><td>11</td><td>11</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div><p>PubMed更新检索由单人筛选；更新期未发现符合PICOS且未被历史基座覆盖的直接随机试验。</p><h3>PICOS 纳入与排除</h3><h4>纳入标准</h4><ul><li>P：普通成人和老年人，重点关注社区居住者。</li><li>I：钙补充或钙加维生素D。</li><li>C：安慰剂或不补充。</li><li>O：骨折或跌倒。</li><li>S：随机对照试验、系统综述或Meta分析。</li></ul><h4>排除标准</h4><ul><li>仅骨密度、知识态度或非骨折结局。</li><li>动物研究、叙述性综述或其他复合干预。</li><li>仅限正在接受骨质疏松药物治疗且无法外推到一般老人。</li></ul><h4>实际排除记录</h4><div class="table-wrap"><table><thead><tr><th scope="col">排除原因</th><th scope="col">数量</th></tr></thead><tbody><tr><td>历史基座本身，不重复计入更新</td><td>1</td></tr><tr><td>较早证据已被历史基座覆盖</td><td>1</td></tr><tr><td>骨质疏松治疗人群不匹配</td><td>2</td></tr><tr><td>其他PICOS或研究设计不匹配</td><td>7</td></tr></tbody></table></div><h3>证据体总览</h3><div class="research-grid"><div><strong>实际效应</strong>钙补充对任何骨折RR 0.91（95%CI 0.81至1.01，中等确定性）；钙加维生素D RR 0.91（0.84至0.99，高确定性），绝对获益低于预设临床重要阈值。</div><div><strong>证据体确定性</strong>中等至高（按结局）</div></div><h3>确定性评价方法</h3><div class="research-grid"><div><strong>评价路径</strong>引用来源已有 GRADE</div><div><strong>范围与流程简化</strong>引用2026年BMJ多库系统综述的GRADE；其检索至2025-02-19。本次完整导出并单人筛查截止日期后的PubMed 11条命中，未发现新的直接随机试验改变结论。</div></div><h3>主要不确定性</h3><ul><li>大型多库综述、双人筛选和RoB 2</li><li>使用绝对效应临床重要阈值</li><li>高风险和机构照护人群证据仍有限</li></ul><h3>什么会改变结论</h3><ul><li>高风险、机构照护或明确低钙摄入人群中出现足够直接的新随机证据。</li><li>用户确认骨质疏松治疗需要、膳食钙明显不足或存在补钙禁忌。</li></ul><h3>资金与利益冲突</h3><p>BMJ综述声明无行业资金支持本研究；部分作者有非行业教育活动报酬。</p><h3>决定性来源</h3><ol class="sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/42161415/" target="_blank" rel="noopener noreferrer">2026年BMJ钙/维生素D骨折与跌倒系统综述</a>：历史证据基座与来源GRADE / 2026</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/34670754/" target="_blank" rel="noopener noreferrer">机构老人奶制品、钙和蛋白质集群随机试验</a>：适用性边界 / 2021</li></ol><details class="nested"><summary>Meta 分析</summary><div class="inner"><p>直接引用并审计现有多库系统综述，不重复计算其69项试验。</p></div></details><details class="nested"><summary>GRADE</summary><div class="inner"><p>引用2026年BMJ综述的结局级GRADE：钙片预防任何骨折为中等确定性，钙加维生素D为高确定性，均为很小或无重要作用。</p></div></details><details class="nested"><summary>偏倚风险（RoB）</summary><div class="inner"><p>关键适用性问题是多数参与者为社区居住且非高风险，不能简单外推到机构照护、严重缺乏或骨质疏松治疗情境。</p></div></details></div></details>
+    </section>
+  </article>
+</main>
+<script>
+  (() => {
+    const buttons = document.querySelectorAll("[data-copy-request]");
+    if (!buttons.length) return;
+    const status = document.querySelector("[data-handoff-status]");
+    const fallback = document.querySelector("[data-handoff-fallback]");
+    const fallbackText = document.querySelector("[data-handoff-fallback-text]");
+
+    const copyText = async (value) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(value);
+          return;
+        } catch (error) {
+          // Local file pages can deny the modern Clipboard API. Try the user-gesture fallback below.
+        }
+      }
+      const scratch = document.createElement("textarea");
+      scratch.value = value;
+      scratch.setAttribute("readonly", "");
+      scratch.style.position = "fixed";
+      scratch.style.opacity = "0";
+      document.body.appendChild(scratch);
+      scratch.select();
+      const copied = document.execCommand("copy");
+      scratch.remove();
+      if (!copied) throw new Error("clipboard unavailable");
+    };
+
+    buttons.forEach((button) => {
+      const originalLabel = button.textContent.trim();
+      button.addEventListener("click", async () => {
+        const request = button.dataset.copyRequest || "";
+        button.disabled = true;
+        button.setAttribute("aria-busy", "true");
+        button.dataset.state = "loading";
+        button.textContent = "正在准备";
+        if (status) status.textContent = "";
+        try {
+          await copyText(request);
+          button.disabled = false;
+          button.removeAttribute("aria-busy");
+          button.dataset.state = "success";
+          button.textContent = "已复制，回聊天发送";
+          if (status) status.textContent = "请求已复制。回到聊天粘贴并发送即可继续。";
+        } catch (error) {
+          button.disabled = false;
+          button.removeAttribute("aria-busy");
+          button.dataset.state = "error";
+          button.textContent = "请手动复制";
+          if (fallback && fallbackText) {
+            fallback.hidden = false;
+            fallbackText.value = request;
+            fallbackText.focus();
+            fallbackText.select();
+          }
+          if (status) status.textContent = "浏览器未允许自动复制，已在下方准备好请求文本。";
+        }
+        window.setTimeout(() => {
+          button.disabled = false;
+          button.dataset.state = "default";
+          button.textContent = originalLabel;
+        }, 3200);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

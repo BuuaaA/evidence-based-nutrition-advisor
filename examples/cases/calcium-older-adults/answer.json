@@ -1,0 +1,154 @@
+{
+  "title": "老年人是否需要钙片",
+  "verdict": "conditional",
+  "for_whom": "仅对摄入不足、骨质疏松治疗或特定高风险老人可能值得。",
+  "effect_ceiling": "对多数社区老人，常规补钙几乎不能带来有意义的骨折减少。",
+  "safety_red_line": "肾结石、肾功能异常、高钙血症或正在服相关药物时不要自行补。",
+  "why": {
+    "summary": "年龄本身不是补钙指征，居住环境、膳食摄入和骨折风险才会改变结论。",
+    "key_points": [
+      "2026年BMJ系统综述纳入69项随机试验、153902人，并完成GRADE。",
+      "钙片对任何骨折的RR为0.91，95%CI 0.81至1.01，属于中等确定性的很小或无重要作用。",
+      "养老机构、摄入不足和接受骨质疏松治疗的人群不能与一般社区老人混为一谈。"
+    ],
+    "better_options": [
+      "先估算膳食钙、评估骨质疏松和跌倒风险，再决定是否补足缺口。"
+    ]
+  },
+  "suitability": {
+    "intake_summary": [
+      "用户选择跳过点击式关键信息收集，本页按普通社区老年人的一般情境生成。"
+    ],
+    "assumption": "暂按居住在社区、未确诊骨质疏松、没有明确钙缺口的老年人判断。",
+    "user_match": "未知：缺少骨密度/骨折史、膳食钙和肾结石或肾病信息。",
+    "may_fit": [
+      "膳食钙明显不足，或骨质疏松治疗方案要求补足钙摄入的人。",
+      "机构照护、摄入不足且骨折风险高者需要单独评估。"
+    ],
+    "avoid_or_check": [
+      "肾结石、慢性肾病、高钙血症或正在用甲状腺素、铁剂及部分抗生素者先核对。"
+    ],
+    "remaining_uncertainties": [
+      "有没有骨质疏松、低骨密度或既往脆性骨折？这会改变补充目标。",
+      "每天奶类、豆制品等钙来源大概多少，并且有肾病或结石吗？这会改变收益和风险。"
+    ]
+  },
+  "research": {
+    "picos": "P：多数为社区居住、未接受骨质疏松药物治疗的成人和老年人；I：钙、维生素D或二者补充；C：安慰剂或不补充；O：任何骨折、髋部骨折和跌倒；S：随机对照试验及系统综述。",
+    "effect": "钙补充对任何骨折RR 0.91（95%CI 0.81至1.01，中等确定性）；钙加维生素D RR 0.91（0.84至0.99，高确定性），绝对获益低于预设临床重要阈值。",
+    "certainty": "中等至高（按结局）",
+    "certainty_method": "source_grade",
+    "certainty_scope": "引用2026年BMJ多库系统综述的GRADE；其检索至2025-02-19。本次完整导出并单人筛查截止日期后的PubMed 11条命中，未发现新的直接随机试验改变结论。",
+    "certainty_reasons": [
+      "大型多库综述、双人筛选和RoB 2",
+      "使用绝对效应临床重要阈值",
+      "高风险和机构照护人群证据仍有限"
+    ],
+    "adjudication": [
+      {
+        "source": "2026年BMJ系统综述",
+        "finding": "多数成人常规补钙、维生素D或二者对骨折和跌倒几乎无重要作用",
+        "why_differs": "以绝对效应阈值解释，并覆盖多库、注册库和会议摘要",
+        "weight": "高：69项试验、双人流程、RoB 2和GRADE"
+      },
+      {
+        "source": "养老机构膳食干预试验",
+        "finding": "提高奶制品、钙和蛋白摄入可减少骨折",
+        "why_differs": "对象为高龄机构居民且基线摄入不足，干预也不只是钙片",
+        "weight": "中：直接但只适用于不同人群和复合膳食干预"
+      }
+    ],
+    "outcomes": [
+      {
+        "outcome": "钙片预防任何骨折",
+        "effect": "RR 0.91（95%CI 0.81至1.01），平均效应未达到临床重要阈值。",
+        "certainty": "中等",
+        "why": "引用BMJ综述GRADE；因区间仍允许小幅差异而非高确定性。",
+        "grade_domains": {
+          "risk_of_bias": "不严重：综述使用RoB 2并进行敏感性分析。",
+          "inconsistency": "不严重：广泛亚组分析未改变总体判断。",
+          "indirectness": "不严重于一般社区成人；对机构高风险老人存在间接性。",
+          "imprecision": "严重：置信区间仍跨越无效线并允许小幅获益。",
+          "dissemination_bias": "不严重：检索包含注册库、会议摘要和参考文献追踪。"
+        }
+      },
+      {
+        "outcome": "钙加维生素D预防任何骨折",
+        "effect": "RR 0.91（95%CI 0.84至0.99），统计差异未转化为达到预设阈值的临床重要获益。",
+        "certainty": "高",
+        "why": "大量试验和较窄区间支持很小或无重要作用。",
+        "grade_domains": {
+          "risk_of_bias": "不严重。",
+          "inconsistency": "不严重：多项亚组分析结果稳健。",
+          "indirectness": "不严重于多数社区成人；高风险和机构人群资料较少。",
+          "imprecision": "不严重：区间足以排除达到预设阈值的明显获益。",
+          "dissemination_bias": "不严重：检索覆盖注册库和未正式发表来源。"
+        }
+      }
+    ],
+    "evidence_base": {
+      "approach": "existing_review_plus_pubmed_update",
+      "summary": "采用2026年BMJ系统综述作为历史基座；覆盖Medline、Embase、CENTRAL、试验注册库、会议摘要和参考文献，检索至2025-02-19。",
+      "appraisal": "纳入69项随机试验、153902人，双人筛选提取、RoB 2、随机效应合成和GRADE，并以绝对效应阈值判断临床重要性。",
+      "search_end": "2025-02-19"
+    },
+    "search": {
+      "database": "PubMed",
+      "query": "((\"Calcium, Dietary\"[Mesh] OR calcium supplement*[tiab] OR calcium supplementation[tiab]) AND (\"Fractures, Bone\"[Mesh] OR fracture*[tiab]) AND (random*[tiab] OR trial[tiab] OR \"Systematic Review\"[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (\"2025/02/20\"[Date - Publication] : \"3000\"[Date - Publication])",
+      "query_translation": "(\"calcium, dietary\"[MeSH Terms] OR \"calcium supplement*\"[Title/Abstract] OR \"calcium supplementation\"[Title/Abstract]) AND (\"fractures, bone\"[MeSH Terms] OR \"fracture*\"[Title/Abstract]) AND (\"random*\"[Title/Abstract] OR \"trial\"[Title/Abstract] OR \"Systematic Review\"[Publication Type] OR \"Systematic Review\"[Title/Abstract] OR \"meta analy*\"[Title/Abstract]) AND 2025/02/20:3000/12/31[Date - Publication] AND 2016/09/01:2026/09/01[Date - Publication]",
+      "searched_at": "2026-09-01",
+      "records_found": 11,
+      "records_exported": 11,
+      "records_screened": 11,
+      "full_text_assessed": 0,
+      "reports_included": 0,
+      "studies_included": 0,
+      "complete_retrieval": true,
+      "screening_complete": true,
+      "limits": "PubMed更新检索由单人筛选；更新期未发现符合PICOS且未被历史基座覆盖的直接随机试验。"
+    },
+    "eligibility": {
+      "inclusion": [
+        "P：普通成人和老年人，重点关注社区居住者。",
+        "I：钙补充或钙加维生素D。",
+        "C：安慰剂或不补充。",
+        "O：骨折或跌倒。",
+        "S：随机对照试验、系统综述或Meta分析。"
+      ],
+      "exclusion": [
+        "仅骨密度、知识态度或非骨折结局。",
+        "动物研究、叙述性综述或其他复合干预。",
+        "仅限正在接受骨质疏松药物治疗且无法外推到一般老人。"
+      ],
+      "exclusion_log": [
+        {"reason": "历史基座本身，不重复计入更新", "count": "1"},
+        {"reason": "较早证据已被历史基座覆盖", "count": "1"},
+        {"reason": "骨质疏松治疗人群不匹配", "count": "2"},
+        {"reason": "其他PICOS或研究设计不匹配", "count": "7"}
+      ]
+    },
+    "funding": "BMJ综述声明无行业资金支持本研究；部分作者有非行业教育活动报酬。",
+    "what_would_change": [
+      "高风险、机构照护或明确低钙摄入人群中出现足够直接的新随机证据。",
+      "用户确认骨质疏松治疗需要、膳食钙明显不足或存在补钙禁忌。"
+    ],
+    "updated": "2026-09-01",
+    "sources": [
+      {
+        "label": "2026年BMJ钙/维生素D骨折与跌倒系统综述",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42161415/",
+        "role": "历史证据基座与来源GRADE",
+        "year": 2026
+      },
+      {
+        "label": "机构老人奶制品、钙和蛋白质集群随机试验",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34670754/",
+        "role": "适用性边界",
+        "year": 2021
+      }
+    ],
+    "meta": "直接引用并审计现有多库系统综述，不重复计算其69项试验。",
+    "grade": "引用2026年BMJ综述的结局级GRADE：钙片预防任何骨折为中等确定性，钙加维生素D为高确定性，均为很小或无重要作用。",
+    "rob": "关键适用性问题是多数参与者为社区居住且非高风险，不能简单外推到机构照护、严重缺乏或骨质疏松治疗情境。"
+  }
+}

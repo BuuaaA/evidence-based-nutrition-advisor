@@ -1,0 +1,5 @@
+# Evidence packs are generated from completed audits on each user's machine.
+# Keep the empty index.json template, never publish runtime health-research cache.
+packs/*
+!packs/.gitkeep
+index.local.json

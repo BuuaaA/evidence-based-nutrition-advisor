@@ -1,0 +1,58 @@
+{
+  "title": "维生素 D3 · 2000 IU",
+  "card_state": "audit_updating",
+  "status_detail": "快速核验已经完成；完整 PubMed 审计不会阻塞这张卡。",
+  "verdict": "conditional",
+  "for_whom": "饮食和日晒来源有限、可能摄入不足且没有高钙风险的人。",
+  "effect_ceiling": "可补足基础需要并提高25(OH)D；不能承诺额外防骨折或增强免疫。",
+  "safety_red_line": "肾病、反复结石、高钙血症或相关用药者不要自行长期服用。",
+  "why": {
+    "summary": "剂量边界与缺乏风险比“有机橄榄油载体”更能改变建议。",
+    "key_points": [
+      "中国成人的本地摄入上限必须优先显示。",
+      "提高化验指标不等于改善骨折或感染等临床结局。",
+      "载体配方不能自动证明额外临床获益。"
+    ],
+    "better_options": ["先核对饮食、日晒、总补充剂剂量和是否需要检测25(OH)D。"]
+  },
+  "suitability": {
+    "intake_summary": ["日晒严重不足", "饮食来源有限", "产品剂量为2000 IU/粒"],
+    "assumption": "暂按18至64岁、无肾病或高钙风险的一般中国成人判断。",
+    "user_match": "中：来源不足与目标匹配，但尚无25(OH)D结果。",
+    "may_fit": ["日晒与饮食来源长期不足，且没有叠加其他维生素D产品。"],
+    "avoid_or_check": ["高钙血症、反复含钙结石、明显肾功能异常或相关处方药。"],
+    "remaining_uncertainties": ["是否检测过25(OH)D以及结果档位。", "是否叠加其他含维生素D或钙的产品。"]
+  },
+  "research": {
+    "certainty_method": "quick_verification",
+    "certainty": "这是快速核验形成的受控判断，尚未正式评级，也不是系统综述。",
+    "coverage": "已核验1份本地标准、1份高质量指南和1份权威安全资料",
+    "updated": "2026-08-31",
+    "quick_sources": [
+      {
+        "label": "WS/T 578.4-2018 中国居民膳食营养素参考摄入量",
+        "url": "https://www.nhc.gov.cn/fzs/c100048/201805/e821444378d64bafa7283779631096ce/files/1733125377647_85109.pdf",
+        "role": "local_standard",
+        "checked_at": "2026-08-31"
+      },
+      {
+        "label": "2024 Endocrine Society Clinical Practice Guideline",
+        "url": "https://academic.oup.com/jcem/article/109/8/1907/7685305",
+        "role": "high_quality_synthesis",
+        "checked_at": "2026-08-31"
+      },
+      {
+        "label": "NIH ODS Vitamin D Health Professional Fact Sheet",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+        "role": "safety_authority",
+        "checked_at": "2026-08-31"
+      }
+    ],
+    "uncertainties": [
+      "一般健康成人长期补充对骨折和呼吸道感染的实际获益仍可能很小。",
+      "尚未完成全部更新题录与全文覆盖核验。"
+    ],
+    "what_would_change": ["发现明确缺乏、骨质疏松治疗需求或新的安全风险。", "完整审计发现足以改变方向或幅度的新证据。"],
+    "audit_plan": "继续更新时应写回同一文件；若结论改变，必须显示此前建议与改判原因。"
+  }
+}

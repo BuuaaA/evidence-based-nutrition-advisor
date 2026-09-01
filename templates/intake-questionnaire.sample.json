@@ -1,0 +1,52 @@
+{
+  "title": "先确认几项会改变鱼油建议的信息",
+  "subtitle": "通常只需点击 3–5 项；不确定可以直接选择“不清楚”。回答后再按匹配人群生成证据。",
+  "questions": [
+    {
+      "id": "lipid_target",
+      "prompt": "这次主要想改善哪一项？",
+      "why": "甘油三酯和 LDL 对鱼油的反应不同。",
+      "options": [
+        {"value": "triglycerides", "label": "甘油三酯升高"},
+        {"value": "ldl", "label": "LDL 胆固醇升高"},
+        {"value": "multiple", "label": "多项血脂异常"},
+        {"value": "unknown", "label": "不清楚具体分项"}
+      ]
+    },
+    {
+      "id": "triglyceride_level",
+      "prompt": "最近甘油三酯大致处于哪一档？",
+      "why": "明显升高时处理目标和医学风险都会改变。",
+      "options": [
+        {"value": "normal", "label": "正常或未提示升高"},
+        {"value": "mild", "label": "轻中度升高"},
+        {"value": "severe", "label": "医生说很高或需要尽快处理"},
+        {"value": "unknown", "label": "没有结果或不清楚"}
+      ]
+    },
+    {
+      "id": "current_medicine",
+      "type": "multi",
+      "prompt": "目前是否使用降脂药或抗凝药？",
+      "why": "这会改变剂型选择、替代治疗风险和出血注意事项。",
+      "options": [
+        {"value": "lipid", "label": "正在使用降脂药"},
+        {"value": "anticoagulant", "label": "正在使用抗凝或抗血小板药"},
+        {"value": "none", "label": "都没有", "exclusive": true},
+        {"value": "unknown", "label": "不清楚药物类别", "exclusive": true}
+      ]
+    },
+    {
+      "id": "product_type",
+      "required": false,
+      "prompt": "准备使用的是哪类产品？",
+      "why": "普通鱼油、处方级 EPA 和 EPA+DHA 不能视为同一种干预。",
+      "options": [
+        {"value": "supplement", "label": "普通鱼油保健品"},
+        {"value": "epa", "label": "处方级 EPA"},
+        {"value": "epa_dha", "label": "EPA+DHA 制剂"},
+        {"value": "unknown", "label": "还没选或不清楚"}
+      ]
+    }
+  ]
+}

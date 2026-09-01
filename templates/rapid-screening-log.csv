@@ -1,0 +1,2 @@
+record_id,pmid,doi,pmcid,access_candidates,full_text_access_attempts,access_checked_at,title,year,title_abstract_decision,title_abstract_reason,full_text_status,full_text_decision,full_text_exclusion_reason,study_id,study_design,key_outcomes,notes
+1,,,,,,,,,include,,,,,,,,

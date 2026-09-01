@@ -1,0 +1,16 @@
+{
+  "schema_version": "pubmed-search-v1",
+  "database": "PubMed",
+  "searched_at_utc": "2026-08-27T16:57:43+00:00",
+  "query": "(\"Acetylcysteine\"[MeSH Terms] OR acetylcysteine[tiab] OR \"N-acetylcysteine\"[tiab] OR \"N acetylcysteine\"[tiab] OR \"N-acetyl-cysteine\"[tiab] OR \"N-acetyl-L-cysteine\"[tiab] OR NAC[tiab]) AND (\"Skin Pigmentation\"[MeSH Terms] OR \"Melanins\"[MeSH Terms] OR \"Melanosis\"[MeSH Terms] OR pigmentation[tiab] OR melanin[tiab] OR melanogenesis[tiab] OR whitening[tiab] OR \"skin lightening\"[tiab] OR \"skin brightening\"[tiab] OR \"skin color\"[tiab] OR \"skin colour\"[tiab] OR hyperpigmentation[tiab] OR melasma[tiab] OR \"skin aging\"[tiab] OR photoaging[tiab] OR wrinkle*[tiab] OR erythema[tiab] OR photoprotect*[tiab])",
+  "query_translation": "(\"Acetylcysteine\"[MeSH Terms] OR \"Acetylcysteine\"[Title/Abstract] OR \"n acetylcysteine\"[Title/Abstract] OR \"n acetylcysteine\"[Title/Abstract] OR \"N-acetyl-cysteine\"[Title/Abstract] OR \"N-acetyl-L-cysteine\"[Title/Abstract] OR \"NAC\"[Title/Abstract]) AND (\"Skin Pigmentation\"[MeSH Terms] OR \"Melanins\"[MeSH Terms] OR \"Melanosis\"[MeSH Terms] OR \"pigmentation\"[Title/Abstract] OR \"melanin\"[Title/Abstract] OR \"melanogenesis\"[Title/Abstract] OR \"whitening\"[Title/Abstract] OR \"skin lightening\"[Title/Abstract] OR \"skin brightening\"[Title/Abstract] OR \"skin color\"[Title/Abstract] OR \"skin colour\"[Title/Abstract] OR \"hyperpigmentation\"[Title/Abstract] OR \"melasma\"[Title/Abstract] OR \"skin aging\"[Title/Abstract] OR \"photoaging\"[Title/Abstract] OR \"wrinkle*\"[Title/Abstract] OR \"erythema\"[Title/Abstract] OR \"photoprotect*\"[Title/Abstract])",
+  "total_hits": 225,
+  "exported_records": 225,
+  "retrieved_all_hits": true,
+  "explicit_truncation": false,
+  "sort": "pub date",
+  "abstracts_available": 223,
+  "warnings": {},
+  "ris_sha256": "73ff13d7cfc1f2aec324f2785aab8ed8dd76c76f2fbd676a0bfaa65da530722d",
+  "note_missing_record_recovered": "PMID 32644407 is a StatPearls book chapter (Nipple-Areolar Complex Reconstruction) returned as PubmedBookArticle, which the journal-article parser does not capture. Metadata was verified via ESummary and the record appended manually; it is irrelevant (wrong NAC abbreviation) and excluded at screening."
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "pubmed-search-v1",
+  "database": "PubMed",
+  "searched_at_utc": "2026-09-01T07:36:17+00:00",
+  "query": "((\"Glucosamine\"[Mesh] OR glucosamine[tiab] OR \"Chondroitin Sulfates\"[Mesh] OR chondroitin[tiab]) AND (\"Osteoarthritis, Knee\"[Mesh] OR knee osteoarthriti*[tiab]) AND (pain[tiab] OR function[tiab]) AND (random*[tiab] OR trial[tiab] OR \"Systematic Review\"[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (\"2025/11/26\"[Date - Publication] : \"3000\"[Date - Publication])",
+  "query_translation": "(\"Glucosamine\"[MeSH Terms] OR \"Glucosamine\"[Title/Abstract] OR \"Chondroitin Sulfates\"[MeSH Terms] OR \"chondroitin\"[Title/Abstract]) AND (\"osteoarthritis, knee\"[MeSH Terms] OR \"knee osteoarthriti*\"[Title/Abstract]) AND (\"pain\"[Title/Abstract] OR \"function\"[Title/Abstract]) AND (\"random*\"[Title/Abstract] OR \"trial\"[Title/Abstract] OR \"Systematic Review\"[Publication Type] OR \"Systematic Review\"[Title/Abstract] OR \"meta analy*\"[Title/Abstract]) AND 2025/11/26:3000/12/31[Date - Publication] AND 2016/09/01:2026/09/01[Date - Publication]",
+  "total_hits": 7,
+  "exported_records": 7,
+  "retrieved_all_hits": true,
+  "explicit_truncation": false,
+  "sort": "pub date",
+  "time_scope": "recent_years",
+  "date_from": "2016/09/01",
+  "date_to": "2026/09/01",
+  "recent_years": 10,
+  "abstracts_available": 7,
+  "warnings": {},
+  "ris_sha256": "0c7fef0e9ad947e65d7a0f19cb889f4b4898c76ac0665bd14ffa08e999082c8f"
+}

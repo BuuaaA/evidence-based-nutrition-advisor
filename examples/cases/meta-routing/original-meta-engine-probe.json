@@ -1,0 +1,32 @@
+{
+  "selected_engine": "native_python",
+  "routing_order": [
+    "native_r_metafor",
+    "native_python",
+    "online_webr_metafor",
+    "offline_webr_metafor"
+  ],
+  "native_r": {
+    "path": "C:\\Program Files\\R\\R-4.4.2\\bin\\Rscript.EXE",
+    "version": "Rscript (R) version 4.4.2 (2024-10-31)",
+    "metafor_version": null
+  },
+  "native_python": {
+    "path": "C:\\Program Files\\Python312\\python.EXE",
+    "version": "3.12.5"
+  },
+  "online_webr_reachable": false,
+  "offline_webr": {
+    "ready": false,
+    "manifest": "webr-offline/manifest.json"
+  },
+  "fallback_reasons": [
+    "native R found but metafor is unavailable or failed self-check",
+    "offline webR manifest not found"
+  ],
+  "host": {
+    "system": "Windows",
+    "release": "11"
+  },
+  "probed_at": "2026-08-27"
+}

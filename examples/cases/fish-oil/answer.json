@@ -1,0 +1,158 @@
+{
+  "title": "鱼油与血脂",
+  "verdict": "conditional",
+  "for_whom": "现有证据主要对准甘油三酯升高，不等于全面改善所有血脂。",
+  "effect_ceiling": "高剂量处方级制剂可降低甘油三酯；普通鱼油不一定达到同样剂量和质量。",
+  "safety_red_line": "甘油三酯很高或正在用降脂、抗凝药时，不要自行用鱼油替代治疗。",
+  "why": {
+    "summary": "历史证据足以给出方向和暂定等级，但13篇更新候选尚缺全文，评级可能在补齐后改变。",
+    "key_points": [
+      "2023年剂量反应Meta纳入90项随机试验，支持甘油三酯随剂量下降。",
+      "作用并不等于降低LDL或证明普通保健品能预防心血管事件。",
+      "更新检索69条全部完成题录筛选，但13条候选报告当前只有摘要。"
+    ],
+    "better_options": [
+      "先确认异常的是甘油三酯还是LDL，并排查饮酒、糖尿病和药物等继发原因。"
+    ]
+  },
+  "suitability": {
+    "intake_summary": [
+      "用户选择跳过点击式关键信息收集，本页按不知道血脂分项、数值、用药和产品类型的一般情境生成。"
+    ],
+    "assumption": "暂按不知道具体血脂分项、数值、剂量和用药的一般提问处理。",
+    "user_match": "未知：普通鱼油、处方EPA和EPA+DHA制剂不能视为同一种干预。",
+    "may_fit": [
+      "经评估后确有甘油三酯升高，并使用剂量和纯度明确制剂的人。"
+    ],
+    "avoid_or_check": [
+      "严重高甘油三酯涉及胰腺炎风险，需要医学处理。",
+      "使用抗凝药、计划手术或存在出血风险时先核对。"
+    ],
+    "remaining_uncertainties": [
+      "主要异常的是甘油三酯还是LDL，最近数值多少？这决定鱼油是否对准目标。",
+      "正在使用哪些降脂或抗凝药？这会改变剂型选择和安全建议。"
+    ]
+  },
+  "research": {
+    "picos": "P：成人高甘油三酯或血脂异常；I：口服EPA、DHA或鱼油；C：安慰剂、常规治疗或其他降脂干预；O：甘油三酯及其他血脂；S：系统综述和随机对照试验。",
+    "effect": "历史Meta显示omega-3与甘油三酯呈近线性剂量反应，较高剂量在高脂血症和超重人群更明显；LDL反应依剂型而异。",
+    "certainty": "甘油三酯暂定中等；LDL及整体血脂暂定低（逐结局）",
+    "certainty_method": "provisional_grade",
+    "certainty_scope": "历史基座覆盖至2022年6月；本次完整导出并单人完成PubMed更新检索69条的题录筛查，13条候选更新报告仅取得摘要。评级基于历史Meta与当前可得信息，补齐全文后需重评。",
+    "certainty_reasons": [
+      "历史证据体大且方向一致",
+      "更新候选全文未闭环",
+      "剂型、剂量和人群差异明显"
+    ],
+    "adjudication": [
+      {
+        "source": "2023年剂量反应Meta",
+        "finding": "omega-3可随剂量降低甘油三酯",
+        "why_differs": "合并了90项随机试验并按剂量建模，但包含多种人群和制剂",
+        "weight": "高于单项研究；作为历史基座使用"
+      },
+      {
+        "source": "普通鱼油宣传",
+        "finding": "暗示全面改善血脂和心血管健康",
+        "why_differs": "把处方剂量、特定成分和替代指标外推到任意保健品及临床事件",
+        "weight": "很低：产品剂量和临床结局通常不匹配"
+      }
+    ],
+    "outcomes": [
+      {
+        "outcome": "甘油三酯",
+        "effect": "历史证据提示剂量依赖性下降，尤其在基线升高和每日超过2克omega-3时更明显。",
+        "certainty": "暂定中等",
+        "why": "历史随机试验证据体大、剂量反应方向稳定；因13篇候选更新缺全文，风险偏倚、不一致性和传播偏倚判断不完整，当前等级为暂定。",
+        "grade_domains": {
+          "risk_of_bias": "可能不严重至严重：历史试验质量不一，需结合完整RoB表。",
+          "inconsistency": "可能严重：剂型、剂量、基线血脂和共用降脂药差异明显。",
+          "indirectness": "不严重于甘油三酯结局；若外推到心血管事件或普通低剂量鱼油则严重。",
+          "imprecision": "历史Meta总体较精确，但更新研究尚未完成全文核查。",
+          "dissemination_bias": "无法完整判断：本次未检索注册库和灰色文献。"
+        }
+      },
+      {
+        "outcome": "LDL及整体血脂",
+        "effect": "不能假定同步改善；含DHA制剂在部分人群可能升高LDL。",
+        "certainty": "暂定低",
+        "why": "结果依制剂和剂量变化，不能用甘油三酯结论代替全部血脂。",
+        "grade_domains": {
+          "risk_of_bias": "无法完整判断。",
+          "inconsistency": "可能严重：不同制剂呈不同方向。",
+          "indirectness": "严重：整体血脂不是单一结局。",
+          "imprecision": "无法完整判断。",
+          "dissemination_bias": "无法完整判断。"
+        }
+      }
+    ],
+    "evidence_base": {
+      "approach": "existing_review_plus_pubmed_update",
+      "summary": "采用2023年JAHA剂量反应Meta作为历史基座；其纳入90项成人随机试验、72598人，检索至2022年6月。",
+      "appraisal": "双人风险偏倚评价并按剂量建模，证据体大；但人群、制剂、共用降脂药和结局差异明显，且未直接给出本问题可引用的GRADE。",
+      "search_end": "2022-06-30"
+    },
+    "search": {
+      "database": "PubMed",
+      "query": "((\"Fatty Acids, Omega-3\"[Mesh] OR omega-3[tiab] OR omega 3[tiab] OR fish oil[tiab] OR eicosapentaenoic acid[tiab] OR docosahexaenoic acid[tiab]) AND (\"Triglycerides\"[Mesh] OR triglyceride*[tiab]) AND (hypertriglyceridemi*[tiab] OR dyslipidemi*[tiab]) AND (random*[tiab] OR trial[tiab] OR \"Systematic Review\"[pt] OR systematic review[tiab] OR meta-analy*[tiab])) AND (\"2022/07/01\"[Date - Publication] : \"3000\"[Date - Publication])",
+      "query_translation": "(\"fatty acids, omega 3\"[MeSH Terms] OR \"omega-3\"[Title/Abstract] OR \"omega-3\"[Title/Abstract] OR \"fish oil\"[Title/Abstract] OR \"eicosapentaenoic acid\"[Title/Abstract] OR \"docosahexaenoic acid\"[Title/Abstract]) AND (\"Triglycerides\"[MeSH Terms] OR \"triglyceride*\"[Title/Abstract]) AND (\"hypertriglyceridemi*\"[Title/Abstract] OR \"dyslipidemi*\"[Title/Abstract]) AND (\"random*\"[Title/Abstract] OR \"trial\"[Title/Abstract] OR \"Systematic Review\"[Publication Type] OR \"Systematic Review\"[Title/Abstract] OR \"meta analy*\"[Title/Abstract]) AND 2022/07/01:3000/12/31[Date - Publication] AND 2016/09/01:2026/09/01[Date - Publication]",
+      "searched_at": "2026-09-01",
+      "records_found": 69,
+      "records_exported": 69,
+      "records_screened": 69,
+      "full_text_assessed": 0,
+      "reports_included": 0,
+      "studies_included": 0,
+      "complete_retrieval": true,
+      "screening_complete": true,
+      "limits": "PubMed-only、单人题录筛选；13条候选更新报告仅取得摘要，未完成全文筛选；未检索Embase、CENTRAL、注册库或灰色文献。"
+    },
+    "evidence_access": {
+      "full_text_unavailable": 13,
+      "impact": "这13篇报告可能改变效应量、偏倚风险或异质性判断，因此当前逐结局等级不是最终等级。无法取得全文本身不等于研究阴性或质量差。",
+      "upload_prompt": "如果你能取得这些全文，请回到对话中上传；Skill会重新完成全文筛选、提取和GRADE，并标出等级是否改变。"
+    },
+    "eligibility": {
+      "inclusion": [
+        "P：成人高甘油三酯或血脂异常。",
+        "I：口服EPA、DHA或鱼油制剂。",
+        "C：安慰剂、常规治疗或其他降脂干预。",
+        "O：甘油三酯及其他血脂。",
+        "S：系统综述或随机对照试验。"
+      ],
+      "exclusion": [
+        "儿童、动物、体外或观察性研究。",
+        "方案、叙述性综述或无目标血脂结局。",
+        "无法分离omega-3作用的复杂共干预。"
+      ],
+      "exclusion_log": [
+        {"reason": "历史基座本身，不重复计入更新", "count": "1"},
+        {"reason": "题名摘要PICOS或研究设计不匹配", "count": "55"},
+        {"reason": "候选更新仅有摘要，待全文核查", "count": "13"}
+      ]
+    },
+    "funding": "历史综述纳入试验的资金来源不一；本次未完成全部更新报告全文和资助审计。",
+    "what_would_change": [
+      "获得13条更新候选全文并完成风险偏倚、效应和五域核查。",
+      "确认具体血脂分项、基线数值、制剂EPA/DHA含量和用药。"
+    ],
+    "updated": "2026-09-01",
+    "sources": [
+      {
+        "label": "2023年omega-3与血脂剂量反应Meta",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37264945/",
+        "role": "历史证据基座",
+        "year": 2023
+      },
+      {
+        "label": "2026年ACC/AHA血脂管理指南",
+        "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
+        "role": "剂型与临床使用边界",
+        "year": 2026
+      }
+    ],
+    "meta": "引用现有Meta作为历史基座，未重新合并90项试验。",
+    "grade": "基于历史随机试验证据体和当前可得更新信息进行暂定GRADE：甘油三酯暂定中等，LDL及整体血脂暂定低。13篇候选更新缺全文，补齐后必须重评。",
+    "rob": "主要待核查项是更新试验的随机化、盲法、剂型、剂量、共用降脂药和选择性报告。"
+  }
+}

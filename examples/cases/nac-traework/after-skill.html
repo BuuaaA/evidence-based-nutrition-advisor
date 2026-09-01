@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAC 美白/抗衰证据审计</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --ink:#1a2332; --muted:#5c6b7f;
+    --line:#e3e8ef; --red:#c0392b; --red-bg:#fdf0ee; --green:#1e7e4e;
+    --green-bg:#eef7f1; --amber:#9a6b00; --amber-bg:#fdf6e3;
+    --blue:#1f5fa8; --blue-bg:#eef4fb; --chip:#eef1f5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;padding:24px 16px}
+  .wrap{max-width:860px;margin:0 auto}
+  header{margin-bottom:20px}
+  header h1{font-size:22px;font-weight:700;letter-spacing:.5px}
+  header .meta{color:var(--muted);font-size:13px;margin-top:6px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px;margin-bottom:14px}
+  .verdict{border-left:6px solid var(--red)}
+  .verdict h2{font-size:18px;color:var(--red);margin-bottom:10px}
+  .verdict p{font-size:15px}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:14px}
+  .kpi{background:var(--chip);border-radius:10px;padding:12px 14px}
+  .kpi .k{font-size:12px;color:var(--muted);margin-bottom:4px}
+  .kpi .v{font-size:14px;font-weight:600}
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    margin-bottom:12px;overflow:hidden}
+  summary{cursor:pointer;padding:16px 22px;font-weight:600;font-size:15px;
+    list-style:none;display:flex;align-items:center;gap:10px;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸";color:var(--blue);transition:transform .2s;flex-shrink:0}
+  details[open] summary::before{transform:rotate(90deg)}
+  summary .tag{font-size:11px;font-weight:500;color:var(--muted);
+    background:var(--chip);border-radius:20px;padding:2px 10px;margin-left:auto}
+  .body{padding:0 22px 20px;border-top:1px solid var(--line);padding-top:16px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--chip);font-weight:600;white-space:nowrap}
+  .grade-high{background:var(--green-bg);color:var(--green);font-weight:700}
+  .grade-mod{background:var(--blue-bg);color:var(--blue);font-weight:700}
+  .grade-low{background:var(--amber-bg);color:var(--amber);font-weight:700}
+  .grade-vlow{background:var(--red-bg);color:var(--red);font-weight:700}
+  .pill{display:inline-block;border-radius:20px;padding:1px 10px;font-size:12px;font-weight:600}
+  .pill.no{background:var(--red-bg);color:var(--red)}
+  .pill.ok{background:var(--green-bg);color:var(--green)}
+  .pill.warn{background:var(--amber-bg);color:var(--amber)}
+  .study{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+  .study h4{font-size:14px;margin-bottom:6px}
+  .study .src{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .study ul{padding-left:20px;font-size:13.5px}
+  .study li{margin:3px 0}
+  .note{background:var(--blue-bg);border-radius:8px;padding:10px 14px;font-size:13.5px;margin:10px 0}
+  .warnbox{background:var(--amber-bg);border-radius:8px;padding:10px 14px;font-size:13.5px;margin:10px 0}
+  code{background:var(--chip);padding:1px 6px;border-radius:4px;font-size:12.5px;word-break:break-all}
+  .flow{display:flex;flex-direction:column;gap:6px;font-size:13.5px;margin:10px 0}
+  .flow .step{background:var(--chip);border-radius:8px;padding:8px 14px}
+  .flow .step b{color:var(--blue)}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:24px;line-height:1.9}
+  .small{font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>NAC（N-乙酰半胱氨酸）值得为美白/抗衰购买吗？</h1>
+  <div class="meta">证据审计报告 · 检索日期 2026-08-27（UTC）· PubMed 全量检索 225 条 · 使用者情境：健康成人、无处方药、目标为美白/皮肤/抗衰</div>
+</header>
+
+<!-- ===== 第一层：首屏结论 ===== -->
+<div class="card verdict">
+  <h2>结论：不建议为美白/抗衰购买</h2>
+  <p>目前唯一直接检验"口服 NAC 祛斑美白"的随机对照试验显示<b>无效</b>；三篇皮肤科综述均指出 NAC 用于色素/抗衰的证据停留在机制和小样本阶段。把钱花在防晒上更可靠。</p>
+  <div class="grid4">
+    <div class="kpi"><div class="k">买不买</div><div class="v">不建议（美白/抗衰用途）</div></div>
+    <div class="kpi"><div class="k">对谁可能有用</div><div class="v">无——现有临床证据未证实任何美容获益</div></div>
+    <div class="kpi"><div class="k">效果上限</div><div class="v">与安慰剂无差别（RCT：MASI 均降 12%，p=0.61）</div></div>
+    <div class="kpi"><div class="k">安全红线</div><div class="v">常规剂量总体安全；避免与硝酸酯类同用；胃肠不适最常见</div></div>
+  </div>
+</div>
+
+<!-- ===== 第二层：展开详情 ===== -->
+
+<details>
+  <summary>逐结局证据评级（GRADE）<span class="tag">核心证据表</span></summary>
+  <div class="body">
+    <table>
+      <tr><th>结局</th><th>最佳证据</th><th>效应方向</th><th>证据确定性</th></tr>
+      <tr>
+        <td><b>口服 NAC → 美白/肤色提亮</b><br><span class="small">你的核心问题</span></td>
+        <td>1 项 RCT（黄褐斑，间接人群）+ 体外机制研究</td>
+        <td><span class="pill no">无效</span> 与安慰剂无差异</td>
+        <td class="grade-vlow">极低</td>
+      </tr>
+      <tr>
+        <td><b>口服 NAC → 黄褐斑/色素沉着</b></td>
+        <td>Alfredo 2024 RCT，n=50，双盲安慰剂对照，8 周，600mg×2/日</td>
+        <td><span class="pill no">无效</span> mMASI 两组均降 12%，p=0.613</td>
+        <td class="grade-mod">中等（无获益的确定性中等）</td>
+      </tr>
+      <tr>
+        <td><b>外用 NAC → 色素疾病（白癜风复色）</b></td>
+        <td>Atefi 2024 RCT，n=20，双盲，5% NAC 微针 vs 微针 alone</td>
+        <td><span class="pill no">无额外获益</span> 组间无显著差异</td>
+        <td class="grade-vlow">极低</td>
+      </tr>
+      <tr>
+        <td><b>NAC → 皮肤老化/皱纹/光老化</b></td>
+        <td>2003 体内分子终点研究（替代终点）+ 2026 无对照初步临床 + 多项体外研究；无皱纹终点 RCT</td>
+        <td><span class="pill warn">未知</span> 仅机制与替代终点</td>
+        <td class="grade-vlow">极低</td>
+      </tr>
+    </table>
+    <div class="note"><b>评级说明：</b>"确定性"指对证据体本身的信心，不是对成分好坏的印象分。美白结局被评为"极低确定性的获益证据"——意思是：支持它有用的证据几乎不存在，而唯一像样的试验是阴性结果。对黄褐斑"无效"这一结论本身则有中等确定性（研究设计严谨、双盲、注册、ITT 分析，仅因样本量小降一级）。</div>
+  </div>
+</details>
+
+<details>
+  <summary>关键研究详情<span class="tag">4 项研究拆解</span></summary>
+  <div class="body">
+
+    <div class="study">
+      <h4>① 唯一直接回答你问题的试验：口服 NAC 治黄褐斑 RCT（阴性）</h4>
+      <div class="src">Alfredo et al., An Bras Dermatol 2024;99(6):928-931 · <a href="https://pubmed.ncbi.nlm.nih.gov/39112288/">PMID 39112288</a> · 注册：REBEC RBR-73zrnjh</div>
+      <ul>
+        <li><b>设计：</b>多中心、随机、双盲、安慰剂对照；50 名中重度面部黄褐斑女性（18–60 岁），1:1 随机</li>
+        <li><b>干预：</b>NAC 600mg 每日 2 次 × 8 周 + SPF60 防晒；对照组为安慰剂 + 同款防晒</li>
+        <li><b>主要终点（mMASI，盲态评估）：</b>NAC 组降 12%（95%CI 8–19%）vs 安慰剂组降 12%（95%CI 5–21%），<b>p=0.613，无差异</b></li>
+        <li><b>次要终点：</b>生活质量（MELASQoL）、色度计均无组间差异（p>0.7）；照片整体改善评估 60% vs 29%，p=0.317，亦不显著</li>
+        <li><b>安全性：</b>耐受良好；烧心/上腹痛 NAC 组 8 人 vs 安慰剂 2 人，均无需停药</li>
+        <li><b>值得注意：</b>两组的改善都来自防晒本身——这恰是"防晒才是美白基本盘"的直接证据</li>
+        <li><b>局限：</b>8 周偏短、仅女性中重度患者；但作者指出 8 周已覆盖两个表皮更替周期，足以观察色素变化</li>
+      </ul>
+    </div>
+
+    <div class="study">
+      <h4>② 外用 NAC 治白癜风 RCT（同样阴性）</h4>
+      <div class="src">Atefi et al., J Cosmet Dermatol 2024;23(6):2220-2230 · <a href="https://pubmed.ncbi.nlm.nih.gov/38470079/">PMID 38470079</a></div>
+      <ul>
+        <li>双盲 RCT，20 名局限性白癜风患者：微针 + 5% NAC 安瓿/4.7% NAC 乳膏 vs 微针 + 蒸馏水</li>
+        <li>两组均较基线改善，但<b>组间无统计学差异</b>——NAC 没有带来额外获益</li>
+        <li>提示：即便外用 + 物理促渗，NAC 对色素调节的临床效果也未被证实</li>
+      </ul>
+    </div>
+
+    <div class="study">
+      <h4>③ 三篇综述的一致口径：机制成立，临床证据不足</h4>
+      <div class="src">
+        Janeczek et al., J Clin Aesthet Dermatol 2019 · <a href="https://pubmed.ncbi.nlm.nih.gov/31320973/">PMID 31320973</a> ｜
+        IJDVL 2018 综述 · <a href="https://pubmed.ncbi.nlm.nih.gov/30246706/">PMID 30246706</a> ｜
+        Molecules 2026 综述 · <a href="https://pubmed.ncbi.nlm.nih.gov/42075956/">PMID 42075956</a>
+      </div>
+      <ul>
+        <li>2019 综述汇总的 NAC 有效适应证是：<b>抠皮症、咬甲症、拔毛癖、痤疮、板层状鱼鳞病、硬皮病、特应性皮炎、假性卟啉症</b>等——没有一项是美白或抗衰</li>
+        <li>2018 综述明确写道：NAC 在皮肤科的大多数用途"仅由病例报告、小样本病例系列和小试验支持，需要更高质量证据"</li>
+        <li>2026 综述（最新）结论：半胱氨酸衍生物在色素调控机制上有前景，但"未来研究应聚焦体内验证和临床转化"——即临床层面仍未证实</li>
+      </ul>
+    </div>
+
+    <div class="study">
+      <h4>④ 抗衰方向：只有机制和替代终点，没有临床终点试验</h4>
+      <div class="src">Fisher et al., J Invest Dermatol 2003 · <a href="https://pubmed.ncbi.nlm.nih.gov/12713590/">PMID 12713590</a>；Bîrsan et al., Antioxidants 2026 · <a href="https://pubmed.ncbi.nlm.nih.gov/42650255/">PMID 42650255</a>；及多项体外研究</div>
+      <ul>
+        <li>2003 年人体研究显示外用 NAC+染料木黄酮可阻断 UV 诱导的光老化分子信号（AP-1/MMP），但这是<b>分子替代终点</b>，不等于皱纹减少</li>
+        <li>2026 年褪黑素-NAC 复合乳膏 28 天初步观察见皱纹评分下降，但<b>无对照组</b>，作者自己声明需更大对照研究确认</li>
+        <li>体外研究（成纤维细胞胶原/弹性蛋白、PUVA 衰老模型）只能说明生物学合理性，不能外推为口服/外用后的真实抗皱效果</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>证据是怎么找到的：检索与筛查全过程<span class="tag">可复现</span></summary>
+  <div class="body">
+    <p class="small">本审计为基于 PubMed 单数据库的快速证据综合（非发表级系统综述），全部命中已完整导出并逐条筛查。</p>
+    <div class="flow">
+      <div class="step"><b>检索式</b>（MeSH + 题名摘要自由词）：<code>("Acetylcysteine"[MeSH] OR acetylcysteine[tiab] OR "N-acetylcysteine"[tiab] OR "N acetylcysteine"[tiab] OR "N-acetyl-cysteine"[tiab] OR "N-acetyl-L-cysteine"[tiab] OR NAC[tiab]) AND ("Skin Pigmentation"[MeSH] OR "Melanins"[MeSH] OR "Melanosis"[MeSH] OR pigmentation/melanin/melanogenesis/whitening/"skin lightening"/"skin brightening"/"skin color"/hyperpigmentation/melasma/"skin aging"/photoaging/wrinkle*/erythema/photoprotect*[tiab])</code></div>
+      <div class="step"><b>检索日期：</b>2026-08-27（UTC）· 数据库：PubMed · 排序：发表时间</div>
+      <div class="step"><b>命中 225 条 → 完整导出 225 条</b>（含 1 条 StatPearls 书章节，经 ESummary 核实为"乳头乳晕复合体"缩写误配，已记录）· 摘要可得 223 条 · RIS 文件 SHA-256 已存档</div>
+      <div class="step"><b>题录筛查：</b>225 条全部逐条审阅 → 17 条进入全文评估 → 1 条因结局不符排除（小鼠脱发模型）→ <b>16 条纳入</b>（2 项 RCT、3 篇综述、1 项初步临床、10 项体外/机制研究）</div>
+      <div class="step"><b>主要排除原因：</b>其他干预研究不含 NAC（76）· NAC 出现但结局不符（35）· NAC=乳头乳晕复合体（28）· NAC=植物转录因子家族（24）· 植物色素生物学（14）· 伏隔核/黑色素浓缩激素语境（14）· 非美容适应证（12）· 塑料光老化（4）· 硝基芳烃（1）</div>
+    </div>
+    <p class="small">筛查日志（225 条逐条决定与理由）：<a href="screening.csv">screening.csv</a>；检索清单：<a href="pubmed-search-manifest.json">pubmed-search-manifest.json</a>；RIS 导出：<a href="pubmed-search.ris">pubmed-search.ris</a></p>
+    <div class="warnbox"><b>局限声明：</b>① 仅检索 PubMed 单数据库，未覆盖 Embase/Cochrane 及灰色文献；② 快速审计未对原始研究做双人独立筛查与定量合并；③ 1997 年 Njoo 等外用 NAC 治黄褐斑的早期信件（2 页、无对照）未获全文，其证据权重本身极低，不改变结论方向。</div>
+  </div>
+</details>
+
+<details>
+  <summary>安全性与相互作用（针对你的情况）<span class="tag">无处方药 · 无基础病</span></summary>
+  <div class="body">
+    <ul style="padding-left:20px;font-size:14px">
+      <li><b>常见不良反应：</b>胃肠道症状（烧心、上腹痛、恶心），RCT 中 NAC 组 8/25 报告，安慰剂组 2/25；通常轻微、无需停药</li>
+      <li><b>相互作用：</b>与<b>硝酸酯类</b>（硝酸甘油等）同用可致明显低血压；与抗凝药理论上可能增强作用——你目前无用药，这两条不构成限制</li>
+      <li><b>剂量参考：</b>试验用 600mg 每日 2 次；市售补充剂常见 600–1200mg/日，短期使用总体耐受良好</li>
+      <li><b>身份提示：</b>NAC 在多数国家是药品（祛痰药/对乙酰氨基酚解毒剂），以"美白补剂"身份销售时的宣传不受药品级证据支持</li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary>如果你的目标是美白/抗衰，什么更值得花钱<span class="tag">替代方案</span></summary>
+  <div class="body">
+    <table>
+      <tr><th>措施</th><th>证据强度</th><th>说明</th></tr>
+      <tr><td><b>每日广谱防晒</b></td><td class="grade-high">强</td><td>上述 RCT 中仅靠 SPF60 防晒 8 周，两组黄褐斑均改善 12%——防晒本身就是有测量值的美白干预，且是抗衰的第一证据</td></tr>
+      <tr><td><b>外用维 A 类（视黄醇/处方维 A 酸）</b></td><td class="grade-high">强</td><td>抗皱/光老化证据最充分的外用成分</td></tr>
+      <tr><td><b>黄褐斑规范治疗</b></td><td class="grade-mod">中-强</td><td>如确有色素问题：外用三联复方、氨甲环酸等需皮肤科医生评估后使用</td></tr>
+      <tr><td>NAC 口服</td><td class="grade-vlow">无</td><td>唯一 RCT 阴性；不推荐为此目的购买</td></tr>
+    </table>
+    <div class="note">如果你仍想尝试 NAC（例如出于其他健康考虑）：按常规剂量短期使用对你这类无用药人群风险低，但请对美白/抗衰效果<b>预期为零</b>，出现持续胃肠不适即停用。</div>
+  </div>
+</details>
+
+<footer>
+  本报告为证据审计，不构成个体化医疗建议；如存在色素性疾病请先就诊皮肤科。<br>
+  生成时间 2026-08-28 · 证据截至检索日 2026-08-27 · 方法：PubMed 全量检索 + 逐条题录筛查 + 逐结局 GRADE
+</footer>
+
+</div>
+</body>
+</html>

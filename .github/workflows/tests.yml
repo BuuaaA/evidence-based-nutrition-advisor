@@ -1,0 +1,36 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  core-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Compile Python scripts
+        run: python -m compileall -q scripts tests
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Rebuild consumer example
+        run: |
+          python scripts/build_consumer_answer.py \
+            examples/consumer-answer.sample.json \
+            --html /tmp/consumer-answer-demo.html \
+            --pubmed-manifest examples/neuriva-pubmed-search-manifest.json \
+            --pubmed-ris examples/neuriva-pubmed-search.ris \
+            --screening-log examples/neuriva-pubmed-screening.csv
+          test -s /tmp/consumer-answer-demo.html

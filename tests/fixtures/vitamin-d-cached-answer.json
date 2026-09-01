@@ -1,0 +1,84 @@
+{
+  "title": "维生素 D3 · 2000 IU",
+  "card_state": "audit_complete",
+  "status_detail": "命中新鲜的本机完整审计缓存；本次未重复联网。",
+  "verdict": "conditional",
+  "for_whom": "饮食和日晒来源有限、可能摄入不足且没有高钙风险的人。",
+  "effect_ceiling": "可补足基础需要并提高25(OH)D；不能承诺额外防骨折或增强免疫。",
+  "safety_red_line": "肾病、反复结石、高钙血症或相关用药者不要自行长期服用。",
+  "why": {
+    "summary": "对一般健康成人，补足不足与追求额外临床获益是两件事。",
+    "key_points": ["提高25(OH)D不自动等于减少骨折或感染。", "2000 IU/日已到中国成人现行行业标准所列上限。", "橄榄油载体没有被证明带来额外临床获益。"],
+    "better_options": ["先核对全部补充剂总剂量；高风险或疑似缺乏时检测并接受个体化评估。"]
+  },
+  "suitability": {
+    "intake_summary": ["饮食来源有限", "日晒严重不足", "产品为2000 IU/粒"],
+    "assumption": "暂按18至64岁、无肾病或高钙风险的一般中国成人判断。",
+    "user_match": "中：来源不足与研究问题匹配，但缺少25(OH)D结果。",
+    "may_fit": ["长期日晒和饮食来源不足，且没有叠加其他含维生素D产品。"],
+    "avoid_or_check": ["高钙血症、肾功能异常、反复含钙结石、甲状旁腺或肉芽肿性疾病。"],
+    "remaining_uncertainties": ["25(OH)D结果和全部补充剂总剂量。"]
+  },
+  "research": {
+    "cache_topic_id": "vitamin-d-bone-immunity",
+    "picos": "P：一般健康成人；I：口服维生素D2/D3，重点600至2000 IU/日；C：安慰剂或较低摄入；O：25(OH)D、骨密度、骨折、急性呼吸道感染与高钙相关伤害；S：指南、系统综述与随机试验。",
+    "effect": "稳定提高25(OH)D；对一般健康成人骨折和急性呼吸道感染预防未显示重要获益或至多极小获益。",
+    "certainty": "化验指标为高确定性；骨折和呼吸道感染结局为暂定中等确定性。",
+    "certainty_method": "cached_audit",
+    "certainty_scope": "复用本机已验证的完整审计缓存；原审计为PubMed-only、单人筛选，4篇候选缺全文。",
+    "certainty_reasons": ["临床结局效应很小或不一致。", "部分更新候选只有摘要。", "未系统检索其他数据库和灰色文献。"],
+    "adjudication": [{"source": "本地中国参考标准与国际指南", "finding": "剂量上限和一般人群常规补充建议阈值不同", "why_differs": "参考体系、目标人群与推荐阈值不同", "weight": "剂量安全采用用户所在地标准；功效采用匹配临床结局的综合证据"}],
+    "outcomes": [{
+      "outcome": "一般健康成人骨折预防",
+      "effect": "未显示重要获益",
+      "certainty": "暂定中等",
+      "why": "直接随机证据总体不支持重要获益，部分更新全文缺失使评级暂定。",
+      "grade_domains": {
+        "risk_of_bias": "不严重：主要结论来自随机试验和系统综述。",
+        "inconsistency": "不严重：结论方向总体一致。",
+        "indirectness": "不严重：一般健康成人与当前问题直接相关。",
+        "imprecision": "严重：不能完全排除很小获益或伤害。",
+        "dissemination_bias": "无法完全判断：仅PubMed且未系统检索灰色文献。"
+      }
+    }],
+    "evidence_base": {
+      "approach": "existing_review_plus_pubmed_update",
+      "summary": "采用中国DRIs、2024 Endocrine Society指南和后续PubMed更新作为证据基座。",
+      "appraisal": "来源角色分开：本地标准负责剂量边界，指南与综述负责临床结局，权威资料负责安全。",
+      "search_end": "2026-08-31"
+    },
+    "search": {
+      "database": "PubMed",
+      "query": "本机证据包保存的维生素D骨骼与呼吸道感染预定义检索式",
+      "query_translation": "详见已验证证据包对应审计清单",
+      "searched_at": "2026-08-31",
+      "records_found": 70,
+      "records_exported": 70,
+      "records_screened": 70,
+      "full_text_assessed": 5,
+      "reports_included": 5,
+      "studies_included": 5,
+      "complete_retrieval": true,
+      "screening_complete": true,
+      "limits": "仅PubMed；单人筛选；4篇更新候选仅有摘要；未系统检索其他数据库和灰色文献。"
+    },
+    "evidence_access": {
+      "full_text_unavailable": 4,
+      "impact": "缺失全文可能影响更新研究的效应细节与部分确定性判断。",
+      "upload_prompt": "取得缺失全文后应重新筛选、提取并更新评级。"
+    },
+    "eligibility": {
+      "inclusion": ["一般健康成人的口服维生素D干预。", "报告骨骼、呼吸道感染或相关安全结局。", "指南、系统综述或随机对照研究。"],
+      "exclusion": ["严重缺乏治疗、佝偻病或骨软化症。", "无法分离维生素D效果的复杂共干预。"],
+      "exclusion_log": [{"reason": "不符合人群、干预或目标结局", "count": "65"}]
+    },
+    "funding": "不同来源的资金与利益冲突分别记录于原审计；未以单一商业来源主导结论。",
+    "what_would_change": ["直接匹配一般健康成人且显示具有临床意义获益的新大型试验。", "用户被确认存在缺乏、骨质疏松治疗需要或高钙风险。"],
+    "updated": "2026-08-31",
+    "sources": [
+      {"label": "中国居民膳食营养素参考摄入量（2023版）", "url": "https://www.cnsoc.org/drpostand/", "role": "本地剂量标准", "year": 2023},
+      {"label": "2024 Endocrine Society Clinical Practice Guideline", "url": "https://academic.oup.com/jcem/article/109/8/1907/7685305", "role": "临床指南", "year": 2024},
+      {"label": "NIH ODS Vitamin D Health Professional Fact Sheet", "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/", "role": "权威安全资料", "year": 2026}
+    ]
+  }
+}

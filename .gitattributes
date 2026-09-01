@@ -1,0 +1,9 @@
+* text=auto
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.py text eol=lf
+*.R text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.csv text eol=lf
+

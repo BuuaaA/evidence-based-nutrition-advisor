@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.venv/
+.DS_Store
+
+# Generated outputs and working data
+outputs/
+work/
+profiles/
+*.log
+
+# Downloaded third-party webR runtime and R-Wasm packages (~112 MB)
+webr-offline/
+
+# Local statistical environments
+.r-meta-lib/
+.Rhistory
+.RData
+
