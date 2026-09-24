@@ -18,6 +18,9 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "templates" / "consumer-answer.template.html"
+EAL_MANUAL_URL = "https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EA_Manual_2022Nov.pdf"
+EAL_FORMS_URL = "https://www.andeal.org/evidence-analysis-manual"
+EAL_GRADING_URL = "https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EAL_Grading_Table.pdf"
 VERDICTS = {
     "priority": ("值得优先考虑。", "#16704a"),
     "conditional": ("只对特定人群值得。", "#265d97"),
@@ -695,6 +698,16 @@ def nested(label: str, value: str) -> str:
     )
 
 
+def eal_method_source() -> str:
+    return (
+        '<p class="method-source">方法来源：'
+        f'<a href="{EAL_MANUAL_URL}" target="_blank" rel="noopener noreferrer">EAL Evidence Analysis Manual（2022 年 11 月版）</a>、'
+        f'<a href="{EAL_FORMS_URL}" target="_blank" rel="noopener noreferrer">QCC 表单入口</a>、'
+        f'<a href="{EAL_GRADING_URL}" target="_blank" rel="noopener noreferrer">结论评级表</a>。'
+        '©2022 Evidence Analysis Manual Academy of Nutrition and Dietetics；本卡不是 Academy 的认证或背书。</p>'
+    )
+
+
 def build_quick_research(d: dict) -> str:
     sources = []
     for source in d["quick_sources"]:
@@ -723,7 +736,7 @@ def build_quick_research(d: dict) -> str:
         blocks += ["<h3>仍不确定的结局</h3>", ul(d["quick_uncertainties"])]
     if d["what_would_change"]:
         blocks += ["<h3>什么会改变建议</h3>", ul(d["what_would_change"])]
-    blocks += ["<h3>完整审计状态</h3>", paragraph(d["audit_plan"])]
+    blocks += ["<h3>完整审计状态</h3>", paragraph(d["audit_plan"]), eal_method_source()]
     return "".join(blocks)
 
 
@@ -855,6 +868,8 @@ def build_research(d: dict) -> str:
             f"<div><strong>范围与流程简化</strong>{html.escape(d['certainty_scope'])}</div>",
             "</div>",
         ]
+    if d["certainty_method"] in {"source_eal", "rapid_eal", "preliminary_eal", "eal_informed"}:
+        blocks.append(eal_method_source())
     if d["certainty_reasons"]:
         blocks += ["<h3>主要不确定性</h3>", ul(d["certainty_reasons"])]
     if d["what_would_change"]:
@@ -903,7 +918,7 @@ def build_html(d: dict) -> str:
         template = template.replace(marker, value)
     if re.search(r"__[A-Z0-9_]+__", template):
         fail("unresolved template marker remains")
-    return template
+    return re.sub(r"(?m)^[ \t]+$", "", template)
 
 
 def build_copy_button(label: str, request: str, *, primary: bool, testid: str) -> str:

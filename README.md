@@ -24,6 +24,14 @@
 
 这次核验发现：中国膝骨关节炎专家共识称症状获益仍不确定；[美国风湿病学会 2026 年指南摘要](https://assets.contentstack.io/v3/assets/bltee37abb6b278ab2c/bltb3d12c34020da842/oa-guideline-summary-2026.pdf)给出不推荐意见；一篇 [2026 年伞状综述](https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2026.1806413/full)观察到很小的疼痛信号，但它纳入的综述多数方法学质量低或极低。卡片将这些差异、[安全资料](https://www.nccih.nih.gov/health/glucosamine-and-chondroitin-for-osteoarthritis-what-you-need-to-know)和未完成的审计步骤分别展示。[查看来源与判断过程](examples/cases/glucosamine-2026-quick/source-notes.md)。
 
+## 方法更新：为什么从 GRADE 转向 EAL
+
+V2.0 将完整证据审计的主框架从 GRADE 改为 Academy of Nutrition and Dietetics 的 Evidence Analysis Library（EAL）方法。营养问题既有短期干预，也有长期饮食暴露和罕见伤害；EAL 的流程让我们先按问题选择合适的研究设计，再用相应的 Quality Criteria Checklist（QCC）检查单项研究或综述，最后针对具体结局综合证据并评价结论。这更符合本 Skill 从“能不能补”走到“证据是否足以支持这个决定”的工作方式。
+
+这**不表示 GRADE 不适用于营养学**，也不表示队列研究天然是高质量。[GRADE 官方方法说明](https://book.gradepro.org/guideline/principles-for-assessing-the-certainty-of-interventions)也允许在严格评价混杂等偏倚后，对非随机研究作更灵活的判断；无论采用哪套框架，研究设计、执行质量、效果大小和适用人群都要分别检查。来源本身采用 GRADE 时，Skill 会保留并注明其原评级，不把它换算成 EAL 等级。快速核验只给有边界的判断；完成证据筛查、资料核查和方法表核对后，才可能给本轮逐结局 EAL I–V。
+
+**方法学出处：**[EAL《Evidence Analysis Manual》（2022 年 11 月版）](https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EA_Manual_2022Nov.pdf)、[QCC 表单与手册入口](https://www.andeal.org/evidence-analysis-manual)、[EAL 结论评级表](https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EAL_Grading_Table.pdf)。按 Academy 官网要求署名：©2022 Evidence Analysis Manual Academy of Nutrition and Dietetics。这里是本项目对公开方法的独立应用，并非 Academy 的认证或背书；[具体适配规则与限制](references/eal-methodology.md)。
+
 ## 开始使用
 
 将仓库放进宿主 Agent 的 Skills 目录。以 Windows 上的 Codex 用户目录为例：

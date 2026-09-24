@@ -5,6 +5,7 @@
 ## 方法来源与版本
 
 - 当前方法基线：EAL Evidence Analysis Manual，2022 年 11 月版；独立 QCC 表单和 EAL 结论表也要记录各自版本、日期和原始链接。
+- 对外报告凡声称依据 EAL/QCC 进行本轮评价，必须列出手册或表单的正式名称、版本/日期、原始链接和本轮核对日期；只引用来源既有 EAL 等级时，另列该来源的评价出处。快速核验提及 EAL 时须标明未完成本轮 EAL 评级，并提供方法来源入口。
 - 在使用正式总体 QCC 符号或自动汇总规则前，必须核对“研究类型—表单版本—条目—汇总规则”。规则未核定时可以保存逐项理由，但 `overall_symbol=null`，显示“方法规则待核定”。不得凭 Yes 数量自行猜规则。
 - 每次审计记录方法版本、核对日期、表单适用对象、规则变更和复核状态。以后升级 EAL 资料时创建新版本，保留旧评估。
 - 输出称“依据 EAL 方法的 AI 初步分析”；只有确有具名人员完成复核时才标注人工复核范围。多个模型/Agent 不能冒充独立专家组。
@@ -62,6 +63,9 @@ EAL 等级是对“证据对这条具体结论的支持”所作的方法性判�
 
 ## 来源
 
-- EAL Evidence Analysis Manual 2022-11：https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EA_Manual_2022Nov.pdf
-- EAL Grading Table：https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EAL_Grading_Table.pdf
-- EAL 手册与表单入口：https://www.andeal.org/evidence-analysis-manual
+- EAL 官方建议署名：©2022 Evidence Analysis Manual Academy of Nutrition and Dietetics。使用本方法不意味着 Academy 审核或认可本 Skill 的分析。
+- EAL Evidence Analysis Manual（2022 年 11 月版）：https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EA_Manual_2022Nov.pdf
+- QCC Primary Research 空白表单（官网提供的 2022 年 11 月版本）：https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/QCC_Primary_2022Nov_blank.docx
+- QCC Review Articles 表单（以官网文件和本轮核对日期为准）：https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EA_WK_QCC_Review_FI.docx
+- EAL Conclusion Grading Table：https://www.andeal.org/vault/2440/web/files/EAL/EAL%20Manual%20and%20Forms/EAL_Grading_Table.pdf
+- EAL 手册与表单入口（含更新信息）：https://www.andeal.org/evidence-analysis-manual
