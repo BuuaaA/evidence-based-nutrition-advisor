@@ -36,10 +36,11 @@ class BehaviorGalleryTests(unittest.TestCase):
             target = (GALLERY.parent / href).resolve()
             self.assertTrue(target.exists(), f"broken gallery link: {href}")
 
-    def test_homepage_uses_glucosamine_and_keeps_neuriva_in_gallery(self):
+    def test_homepage_uses_current_case_and_keeps_neuriva_in_legacy_gallery(self):
         readme = README.read_text(encoding="utf-8")
         gallery = GALLERY.read_text(encoding="utf-8")
-        self.assertIn("assets/glucosamine-chondroitin-before-after.png", readme)
+        self.assertIn("examples/cases/glucosamine-2026-quick/preview.svg", readme)
+        self.assertNotIn("assets/glucosamine-chondroitin-before-after.png", readme)
         self.assertNotIn("assets/neuriva-before-after.png", readme)
         self.assertNotIn("assets/behavior-acceptance-neuriva.png", readme)
         self.assertIn("Neuriva 脑活素有用吗？", gallery)

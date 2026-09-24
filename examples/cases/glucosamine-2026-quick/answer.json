@@ -1,0 +1,87 @@
+{
+  "title": "氨糖软骨素能缓解关节痛吗？",
+  "card_state": "quick_complete",
+  "status_detail": "一般证据问题：已完成五项来源的快速核验，未进行个人适用性判断或完整文献审计。",
+  "verdict": "not_worth",
+  "personal_match": "unknown",
+  "for_whom": "研究主要针对已确诊膝骨关节炎，不能照搬到所有关节痛。",
+  "effect_ceiling": "氨糖对疼痛最多可能有小幅改善；功能无明确获益，联用效果更不确定。",
+  "safety_red_line": "服用华法林、孕哺期或关节突然红肿发热时，先咨询医生或药师。",
+  "why": {
+    "summary": "先辨认疼痛原因和产品配方，再看结局是否真的改善；“软骨成分”本身不能证明止痛或修复软骨。",
+    "key_points": [
+      "中国膝骨关节炎专家共识认为，氨糖和硫酸软骨素能否缓解症状仍不确定；它也提示商业赞助和研究偏倚问题。",
+      "美国风湿病学会 2026 年指南摘要对膝、髋、手骨关节炎使用氨糖、软骨素及其联用给出强烈不推荐；该摘要的完整方法报告尚待发表。",
+      "2026 年伞状综述汇总 19 份综述：部分疼痛量表有小幅差异，但功能无明确改善，效应达到的临床重要性有限；多数底层综述方法学质量低或极低。"
+    ],
+    "better_options": [
+      "若已确诊膝骨关节炎，优先与专业人员讨论运动方案；符合超重或肥胖标准时讨论体重管理。"
+    ]
+  },
+  "suitability": {
+    "intake_summary": [],
+    "assumption": "这是不含个人资料的一般证据示例；疼痛部位、诊断及具体产品均未知。",
+    "user_match": "",
+    "may_fit": [
+      "若已有膝骨关节炎诊断且考虑某个特定药用级剂型，应单独核对剂型、费用与可期待的收益。"
+    ],
+    "avoid_or_check": [
+      "不能将膝骨关节炎研究外推到未确诊的关节痛或其他关节疾病。",
+      "使用华法林时需先核对出血风险；孕哺期安全资料不足。"
+    ],
+    "remaining_uncertainties": [
+      "疼痛位于哪个关节，是否已经明确诊断？",
+      "产品中氨糖及软骨素的形式、剂量是否与研究一致？",
+      "是否服用抗凝药，或存在需要及时评估的急性症状？"
+    ]
+  },
+  "research": {
+    "certainty_method": "quick_verification",
+    "certainty": "快速核验，未正式评级；未完成本轮 EAL 结论评价或完整系统综述。",
+    "coverage": "核验中国膝骨关节炎共识、2026 年 ACR 指南摘要、2026 年伞状综述及 NIH、NHS 安全资料；尚未完成 PubMed 全量更新检索和逐篇筛查。",
+    "updated": "2026-09-24",
+    "quick_sources": [
+      {
+        "label": "中国膝骨关节炎非手术治疗专家共识（2023 年版，2024 年发表），推荐意见 8",
+        "url": "https://zhgjwkzz.cma-cmc.com.cn/CN/abstract/article/1674-134X/33136",
+        "role": "local_standard",
+        "checked_at": "2026-09-24"
+      },
+      {
+        "label": "美国风湿病学会 2026 骨关节炎指南摘要（2026-09-14 发布）",
+        "url": "https://assets.contentstack.io/v3/assets/bltee37abb6b278ab2c/bltb3d12c34020da842/oa-guideline-summary-2026.pdf",
+        "role": "appraised_synthesis",
+        "checked_at": "2026-09-24"
+      },
+      {
+        "label": "Li 等 2026 氨糖与膝骨关节炎伞状综述；底层综述多数方法学质量低或极低",
+        "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2026.1806413/full",
+        "role": "appraised_synthesis",
+        "checked_at": "2026-09-24"
+      },
+      {
+        "label": "NIH NCCIH：氨糖、软骨素与骨关节炎的效果及安全性",
+        "url": "https://www.nccih.nih.gov/health/glucosamine-and-chondroitin-for-osteoarthritis-what-you-need-to-know",
+        "role": "safety_authority",
+        "checked_at": "2026-09-24"
+      },
+      {
+        "label": "英国 NHS：关节痛出现急性红肿、发热或活动困难时的就医提示",
+        "url": "https://www.nhs.uk/symptoms/joint-pain/",
+        "role": "safety_authority",
+        "checked_at": "2026-09-24"
+      }
+    ],
+    "uncertainties": [
+      "2026 年 ACR 当前公开的是指南摘要，完整方法与证据报告尚待发表。",
+      "伞状综述的 19 份底层综述中有 3 份详细 AMSTAR 2 评价待完成，且多份综述共享相同试验。",
+      "综述主要评价氨糖，不能由其效应直接推断普通氨糖加软骨素复方的效果。"
+    ],
+    "what_would_change": [
+      "明确关节疼痛的诊断及具体剂型后，证据适用性可能改变。",
+      "高质量、独立且结局有临床意义的新研究可能改变效果上限。",
+      "个人用药或急性症状可能先改变安全处置。"
+    ],
+    "audit_plan": "仅在用户明确要求后升级完整审计：预先界定 PICOS，核对综述截止日后的 PubMed 新记录及晚入库记录，完整导出筛查，并按资料充分性记录 EAL 结论评价或未评级原因。"
+  }
+}

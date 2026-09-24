@@ -1,5 +1,15 @@
 # 示例产物
 
+## 新版 Skill 实际生成的示例
+
+[打开氨糖软骨素快速证据卡](cases/glucosamine-2026-quick/answer.html) · [查看来源核验与方法边界](cases/glucosamine-2026-quick/source-notes.md) · [查看首屏预览](cases/glucosamine-2026-quick/preview.svg)
+
+这是 2026-09-24 按 V2.0 的 **L1-Quick** 路径重新核验、再用当前 `scripts/build_consumer_answer.py` 生成的通用问题示例。`answer.json` 保留结构化输入，`source-notes.md` 记录真实来源、适用性和方法局限。它没有冒称完成 PubMed 全量筛查或正式 EAL 结论评价。
+
+## 历史行为验收材料
+
+下方画廊和其他静态案例来自此前的流程与测试数据，部分仍展示旧 GRADE 字段，用于回归测试和查看交付边界。它们不是当前首页示例，也不代表新版 Skill 已对这些主题重新完成证据审计。
+
 [▶ 在线查看普通用户可视化示例](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)
 
 `consumer-answer-demo.html` 现在是 14 个行为验收用例的统一画廊。每个案例都能展开结果说明图，并链接到详细答案、检索清单、筛选记录或方法资源。画廊与 14 组 PNG/SVG 由 `behavior-case-results.json` 确定性生成：

@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CASE = ROOT / "examples" / "cases" / "glucosamine-chondroitin"
+NEW_CASE = ROOT / "examples" / "cases" / "glucosamine-2026-quick"
 IMAGE = ROOT / "assets" / "glucosamine-chondroitin-before-after.png"
 SCRIPT = ROOT / "scripts" / "build_before_after_image.py"
 README = ROOT / "README.md"
@@ -37,11 +38,19 @@ class BeforeAfterComparisonTests(unittest.TestCase):
         self.assertIn("glucosamine-chondroitin-before-after.png", script)
         self.assertNotIn("D:\\测试skill", script)
 
-    def test_homepage_and_method_note_link_the_saved_evidence(self):
+    def test_homepage_links_current_quick_case_and_old_method_note_remains_valid(self):
         readme = README.read_text(encoding="utf-8")
         note = NOTE.read_text(encoding="utf-8")
         answer = (CASE / "answer.html").read_text(encoding="utf-8")
-        self.assertIn("assets/glucosamine-chondroitin-before-after.png", readme)
+        new_answer = (NEW_CASE / "answer.html").read_text(encoding="utf-8")
+        new_data = json.loads((NEW_CASE / "answer.json").read_text(encoding="utf-8"))
+        self.assertIn("examples/cases/glucosamine-2026-quick/answer.html", readme)
+        self.assertIn("examples/cases/glucosamine-2026-quick/source-notes.md", readme)
+        self.assertNotIn("assets/glucosamine-chondroitin-before-after.png", readme)
+        self.assertEqual(new_data["card_state"], "quick_complete")
+        self.assertEqual(new_data["research"]["certainty_method"], "quick_verification")
+        self.assertIn("未完成完整 EAL 审计", new_answer)
+        self.assertIn('data-testid="request-full-audit"', new_answer)
         self.assertIn("不是一次固定模型、固定版本、固定日期的基准测试", note)
         self.assertIn("cases/glucosamine-chondroitin/answer.html", note)
         self.assertIn('data-testid="next-actions"', answer)
