@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="evidence-based-nutrition-advisor V1.0.1 的十四个行为验收实跑案例">
-  <title>普通用户可视化示例｜evidence-based-nutrition-advisor V1.0.1</title>
+  <meta name="description" content="evidence-based-nutrition-advisor V1.0.1 历史行为验收案例；当前产品为 V2.0">
+  <title>历史案例（V1.0.1）｜evidence-based-nutrition-advisor</title>
   <style>
     :root{--ink:#172033;--muted:#667085;--line:#d8e1ec;--paper:#f3f6fa;--navy:#10233f;--blue:#175cd3;--green:#067647;--amber:#b54708}
     *{box-sizing:border-box} body{margin:0;color:var(--ink);background:var(--paper);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.72}
     a{color:var(--blue);text-underline-offset:3px} .hero{background:linear-gradient(135deg,#10233f,#173f70);color:#fff;padding:72px 24px 58px}
     .hero-inner,.main{max-width:1180px;margin:auto} .kicker{color:#b9d8ff;font-weight:700;letter-spacing:.08em}
     h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.16;margin:.3em 0} .lead{font-size:1.16rem;max-width:860px;color:#d9e6f5}
-    .hero-note{margin-top:26px;padding:16px 18px;border:1px solid #57779e;border-radius:14px;background:#ffffff0d;color:#e8f1fb}
+    .hero-note{margin-top:26px;padding:16px 18px;border:1px solid #57779e;border-radius:14px;background:#ffffff0d;color:#e8f1fb} .hero-note a{color:#fff}
     .nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px} .nav a{color:#e8f3ff;text-decoration:none;border:1px solid #6483a7;border-radius:999px;padding:6px 12px;font-size:.88rem}
     .main{padding:38px 18px 80px} .intro{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 28px;margin-bottom:26px}
     .case{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;margin:24px 0;box-shadow:0 12px 34px #3440540c}
@@ -28,14 +28,14 @@
 </head>
 <body>
   <header class="hero"><div class="hero-inner">
-    <p class="kicker">EVIDENCE-BASED NUTRITION ADVISOR · V1.0.1</p>
-    <h1>普通用户可视化示例</h1>
-    <p class="lead">十四个行为验收用例的真实运行结果：既展示回答变得更可核查，也展示证据链不完整或安全门未通过时系统如何拒绝给出假确定性。</p>
-    <div class="hero-note">这些是方法与交付示例，不是针对任何人的当前医疗建议。图卡由结构化案例数据确定性生成；详细页、检索清单和筛选记录可继续展开。</div>
+    <p class="kicker">EVIDENCE-BASED NUTRITION ADVISOR · V1.0.1 历史存档</p>
+    <h1>早期行为验收案例</h1>
+    <p class="lead">这里保存 V1.0.1 的十四个行为验收用例，供回归测试和追溯早期设计使用。部分卡片采用当时的 GRADE 流程，不能代表 V2.0 的 EAL 评价。</p>
+    <div class="hero-note">当前版本示例请看 <a href="cases/glucosamine-2026-quick/answer.html">V2.0 氨糖软骨素证据卡</a>。本页旧案例仅用于查看历史产物，不作为今天的个人医疗建议。</div>
     <nav class="nav" aria-label="案例导航"><a href="#case-1">1. 普通功效问题</a><a href="#case-2">2. 普通功效问题</a><a href="#case-3">3. 普通功效问题</a><a href="#case-4">4. 产品购买</a><a href="#case-5">5. GRADE 护栏</a><a href="#case-6">6. 检索完整性护栏</a><a href="#case-7">7. Meta 路由</a><a href="#case-8">8. Meta 路由</a><a href="#case-9">9. 交付一致性</a><a href="#case-10">10. 个体试用护栏</a><a href="#case-11">11. 个体试用护栏</a><a href="#case-12">12. 安全护栏</a><a href="#case-13">13. 方法命名护栏</a><a href="#case-14">14. 产品匹配</a></nav>
   </div></header>
   <main class="main">
-    <section class="intro"><strong>怎么看：</strong>行为验收检查的是流程不变量，不要求回答逐字一致。个人决策先用不超过5项的点击选择收集会改变建议的信息，再定义内部PICOS、核查历史证据基座、运行可复现PubMed检索并保存筛选记录；用户跳过时按一般情境处理，证据链不完整时主动降级。 首页代表案例是“补充氨糖软骨素能缓解关节疼痛吗？”，商品名案例仅保留在本画廊。</section>
+    <section class="intro"><strong>怎么看：</strong>每张卡片都保留了当时的回答和检查记录。检索日期、评级方法、交互方式也按 V1.0.1 原样保存。要了解当前流程，请查看上方链接的 V2.0 示例。</section>
     <article class="case" id="case-1">
         <div class="case-copy">
           <p class="eyebrow">用例 1 · 普通功效问题</p>
@@ -261,6 +261,6 @@
         </details>
       </article>
   </main>
-  <footer>evidence-based-nutrition-advisor V1.0.1 · 生成日期：2026-09-01 · <a href="../tests/behavior-cases.md">查看完整验收规范</a> · <a href="../README.md">返回项目首页</a></footer>
+  <footer>V1.0.1 历史案例 · 生成日期：2026-09-01 · <a href="../tests/behavior-cases.md">查看验收规范</a> · <a href="../README.md">返回 V2.0 首页</a></footer>
 </body>
 </html>
