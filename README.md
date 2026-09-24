@@ -4,7 +4,7 @@
 
 ![新版 Skill 生成的氨糖软骨素证据卡](examples/cases/glucosamine-2026-quick/preview.svg)
 
-[打开完整的可展开证据卡](examples/cases/glucosamine-2026-quick/answer.html) · [查看本次来源核验记录](examples/cases/glucosamine-2026-quick/source-notes.md)
+[打开完整的可展开证据卡](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/cases/glucosamine-2026-quick/answer.html) · [查看本次来源核验记录](examples/cases/glucosamine-2026-quick/source-notes.md)
 
 > 这张卡由新版 Skill 于 **2026-09-24** 针对一般证据问题生成。它是快速核验示例，没有使用个人健康资料，也没有声称完成全量文献审计或正式 EAL 评级。
 
