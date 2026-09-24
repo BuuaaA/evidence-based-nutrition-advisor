@@ -26,14 +26,6 @@ VERDICTS = {
     "avoid": ("不建议自行使用。", "#9e332d"),
     "insufficient": ("暂不能可靠判断。", "#7a5812"),
 }
-HTML_VERDICT_COLORS = {
-    "priority": "var(--color-accent)",
-    "conditional": "var(--color-accent)",
-    "trial": "var(--color-warning)",
-    "not_worth": "var(--color-danger)",
-    "avoid": "var(--color-danger)",
-    "insufficient": "var(--color-warning)",
-}
 PERSONAL_MATCHES = {"unknown", "matched", "not_matched"}
 MATCHED_CONDITIONAL_ACTION = re.compile(
     r"(?:值得(?:试一试|尝试|补充)|可以(?:试一试|尝试|补充|使用|服用))"
@@ -41,6 +33,12 @@ MATCHED_CONDITIONAL_ACTION = re.compile(
 CERTAINTY_METHODS = {
     "quick_verification": "快速核验，未正式评级",
     "cached_audit": "复用已验证的完整审计缓存",
+    "source_eal": "引用来源已有 EAL 结论评价",
+    "rapid_eal": "依据 EAL 方法的本轮初步结论评价",
+    "preliminary_eal": "依据 EAL 方法的初步结论评价，待复核",
+    "eal_informed": "EAL 方法知情判断，未完成正式结论评价",
+    # Legacy labels remain renderable for old local reports; they cannot be
+    # used to populate or derive a new EAL grade.
     "source_grade": "引用来源已有 GRADE",
     "rapid_grade": "基于快速证据综合的 GRADE 评级",
     "provisional_grade": "基于当前可得证据的暂定 GRADE",
@@ -49,6 +47,10 @@ CERTAINTY_METHODS = {
 ASSURANCE_LEVELS = {
     "quick_verification": "L1-Quick 快速核验",
     "cached_audit": "L1-Audited 完整审计（缓存命中）",
+    "source_eal": "完整审计：引用来源已有评价",
+    "rapid_eal": "完整审计：AI 初步 EAL 评价",
+    "preliminary_eal": "完整审计：初步 EAL 评价，待复核",
+    "eal_informed": "证据核查：未完成 EAL 结论评价",
     "source_grade": "快速证据审计",
     "rapid_grade": "快速证据审计",
     "provisional_grade": "快速审计，暂定",
@@ -63,10 +65,11 @@ CARD_STATES = {
     "coverage_limited": ("证据覆盖受限，需要全文或人工确认", "limited"),
     "recommendation_updated": ("建议已更新", "changed"),
 }
-QUICK_SOURCE_ROLES = {"local_standard", "high_quality_synthesis", "safety_authority"}
+QUICK_SOURCE_ROLES = {"local_standard", "appraised_synthesis", "safety_authority"}
+QUICK_SOURCE_ROLE_ALIASES = {"high_quality_synthesis": "appraised_synthesis"}
 QUICK_SOURCE_ROLE_LABELS = {
     "local_standard": "本地指南、DRIs 或监管标准",
-    "high_quality_synthesis": "高质量指南或系统综述",
+    "appraised_synthesis": "经方法与适用性核查的指南或系统综述",
     "safety_authority": "权威安全资料",
 }
 EVIDENCE_BASE_APPROACHES = {
@@ -123,27 +126,53 @@ def nonnegative_int(value, field: str) -> int:
     return value
 
 
-def grade_outcomes(value, field: str = "research.outcomes") -> list[dict[str, str]]:
+def grade_outcomes(
+    value,
+    field: str = "research.outcomes",
+    *,
+    require_eal: bool = False,
+) -> list[dict[str, str]]:
     if not isinstance(value, list) or not value or len(value) > 7:
         fail(f"{field} must contain 1 to 7 outcome objects")
     rows = []
     for index, item in enumerate(value):
         if not isinstance(item, dict):
             fail(f"{field}[{index}] must be an object")
-        domains = item.get("grade_domains")
-        if not isinstance(domains, dict):
-            fail(f"{field}[{index}].grade_domains must be an object")
-        normalized_domains = {
-            key: clean_text(domains.get(key, ""), f"{field}[{index}].grade_domains.{key}")
-            for key in GRADE_DOMAINS
-        }
-        rows.append({
+        row = {
             "outcome": clean_text(item.get("outcome", ""), f"{field}[{index}].outcome"),
             "effect": clean_text(item.get("effect", ""), f"{field}[{index}].effect"),
             "certainty": clean_text(item.get("certainty", ""), f"{field}[{index}].certainty"),
             "why": clean_text(item.get("why", ""), f"{field}[{index}].why"),
-            "grade_domains": normalized_domains,
-        })
+        }
+        if "eal_grade_state" in item:
+            state = clean_text(item.get("eal_grade_state", ""), f"{field}[{index}].eal_grade_state")
+            if state not in {"not_assessed", "incomplete", "preliminary", "human_reviewed"}:
+                fail(f"{field}[{index}].eal_grade_state is unsupported")
+            grade = item.get("eal_grade")
+            if grade is not None and grade not in {"I", "II", "III", "IV", "V"}:
+                fail(f"{field}[{index}].eal_grade must be I, II, III, IV, V, or null")
+            if state in {"not_assessed", "incomplete"} and grade is not None:
+                fail(f"{field}[{index}] cannot assign an EAL grade when assessment is {state}")
+            row.update({
+                "eal_grade_state": state,
+                "eal_grade": grade,
+                "qcc_summary": clean_text(item.get("qcc_summary", ""), f"{field}[{index}].qcc_summary"),
+                "synthesis_rationale": clean_text(item.get("synthesis_rationale", ""), f"{field}[{index}].synthesis_rationale"),
+                "grade_domains": {},
+            })
+        else:
+            if require_eal:
+                fail(f"{field}[{index}] is missing EAL-specific assessment fields")
+            # V1 report compatibility only. The label remains GRADE and this
+            # content is never translated into an EAL I-V grade.
+            domains = item.get("grade_domains")
+            if not isinstance(domains, dict):
+                fail(f"{field}[{index}].grade_domains must be an object")
+            row["grade_domains"] = {
+                key: clean_text(domains.get(key, ""), f"{field}[{index}].grade_domains.{key}")
+                for key in GRADE_DOMAINS
+            }
+        rows.append(row)
     return rows
 
 
@@ -310,8 +339,9 @@ def validate(data: dict) -> dict:
             if not isinstance(source, dict):
                 fail(f"research.quick_sources[{index}] must be an object")
             role = clean_text(source.get("role", ""), f"research.quick_sources[{index}].role")
+            role = QUICK_SOURCE_ROLE_ALIASES.get(role, role)
             if role not in QUICK_SOURCE_ROLES:
-                fail("quick source role must be local_standard, high_quality_synthesis, or safety_authority")
+                fail("quick source role must be local_standard, appraised_synthesis, or safety_authority")
             roles.add(role)
             normalized_sources.append({
                 "label": clean_text(source.get("label", ""), f"research.quick_sources[{index}].label"),
@@ -341,7 +371,6 @@ def validate(data: dict) -> dict:
             "requires_bundle": False,
             "requires_pack": False,
             "verdict": verdict,
-            "verdict_key": verdict_key,
             "verdict_color": verdict_color,
             "personal_match": personal_match,
             "for_whom": for_whom,
@@ -383,11 +412,11 @@ def validate(data: dict) -> dict:
     certainty_scope = clean_text(research.get("certainty_scope", ""), "research.certainty_scope")
     if certainty_method not in CERTAINTY_METHODS:
         fail("research.certainty_method must be one of: " + ", ".join(CERTAINTY_METHODS))
-    if certainty_method == "grade_informed" and not re.search(
+    if certainty_method in {"grade_informed", "eal_informed"} and not re.search(
         r"无法正式评级|未正式评级|非正式判断", certainty
     ):
         fail(
-            "GRADE-informed output must say it is not formally rated instead of presenting a four-level GRADE certainty"
+            "informed output must say the conclusion is not formally rated"
         )
     updated = clean_text(research.get("updated", ""), "research.updated")
     certainty_reasons = string_list(research.get("certainty_reasons"), "research.certainty_reasons")
@@ -397,7 +426,10 @@ def validate(data: dict) -> dict:
         ("source", "finding", "why_differs", "weight"),
         limit=6,
     )
-    outcomes = grade_outcomes(research.get("outcomes"))
+    outcomes = grade_outcomes(
+        research.get("outcomes"),
+        require_eal=certainty_method in {"source_eal", "rapid_eal", "preliminary_eal", "eal_informed"},
+    )
 
     evidence_base = research.get("evidence_base")
     if not isinstance(evidence_base, dict):
@@ -458,8 +490,20 @@ def validate(data: dict) -> dict:
         fail("screening_complete requires records_exported to equal records_screened")
     if (not complete_retrieval or not screening_complete) and verdict_key not in {"insufficient", "avoid"}:
         fail("incomplete PubMed retrieval or screening requires verdict insufficient or avoid")
-    if certainty_method == "rapid_grade" and (not complete_retrieval or not screening_complete):
-        fail("rapid_grade requires complete PubMed retrieval and screening")
+    if certainty_method in {"rapid_grade", "rapid_eal", "preliminary_eal", "source_eal"} and (not complete_retrieval or not screening_complete):
+        fail(f"{certainty_method} requires complete PubMed retrieval and screening")
+    if certainty_method in {"source_eal", "rapid_eal", "preliminary_eal", "eal_informed"}:
+        eal_assessment = research.get("eal_assessment")
+        if any("eal_grade_state" not in row for row in outcomes):
+            fail("EAL methods require EAL-specific fields for every outcome")
+        if not isinstance(eal_assessment, dict):
+            fail("EAL methods require research.eal_assessment with framework, version, and status")
+        if eal_assessment.get("framework") != "EAL":
+            fail("research.eal_assessment.framework must be EAL")
+        if not str(eal_assessment.get("manual_version", "")).strip():
+            fail("research.eal_assessment.manual_version is required")
+        if certainty_method == "eal_informed" and any(row.get("eal_grade") for row in outcomes if "eal_grade_state" in row):
+            fail("eal_informed cannot assign EAL I-V grades")
 
     evidence_access = research.get("evidence_access")
     full_text_unavailable = 0
@@ -533,7 +577,6 @@ def validate(data: dict) -> dict:
         "requires_pack": certainty_method == "cached_audit",
         "cache_topic_id": clean_text(research.get("cache_topic_id", ""), "research.cache_topic_id") if certainty_method == "cached_audit" else "",
         "verdict": verdict,
-        "verdict_key": verdict_key,
         "verdict_color": verdict_color,
         "personal_match": personal_match,
         "for_whom": for_whom,
@@ -586,6 +629,7 @@ def validate(data: dict) -> dict:
         "sources": normalized_sources,
         "meta": str(research.get("meta", "")).strip(),
         "grade": str(research.get("grade", "")).strip(),
+        "eal_assessment": research.get("eal_assessment", ""),
         "rob": str(research.get("rob", "")).strip(),
     }
 
@@ -663,7 +707,7 @@ def build_quick_research(d: dict) -> str:
         )
     blocks = [
         "<h2>证据怎么裁决</h2>",
-        '<div class="quick-boundary"><strong>这是快速核验，不是系统综述或正式 GRADE。</strong>',
+        '<div class="quick-boundary"><strong>这是快速核验，未完成完整 EAL 审计或正式结论评价。</strong>',
         paragraph(d["quick_coverage"]),
         "</div>",
     ]
@@ -711,25 +755,30 @@ def build_research(d: dict) -> str:
             table(("来源或观点", "得出的结论", "为何不同", "本次权重"), rows),
         ]
     if d["outcomes"]:
-        rows = [
-            (
-                row["outcome"],
-                row["effect"],
-                row["certainty"],
-                "；".join((
+        rows = []
+        for row in d["outcomes"]:
+            if "eal_grade_state" in row:
+                grade_label = row["eal_grade"] or "未评级"
+                detail = "；".join((
+                    f"EAL 状态：{row['eal_grade_state']}",
+                    f"QCC：{row['qcc_summary']}",
+                    f"综合理由：{row['synthesis_rationale']}",
+                    f"说明：{row['why']}",
+                ))
+                rows.append((row["outcome"], row["effect"], f"{grade_label}；{row['certainty']}", detail))
+            else:
+                detail = "；".join((
                     f"偏倚风险：{row['grade_domains']['risk_of_bias']}",
                     f"不一致性：{row['grade_domains']['inconsistency']}",
                     f"间接性：{row['grade_domains']['indirectness']}",
                     f"不精确性：{row['grade_domains']['imprecision']}",
                     f"传播偏倚：{row['grade_domains']['dissemination_bias']}",
                     f"结论：{row['why']}",
-                )),
-            )
-            for row in d["outcomes"]
-        ]
+                ))
+                rows.append((row["outcome"], row["effect"], row["certainty"], detail))
         blocks += [
             "<h3>按关键结局综合判断</h3>",
-            table(("关键结局", "实际效应", "证据体确定性", "GRADE 五域与理由"), rows),
+            table(("关键结局", "实际效应", "结论支持状态", "来源评价与综合理由"), rows),
         ]
     flow = d["search_counts"]
     if d["full_text_unavailable"]:
@@ -813,7 +862,10 @@ def build_research(d: dict) -> str:
     if d["funding"]:
         blocks += ["<h3>资金与利益冲突</h3>", paragraph(d["funding"])]
     blocks += ["<h3>决定性来源</h3>", '<ol class="sources">' + "".join(sources) + "</ol>"]
-    blocks += [nested("Meta 分析", d["meta"]), nested("GRADE", d["grade"]), nested("偏倚风险（RoB）", d["rob"])]
+    eal_text = d["eal_assessment"]
+    if isinstance(eal_text, dict):
+        eal_text = "；".join(f"{key}：{value}" for key, value in eal_text.items() if value not in (None, ""))
+    blocks += [nested("Meta 分析", d["meta"]), nested("EAL 结论评价", str(eal_text or "")), nested("来源原有 GRADE（仅历史引用）", d["grade"]), nested("偏倚风险（RoB）", d["rob"])]
     return "".join(blocks)
 
 
@@ -829,7 +881,7 @@ def build_html(d: dict) -> str:
     replacements = {
         "__TITLE__": html.escape(d["title"]),
         "__VERDICT__": html.escape(d["verdict"]),
-        "__VERDICT_COLOR__": HTML_VERDICT_COLORS[d["verdict_key"]],
+        "__VERDICT_COLOR__": d["verdict_color"],
         "__FOR_WHOM__": html.escape(d["for_whom"]),
         "__EFFECT_CEILING__": html.escape(d["effect_ceiling"]),
         "__SAFETY_RED_LINE__": html.escape(d["safety_red_line"]),

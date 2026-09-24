@@ -24,4 +24,7 @@
 绝对效应：
 适用人群与剂量/剂型：
 给普通用户的一句话：
+# LEGACY 模板：GRADE 时代历史记录
+
+此表不得用于新的 Skill 审计或生成 EAL 评级。新分析使用 `references/eal-methodology.md`，不要把本表中的分数映射成 EAL I–V。
 

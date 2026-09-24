@@ -55,6 +55,43 @@ class PubMedSearchTests(unittest.TestCase):
         self.assertEqual(params, {})
         self.assertEqual(scope["mode"], "all_years")
 
+    def test_update_scope_includes_publication_entry_and_create_dates(self):
+        args = MODULE.build_parser().parse_args(
+            [
+                "--query", "nutrition[tiab]", "--manifest", "search.json",
+                "--date-from", "2024-01-01", "--date-to", "2026-09-01",
+                "--include-entry-dates",
+            ]
+        )
+        params, scope, term = MODULE._search_scope(args)
+        self.assertEqual(params, {})
+        self.assertEqual(scope["mode"], "publication_and_entry_create_dates")
+        self.assertTrue(scope["late_indexing_scan"])
+        self.assertIn("[Date - Publication]", term)
+        self.assertIn("[Entry Date]", term)
+        self.assertIn("[Create Date]", term)
+
+    def test_entry_date_scan_requires_explicit_update_boundary(self):
+        args = MODULE.build_parser().parse_args(
+            ["--query", "nutrition[tiab]", "--manifest", "search.json", "--include-entry-dates"]
+        )
+        with self.assertRaisesRegex(ValueError, "explicit --date-from"):
+            MODULE._search_scope(args)
+
+    def test_exports_pubmed_entry_and_record_create_dates(self):
+        xml = b"""<PubmedArticleSet><PubmedArticle><MedlineCitation><PMID>42</PMID>
+        <DateCreated><Year>2025</Year><Month>3</Month><Day>8</Day></DateCreated>
+        <Article><ArticleTitle>Example trial</ArticleTitle></Article></MedlineCitation>
+        <PubmedData><History><PubMedPubDate PubStatus="entrez"><Year>2025</Year><Month>3</Month><Day>9</Day></PubMedPubDate></History>
+        <ArticleIdList><ArticleId IdType="pubmed">42</ArticleId></ArticleIdList></PubmedData>
+        </PubmedArticle></PubmedArticleSet>"""
+        record = MODULE.parse_pubmed_xml(xml)[0]
+        self.assertEqual(record["entry_date"], "2025/03/09")
+        self.assertEqual(record["record_created_date"], "2025/03/08")
+        ris = MODULE.to_ris([record])
+        self.assertIn("PubMed Entry Date (EDAT): 2025/03/09", ris)
+        self.assertIn("PubMed Record Created (CRDT): 2025/03/08", ris)
+
     def test_rejects_silent_truncation(self):
         with tempfile.TemporaryDirectory(prefix="pubmed-search-") as temp:
             base = Path(temp)

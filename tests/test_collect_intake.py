@@ -67,7 +67,7 @@ class CollectIntakeTests(unittest.TestCase):
     def test_skill_contract_places_clickable_intake_before_evidence(self):
         content = SKILL.read_text(encoding="utf-8")
         self.assertIn("完整检索和答案生成前完成一次点击式关键信息收集", content)
-        self.assertIn("通常询问 3–5 项，硬上限 5 项", content)
+        self.assertIn("通常询问 1–3 项，最多 5 项", content)
         self.assertIn("宿主原生选择控件", content)
         self.assertIn("scripts/collect_intake.py", content)
         self.assertIn("不得向普通用户展示", content)
@@ -77,15 +77,12 @@ class CollectIntakeTests(unittest.TestCase):
 
     def test_intake_fallback_is_ordered_and_cannot_skip_local_questionnaire(self):
         content = INTAKE_RULES.read_text(encoding="utf-8")
-        path_a = content.index("### 路径 A：宿主原生选择控件")
-        path_b = content.index("### 路径 B：一次性本地问卷")
-        path_c = content.index("### 路径 C：自然语言逐题降级")
-        self.assertLess(path_a, path_b)
-        self.assertLess(path_b, path_c)
-        self.assertIn("不得从路径 A 直接跳到路径 C", content)
-        self.assertIn("自动替用户打开浏览器不是必要条件", content)
-        self.assertIn("Default 模式", content)
-        self.assertIn("本地问卷失败的具体原因", content)
+        self.assertIn("优先宿主原生单选/多选；否则可用本地问卷", content)
+        self.assertIn("两者都无法回传时才用自然语言追问", content)
+        self.assertIn("按当前宿主真正可用的能力选择交互形式", content)
+        self.assertIn("不要声称静态页面可启动后台任务", content)
+        self.assertIn("问卷提交前允许修改", content)
+        self.assertIn("用户已明确要求长任务时按现有授权执行", content)
 
     def test_collects_clickable_answers_on_localhost(self):
         with tempfile.TemporaryDirectory(prefix="nutrition-intake-") as temp_dir:

@@ -18,7 +18,8 @@ from typing import Any
 from urllib.parse import urlparse
 
 
-SCHEMA = "nutrition-evidence-pack-v1"
+SCHEMAS = {"nutrition-evidence-pack-v1", "nutrition-evidence-pack-v2"}
+CURRENT_SCHEMA = "nutrition-evidence-pack-v2"
 EXIT_STALE = 2
 EXIT_MISSING = 3
 EXIT_INVALID = 4
@@ -94,7 +95,8 @@ def load_index(index_path: Path) -> dict[str, Any]:
 
 
 def validate_pack(pack: dict[str, Any], expected_id: str | None = None) -> None:
-    if pack.get("schema_version") != SCHEMA:
+    schema_version = pack.get("schema_version")
+    if schema_version not in SCHEMAS:
         raise PackError("unsupported evidence pack schema")
     topic_id = required(pack, "topic_id", str, "pack")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", topic_id):
@@ -125,8 +127,32 @@ def validate_pack(pack: dict[str, Any], expected_id: str | None = None) -> None:
     required(passport, "audit_level", str, "pack.evidence_passport")
     required(passport, "database", str, "pack.evidence_passport")
     required(passport, "historical_base", str, "pack.evidence_passport")
-    required(passport, "certainty_method", str, "pack.evidence_passport")
-    required(passport, "certainty_summary", str, "pack.evidence_passport")
+    if schema_version == "nutrition-evidence-pack-v1":
+        required(passport, "certainty_method", str, "pack.evidence_passport")
+        required(passport, "certainty_summary", str, "pack.evidence_passport")
+    else:
+        framework = required(passport, "assessment_framework", str, "pack.evidence_passport")
+        if framework != "EAL":
+            raise PackError("v2 evidence packs must declare assessment_framework=EAL")
+        required(passport, "method_version", str, "pack.evidence_passport")
+        required(passport, "assessment_summary", str, "pack.evidence_passport")
+        assessment_status = required(passport, "assessment_status", str, "pack.evidence_passport")
+        if assessment_status not in {"preliminary", "human_reviewed"}:
+            raise PackError("v2 assessment_status must be preliminary or human_reviewed")
+        outcomes_v2 = required(passport, "outcomes", list, "pack.evidence_passport")
+        if not outcomes_v2:
+            raise PackError("v2 evidence packs require outcome-level assessments")
+        for i, outcome in enumerate(outcomes_v2):
+            if not isinstance(outcome, dict):
+                raise PackError(f"evidence_passport.outcomes[{i}] must be an object")
+            required(outcome, "outcome", str, f"evidence_passport.outcomes[{i}]")
+            grade_state = required(outcome, "eal_grade_state", str, f"evidence_passport.outcomes[{i}]")
+            if grade_state not in {"preliminary", "human_reviewed"}:
+                raise PackError("fresh v2 packs cannot contain incomplete outcome assessments")
+            grade = outcome.get("eal_grade")
+            if grade is not None and grade not in {"I", "II", "III", "IV", "V"}:
+                raise PackError("v2 eal_grade must be I, II, III, IV, V, or null")
+            required(outcome, "synthesis_rationale", str, f"evidence_passport.outcomes[{i}]")
     required(passport, "coverage_limits", str, "pack.evidence_passport")
     for key in ("records_found", "records_exported", "records_screened"):
         value = passport.get(key)
@@ -233,6 +259,8 @@ def resolve_pack(index_path: Path, topic_id: str) -> tuple[dict[str, Any], Path]
 
 
 def incremental_query(pack: dict[str, Any], as_of: date) -> dict[str, Any]:
+    if pack.get("schema_version") != CURRENT_SCHEMA:
+        raise PackError("legacy evidence pack must be reassessed under EAL before an incremental update")
     last_end = parse_day(pack["pubmed"]["last_search_end"])
     start = last_end + timedelta(days=1)
     if start > as_of:
@@ -264,6 +292,16 @@ def lookup(index_path: Path, topic_id: str, as_of: date) -> tuple[dict[str, Any]
         }, EXIT_MISSING
 
     stale = as_of > parse_day(pack["valid_until"])
+    if pack.get("schema_version") != CURRENT_SCHEMA:
+        return {
+            "status": "reappraisal_required",
+            "topic_id": topic_id,
+            "route": "quick_l1_reassess_legacy_pack",
+            "pack_path": str(pack_path),
+            "scope": pack["scope"],
+            "legacy_evidence_passport": pack["evidence_passport"],
+            "instruction": "Do not reuse the legacy conclusion or GRADE as an EAL rating. Reassess its cited sources, scope, and outcomes under the current EAL method before registering a v2 pack.",
+        }, EXIT_STALE
     result = {
         "status": "stale" if stale else "fresh",
         "topic_id": topic_id,

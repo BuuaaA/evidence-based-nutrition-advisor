@@ -15,7 +15,7 @@
 
 ## 0. 证据生成前的点击式收集
 
-如果用户明确只问一般证据，直接进入检索，不弹出问卷。如果是个人决策或意图不明，且缺失信息通过“决策翻转测试”，先按 `pre-evidence-intake.md` 一次展示通常 3–5 项、至多 5 项点击选择；答案提交后再确定最终 PICOS 并生成下面的证据卡。用户可以跳过，跳过后按明确的常见情境回答。
+如果用户明确只问一般证据，直接进入检索，不弹出问卷。如果是个人决策或意图不明，且缺失信息通过“决策翻转测试”，先按 `pre-evidence-intake.md` 一次展示通常 1–3 项、最多 5 项点击选择；答案提交后再确定最终 PICOS 并生成下面的证据卡。用户可以跳过，跳过后按明确的常见情境回答。
 
 优先使用宿主原生选择控件；其次使用 `scripts/collect_intake.py` 的一次性本地问卷；都不可用时一次只问一个自然语言问题。不得展示 A/B/C、1A/2B 等机器编码。静态 HTML 若不能把答案返回给 Agent，就不能称为完成了信息收集。
 
@@ -52,6 +52,9 @@
 
 - 当 `suitability.may_fit`、`remaining_uncertainties` 非空，或 `personal_match=unknown` 时，显示 **更新我的情况**。按钮把当前“可能匹配”和剩余不确定性整理成结构化请求，要求 Agent 只追问尚未确认、后来变化或此前跳过的高价值信息，并在必要时更新同一张卡。
 - 当 L1-Quick 已完成但尚未进入完整审计时，显示 **申请完整审计**。若 `card_state=audit_updating`，显示禁用的 **完整审计更新中**；已完成 L1-Audited 时不再显示升级按钮。
+- 质量核验后若仍不能可靠判断、关键来源评价存疑，或新旧证据可能冲突，先在聊天中说明不确定在哪里，再明确征求是否启动“PubMed 完整筛查与证据合成”。除用户已经明确提出要做完整审计/Meta 外，必须等用户肯定答复才开始；沉默、仅点开卡片、点击复制请求均不算同意。拒绝或暂不决定时，交付当前边界内的结论，不反复施压。
+- 邀请文案必须说明工作范围、预计用时和不保证完成时间。建议：“目前证据还不足以稳妥定论。我可以再做一次 PubMed 完整筛查和证据合成，预计需要约 15 分钟；这是阶段预算，实际可能更久或因资料缺失无法完成。要现在开始吗？”只有明确答“是/开始/同意”才启动。
+- 若研究流程支持后台进度，可每阶段报告检索、筛查、全文/数据提取、综合状态，并说明暂停/失败原因；无法后台运行时不可假称继续处理中。15 分钟预算到期应先交付阶段结果与未完成项，征求是否继续，不把预估说成 SLA 或完成保证。
 - 单文件离线 HTML 不能自行唤醒 Agent 或承诺后台运行。按钮只能在浏览器允许时复制请求；失败时显示可手动复制的文本，并始终写明“回到聊天发送即可”。不得使用“已开始”“后台处理中”等误导性反馈。
 - 按钮必须有默认、悬停、键盘焦点、按下、禁用、处理中、失败和成功反馈；触控目标至少 44×44 px，标签不换行，复制成功只更换按钮文字，不弹庆祝提示。
 
@@ -79,17 +82,17 @@
 
 ### 证据怎么裁决
 
-- L1-Quick 先显示三类核验来源、日期、覆盖范围、仍不确定的结局和完整审计计划；明确写“不是系统综述或正式 GRADE”。以下完整方法字段只适用于 L1-Audited。
+- L1-Quick 先显示三类核验来源、日期、覆盖范围和仍不确定的结局；明确写“快速核验，未完成完整 EAL 审计或结论评级”。若可靠性仍不足，说明原因并给出上述完整审计邀请；未经用户明确同意，不启动长时升级。以下完整方法字段只适用于 L1-Audited。
 - 先用裁决表展示主要来源得出什么结论、为什么看似矛盾、各自的方法或适用性局限，以及本次为何赋予不同权重；
 - 没有真正冲突时，说明哪些结局一致、为何最佳来源足以主导判断，不制造对立；
-- 再按关键结局展示实际效应、证据体确定性和主要理由；
-- 每个关键结局展开风险偏倚、不一致性、间接性、不精确性和传播偏倚五个域，不能只放一个笼统的“降级理由”；
-- 明示确定性评价路径：引用已有 GRADE、基于快速证据综合的 GRADE、基于当前可得证据的暂定 GRADE，或 GRADE-informed 判断；后三者说明本次检索范围、全文能力、单人/双人及其他流程简化；
+- 再按关键结局展示实际效应、EAL 结论支持状态和主要理由；
+- 展示综合所依据的研究类型、数量、质量与局限、一致性、临床影响及可推广性；按适用检查表给出来源评价，不硬套 GRADE 五域；
+- 说明方法路径：保留指南/综述原有评级名称，或报告本轮 EAL 结论评级状态；披露检索范围、摘要/全文资料、筛查者和流程简化；
 - 展示历史系统综述基座或“未找到合格基座”的判断，以及完整 PubMed 检索式、Query Translation、检索日期、命中/导出/筛查/全文/纳入计数和主要排除原因；
 - 展示本次 PICOS 纳入与排除标准。决定性来源列表不能替代完整检索和筛选记录；
 - PICOS、随访、检索/更新日期与 2–5 个决定性来源；
 - 资金和利益冲突，以及什么新证据或用户信息会改变结论；
-- 只有这一层可以进一步放置 Meta、GRADE、RoB、AMSTAR 2/ROBIS 或检索式等二级折叠内容。
+- 只有这一层可以进一步放置 Meta、QCC、RoB、AMSTAR 2/ROBIS 或检索式等二级折叠内容。
 
 用户未展开研究层时，不应先被专业术语阻塞。
 
@@ -190,9 +193,10 @@ L1-Audited JSON 在上述首屏与适用性字段基础上使用以下研究结�
   "research": {
     "picos": "P 人群；I 干预；C 对照；O 结局与时间点；S 研究设计；随访",
     "effect": "关键效应和区间",
-    "certainty": "低至极低（逐结局）",
-    "certainty_method": "rapid_grade",
+    "certainty": "EAL II：证据对该结论提供尚可支持；AI 初步评价，待复核",
+    "certainty_method": "rapid_eal",
     "certainty_scope": "完整导出并单人筛查 PubMed 全部命中；未检索 Embase、CENTRAL 和注册库。",
+    "eal_assessment": {"framework": "EAL", "manual_version": "2022-11", "status": "preliminary", "review_status": "ai_only"},
     "certainty_reasons": ["降级理由"],
     "adjudication": [
       {"source": "来源或观点", "finding": "得出的结论", "why_differs": "为何不同或看似冲突", "weight": "本次权重及理由"}
@@ -200,15 +204,12 @@ L1-Audited JSON 在上述首屏与适用性字段基础上使用以下研究结�
     "outcomes": [{
       "outcome": "关键结局",
       "effect": "实际效应",
-      "certainty": "低",
-      "why": "升降级结论",
-      "grade_domains": {
-        "risk_of_bias": "严重/不严重/无法判断及理由",
-        "inconsistency": "严重/不严重/无法判断及理由",
-        "indirectness": "严重/不严重/无法判断及理由",
-        "imprecision": "严重/不严重/无法判断及理由",
-        "dissemination_bias": "严重/不严重/无法判断及理由"
-      }
+      "certainty": "EAL II：证据对该结论提供尚可支持",
+      "eal_grade_state": "preliminary",
+      "eal_grade": "II",
+      "qcc_summary": "研究设计适配；按核定的队列表单评价，关键偏倚及定位见评价记录",
+      "synthesis_rationale": "结果方向大体一致；仍有基线营养状态和残余混杂限制",
+      "why": "本轮综合理由"
     }],
     "evidence_base": {
       "approach": "existing_review_plus_pubmed_update",
@@ -233,7 +234,7 @@ L1-Audited JSON 在上述首屏与适用性字段基础上使用以下研究结�
     },
     "evidence_access": {
       "full_text_unavailable": 0,
-      "impact": "缺失全文可能如何影响效应与 GRADE。",
+      "impact": "未获取全文可能如何影响纳入、效应与 EAL 结论判断。",
       "upload_prompt": "提示用户上传全文后重新筛选、提取和评级。"
     },
     "eligibility": {
@@ -246,15 +247,15 @@ L1-Audited JSON 在上述首屏与适用性字段基础上使用以下研究结�
     "updated": "YYYY-MM-DD",
     "sources": [{"label": "来源标题", "url": "https://example.org", "role": "直接证据", "year": 2026}],
     "meta": "可选的 Meta 说明",
-    "grade": "可选的 GRADE 说明",
+    "eal_assessment": "EAL 结论评级、版本和状态；未评级时说明原因",
     "rob": "可选的 RoB 说明"
   }
 }
 ```
 
-`certainty_method` 为必填。L1-Quick 只能使用 `quick_verification`；已审计缓存使用 `cached_audit`；本轮 L1-Audited 使用 `source_grade`、`rapid_grade`、`provisional_grade` 或 `grade_informed`。`provisional_grade` 只用于 PubMed 命中已完整导出、题名摘要已全部筛查、证据体边界可识别而部分候选全文不可得的情况；总确定性和每个结局等级必须带“暂定”。同时填写 `evidence_access.full_text_unavailable`、`impact` 和 `upload_prompt`，生成器会把数量与筛选 CSV 中的 `abstract_only` 记录核对并显示上传全文提示框。`grade_informed` 不得使用四级术语冒充正式评级。`certainty_scope` 说明证据识别范围、全文能力、单人/双人和关键简化。
+`certainty_method` 为必填。L1-Quick 只能用 `quick_verification`，缓存用 `cached_audit`；新审计用 `source_eal`、`rapid_eal`、`preliminary_eal` 或 `eal_informed`。`eal_grade_state` 为 `not_assessed`、`incomplete`、`preliminary` 或 `human_reviewed`；仅在证据体边界清楚、资料充分且方法版本已核定时给 I–V，否则 `eal_grade=null` 并写明原因。`eal_informed` 不能出现 I–V。旧 GRADE 方法名/字段只用于 legacy 展示，不转换为 EAL。缺全文时记录访问尝试、受影响条目与可替代数据来源；资料充分时可以分析，不能因全文缺失自动判为 incomplete。`certainty_scope` 说明检索边界、摘要/全文资料和筛查者。
 
-`evidence_base`、`search`、`eligibility` 和每个 outcome 的 `grade_domains` 为新产物必填字段。`search.complete_retrieval=true` 时 `records_found` 必须等于 `records_exported`；`screening_complete=true` 时 `records_exported` 必须等于 `records_screened`。若检索或筛查不完整，普通功效结论只能使用 `insufficient`（“暂不能可靠判断”）或基于独立安全证据的 `avoid`，不能照常生成正向或购买性判定。
+`evidence_base`、`search`、`eligibility` 和每个 outcome 的 `eal_grade_state`、`eal_grade`、`qcc_summary` 和 `synthesis_rationale` 为新产物必填字段；旧 `grade_domains` 仅接受 legacy 数据。`search.complete_retrieval=true` 时 `records_found` 必须等于 `records_exported`；`screening_complete=true` 时 `records_exported` 必须等于 `records_screened`。若检索或筛查不完整，普通功效结论只能使用 `insufficient`（“暂不能可靠判断”）或基于独立安全证据的 `avoid`，不能照常生成正向或购买性判定。
 
 `picos` 是当前首选字段。生成脚本仍兼容旧输入中的 `pico`，但新产物必须显式包含 `S`（研究设计），并在适用时另列随访时长。`funding` 为当前字段，生成脚本仍兼容旧字段 `conflicts`。
 
@@ -264,7 +265,7 @@ L1-Audited JSON 在上述首屏与适用性字段基础上使用以下研究结�
 
 `why.self_trial` 仅在 `verdict=trial` 时允许且必填。`type` 使用 `structured_self_trial` 或 `n_of_1`；只有重复交叉、合理处理随机次序/盲法/洗脱和携带效应的方案才可使用 `n_of_1`。其他判定不得附带试用方案，避免把不建议包装成“仍可试试”。
 
-`meta`、`grade`、`rob` 缺失或为空时，不生成空的二级折叠。
+`meta`、`eal_assessment`、`rob` 缺失或为空时，不生成空的二级折叠。旧输入中的 `grade` 仅标为来源原有 GRADE 内容，不转换为 EAL。
 
 L1-Quick 生成命令：
 

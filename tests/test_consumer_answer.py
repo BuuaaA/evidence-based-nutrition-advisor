@@ -73,14 +73,14 @@ class ConsumerAnswerTests(unittest.TestCase):
         for marker in ('data-testid="why"', 'data-testid="suitability"', 'data-testid="research"'):
             self.assertIn(marker, page)
         self.assertIn("不太值得买。", page)
-        self.assertIn("color:var(--color-danger)", page)
+        self.assertIn("color:#9e332d", page)
         self.assertNotIn("var(--#", page)
         self.assertIn("PICOS 与随访", page)
         self.assertIn("证据怎么裁决", page)
         self.assertIn("来源为何看似矛盾", page)
         self.assertIn("按关键结局综合判断", page)
         self.assertIn("与研究人群的匹配度", page)
-        self.assertIn("基于快速证据综合的 GRADE 评级", page)
+        self.assertIn("EAL 方法知情判断，未完成正式结论评价", page)
         self.assertIn("范围与流程简化", page)
         self.assertIn("可复现的 PubMed 检索", page)
         self.assertIn("完整检索式", page)
@@ -89,7 +89,7 @@ class ConsumerAnswerTests(unittest.TestCase):
         self.assertIn("PICOS 纳入与排除", page)
         self.assertIn('aria-label="证据护照"', page)
         self.assertIn("检索覆盖", page)
-        self.assertIn("GRADE 五域与理由", page)
+        self.assertIn("来源评价与综合理由", page)
         svg = (base / "answer.svg").read_text(encoding="utf-8")
         self.assertIn('width="1080" height="1350"', svg)
         self.assertIn("安全红线", svg)
@@ -104,7 +104,7 @@ class ConsumerAnswerTests(unittest.TestCase):
         self.assertEqual(report["card_state"], "audit_updating")
         page = (base / "answer.html").read_text(encoding="utf-8")
         self.assertIn("快速核验完成，完整审计更新中", page)
-        self.assertIn("不是系统综述或正式 GRADE", page)
+        self.assertIn("未完成完整 EAL 审计或正式结论评价", page)
         self.assertIn("本地指南、DRIs 或监管标准", page)
         self.assertNotIn("可复现的 PubMed 检索", page)
         self.assertIn("只对特定人群值得。", page)
@@ -438,7 +438,7 @@ class ConsumerAnswerTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2)
         self.assertIn("certainty_scope must be a non-empty string", result.stderr)
 
-    def test_rejects_missing_search_audit_or_grade_domains(self):
+    def test_rejects_missing_search_audit_or_eal_outcome_fields(self):
         payload = json.loads(FIXTURE.read_text(encoding="utf-8"))
         payload["research"].pop("search")
         temp, _, result = self.run_builder(payload)
@@ -447,11 +447,11 @@ class ConsumerAnswerTests(unittest.TestCase):
         self.assertIn("research.search must be an object", result.stderr)
 
         payload = json.loads(FIXTURE.read_text(encoding="utf-8"))
-        payload["research"]["outcomes"][0].pop("grade_domains")
+        payload["research"]["outcomes"][0].pop("eal_grade_state")
         temp, _, result = self.run_builder(payload)
         self.addCleanup(temp.cleanup)
         self.assertEqual(result.returncode, 2)
-        self.assertIn("grade_domains must be an object", result.stderr)
+        self.assertIn("is missing EAL-specific assessment fields", result.stderr)
 
     def test_rejects_false_complete_counts_and_incomplete_definitive_verdict(self):
         payload = json.loads(FIXTURE.read_text(encoding="utf-8"))
@@ -484,7 +484,7 @@ class ConsumerAnswerTests(unittest.TestCase):
         temp, _, result = self.run_builder(payload)
         self.addCleanup(temp.cleanup)
         self.assertEqual(result.returncode, 2)
-        self.assertIn("must say it is not formally rated", result.stderr)
+        self.assertIn("must say the conclusion is not formally rated", result.stderr)
 
     def test_provisional_grade_shows_verified_full_text_prompt(self):
         payload = json.loads(FISH_FIXTURE.read_text(encoding="utf-8"))

@@ -95,6 +95,32 @@ def _date_scope(args: argparse.Namespace, *, today=None) -> tuple[dict[str, obje
     )
 
 
+def _search_scope(args: argparse.Namespace) -> tuple[dict[str, object], dict[str, object], str]:
+    """Return E-utilities date parameters, provenance, and the actual search term."""
+    params, scope = _date_scope(args)
+    if not getattr(args, "include_entry_dates", False):
+        return params, scope, args.query if getattr(args, "query", None) else args.count
+    if getattr(args, "all_years", False) or not getattr(args, "date_from", None):
+        raise ValueError("--include-entry-dates requires an explicit --date-from and cannot be combined with --all-years")
+    start = scope["date_from"]
+    end = scope["date_to"]
+    date_clause = (
+        f'("{start}"[Date - Publication] : "{end}"[Date - Publication]) OR '
+        f'("{start}"[Entry Date] : "{end}"[Entry Date]) OR '
+        f'("{start}"[Create Date] : "{end}"[Create Date])'
+    )
+    query = args.query if getattr(args, "query", None) else args.count
+    scope = {
+        **scope,
+        "mode": "publication_and_entry_create_dates",
+        "publication_date_from": start,
+        "entry_create_date_from": start,
+        "date_to": end,
+        "late_indexing_scan": True,
+    }
+    return {}, scope, f"({query}) AND ({date_clause})"
+
+
 def _text(node: ET.Element | None) -> str:
     if node is None:
         return ""
@@ -167,6 +193,19 @@ def _publication_types(article: ET.Element) -> list[str]:
     ]
 
 
+def _pubmed_date(node: ET.Element | None) -> str:
+    if node is None:
+        return ""
+    year = _text(node.find("Year"))
+    month = _text(node.find("Month")) or "01"
+    day = _text(node.find("Day")) or "01"
+    if not re.fullmatch(r"\d{4}", year):
+        return ""
+    month = month.zfill(2) if month.isdigit() else month
+    day = day.zfill(2) if day.isdigit() else day
+    return f"{year}/{month}/{day}"
+
+
 def parse_pubmed_xml(raw: bytes) -> list[dict[str, object]]:
     root = ET.fromstring(raw)
     records: list[dict[str, object]] = []
@@ -184,6 +223,8 @@ def parse_pubmed_xml(raw: bytes) -> list[dict[str, object]]:
                 "pages": _text(article.find(".//Article/Pagination/MedlinePgn")),
                 "doi": _doi(article),
                 "pmcid": _article_id(article, "pmc"),
+                "entry_date": _pubmed_date(article.find(".//PubmedData/History/PubMedPubDate[@PubStatus='entrez']")),
+                "record_created_date": _pubmed_date(article.find(".//MedlineCitation/DateCreated")),
                 "publication_types": _publication_types(article),
                 "abstract": _abstract(article),
             }
@@ -222,18 +263,22 @@ def to_ris(records: list[dict[str, object]]) -> str:
             lines.append(f"UR  - https://pubmed.ncbi.nlm.nih.gov/{_ris_value(item['pmid'])}/")
         if item.get("pmcid"):
             lines.append(f"N1  - PMCID:{_ris_value(item['pmcid'])}")
+        if item.get("entry_date"):
+            lines.append(f"N1  - PubMed Entry Date (EDAT): {_ris_value(item['entry_date'])}")
+        if item.get("record_created_date"):
+            lines.append(f"N1  - PubMed Record Created (CRDT): {_ris_value(item['record_created_date'])}")
         lines.append("ER  - ")
         lines.append("")
     return "\n".join(lines)
 
 
 def cmd_count(args: argparse.Namespace) -> None:
-    date_params, _ = _date_scope(args)
+    date_params, _, term = _search_scope(args)
     data = _request(
         "esearch.fcgi",
         _params(
             args,
-            {"db": "pubmed", "retmode": "json", "retmax": 0, "term": args.count, **date_params},
+            {"db": "pubmed", "retmode": "json", "retmax": 0, "term": term, **date_params},
         ),
         as_json=True,
     )
@@ -275,7 +320,7 @@ def cmd_mesh(args: argparse.Namespace) -> None:
 
 
 def cmd_search(args: argparse.Namespace) -> None:
-    date_params, date_scope = _date_scope(args)
+    date_params, date_scope, scoped_query = _search_scope(args)
     search = _request(
         "esearch.fcgi",
         _params(
@@ -286,7 +331,7 @@ def cmd_search(args: argparse.Namespace) -> None:
                 "retmax": 0,
                 "usehistory": "y",
                 "sort": args.sort,
-                "term": args.query,
+                "term": scoped_query,
                 **date_params,
             },
         ),
@@ -343,7 +388,8 @@ def cmd_search(args: argparse.Namespace) -> None:
         "schema_version": "pubmed-search-v1",
         "database": "PubMed",
         "searched_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "query": args.query,
+        "base_query": args.query,
+        "query": scoped_query,
         "query_translation": search.get("querytranslation", ""),
         "total_hits": total,
         "exported_records": len(records),
@@ -399,9 +445,14 @@ def build_parser() -> argparse.ArgumentParser:
     date_group.add_argument(
         "--all-years",
         action="store_true",
-        help="不限制出版日期；仅研究级任务或用户明确要求全历史时使用",
+        help="不限制出版日期；无合格历史基座的完整审计默认使用，宽问题应先缩小范围",
     )
     parser.add_argument("--date-to", help="出版日期终点；默认今天")
+    parser.add_argument(
+        "--include-entry-dates",
+        action="store_true",
+        help="增量更新时同时检索出版日期、PubMed 入库日期和记录创建日期；必须配合 --date-from",
+    )
     parser.add_argument("--email", help="按 NCBI 建议提供联系人邮箱")
     parser.add_argument("--api-key", help="NCBI API key；不要写入 Skill 或记忆")
     return parser
@@ -416,6 +467,8 @@ def main() -> int:
         parser.error("--since-years 必须大于 0")
     if args.all_years and args.date_to:
         parser.error("--all-years 不能与 --date-to 同时使用")
+    if args.include_entry_dates and (args.all_years or not args.date_from):
+        parser.error("--include-entry-dates 必须配合明确的 --date-from，且不能配合 --all-years")
     if args.query:
         if not args.manifest:
             parser.error("--query 模式必须提供 --manifest 以保存可复现检索记录")

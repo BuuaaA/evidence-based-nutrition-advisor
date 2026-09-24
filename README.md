@@ -1,152 +1,102 @@
-# evidence-based-nutrition-advisor V1.0.1
+# Evidence-Based Nutrition Advisor
 
-网上随手就能找到“有论文证明”的营养建议。论文可能互相矛盾，研究对象也常常不同；统计学差异未必达到实际可感知的程度，产品宣传还会把有限结论讲得过满。
+把一个通用 AI Agent 变成可追溯的营养与补剂证据审计助手：先弄清问题和安全边界，再核对证据、说明适用人群与不确定性，最后给出容易理解的下一步。
 
-evidence-based-nutrition-advisor V1.0.1 是一个开放的 Agent Skill。它先界定问题，目标是在 90 秒内生成一张标明核验层级的个性化 HTML 证据卡。用户申请完整审计，或风险需要更高保证时，同一张卡再加入可复现的 PubMed 检索、全量题录筛查和逐结局确定性评价。
+这是一个开源 **Agent Skill**，不是独立 App、医学诊断工具或预先审核好的营养数据库。运行效果取决于宿主 Agent、当次可用的检索与文件工具，以及实际完成的证据核查。
 
-`普通问题 → L1-Quick 快速核验 → 申请或风险升级 → L1-Audited 完整审计 → 需要重新合并研究时进入 L2-Research`
+> **安全边界：**本项目提供一般证据检索与决策支持，不诊断疾病或替代医生、药师、注册营养师。孕哺、未成年人、慢性病、处方药、明显异常化验或进行性症状等情境，应优先寻求合格专业人员的意见。不要因研究任务延误必要的医疗处置。
 
-它处理的是几个更实际的问题：
+## 适合谁
 
-- 证据到底适用于谁；
-- 效果有多大，是否达到值得在意的程度；
-- 为什么指南、综述、单项试验和产品宣传会得出不同结论；
-- 哪些信息会改变现在的建议；
-- 证据不完整时，结论究竟有多不稳。
+- 想判断一种营养干预、补剂或产品宣称是否值得进一步考虑的人；
+- 需要核对指南、系统综述与原始研究为何不一致的营养专业人员；
+- 需要把 PubMed 检索、逐条筛查、研究评价和结论边界记录下来的研究人员；
+- 希望让 AI 输出包含来源、范围和限制的证据卡，而不是只有一段结论的开发者。
 
-> [!IMPORTANT]
-> 本项目用于证据检索、审计和决策支持，不用于诊断或替代治疗。孕哺、未成年人、肝肾疾病、处方药、手术、明显异常化验或进行性症状，应优先咨询医生、药师或注册营养专业人员。
+## 它如何工作
 
-## 三种任务
+1. **先界定问题与安全事项。**一般知识问题不索取个人资料。只有当答案可能改变建议、证据适用性或安全处置时，才追问最少信息；通常 1–3 项，必要时最多 5 项。
+2. **快速核验，尽早给出有边界的回答。**优先核对适用的本地标准、经过方法与适用性检查的指南或综述，以及权威安全资料。快速核验不会冒称完成系统综述或本轮 EAL 结论评级。
+3. **用户需要时再深入审计。**缓存不匹配或快速结论仍不能回答问题时，先说明审计范围和预期价值。除用户已明确要求外，取得明确同意后才启动长时审计；约 15 分钟是阶段进展预算，不是完成保证。
+4. **保留检索与筛查轨迹。**完整审计记录 PubMed 检索式、Query Translation、时间范围、命中与导出数、筛查决定、排除原因及资料访问情况。没有合格历史基座时，流程默认要求全年份检索；有基座时更新截止日之后的新证据，并检查延迟入库记录。
+5. **按营养问题综合证据。**以 Academy of Nutrition and Dietetics Evidence Analysis Library（EAL）流程作为组织框架，按研究类型使用适用的 Quality Criteria Checklist（QCC），再按具体结局形成结论评价。长期饮食暴露、疗效与伤害问题可能需要不同研究设计；队列或随机试验的标签都不会自动决定质量。
+6. **把不确定性与行动分开。**来源质量、结论支持程度、与个人情况的匹配、效应大小和是否值得采用是不同判断。证据体、关键资料或方法规则不完整时，保留未评级状态，不猜造等级。
+7. **Meta 是有条件的深入工作。**只有问题清楚、至少有两个独立且可比较的研究、数据足够，且定量合并可能改变判断时才考虑；缺少综述、新研究出现或结论等级较低都不会自动触发 Meta。单库结果会明确说明数据库与资料覆盖限制。
 
-路径由任务决定，与用户的职业头衔无关。普通用户可以申请完整审计，专业人员也可以只要一张快速购买卡。
+使用 EAL/QCC 作为工作流程，不代表 Academy 对本项目、自动评价或结论作出认证。正式 QCC 总体规则未核定或证据不足时，项目会保留逐项理由并关闭相应的正式自动评级。
 
-| 任务 | 什么时候使用 | 交付结果 |
+## 查看结果样例
+
+![氨糖软骨素问题：通用回答与本 Skill 输出结构对比](assets/glucosamine-chondroitin-before-after.png)
+
+这张图展示回答结构与证据边界，不是固定模型、版本和日期下的性能基准。可查看[氨糖软骨素详细证据卡](examples/cases/glucosamine-chondroitin/answer.html)、[PubMed 检索与筛查记录](examples/glucosamine-chondroitin-before-after.md)，以及[14 个行为验收案例](examples/consumer-answer-demo.html)。Neuriva 商品案例保留在画廊中，不用作首页表现对照。
+
+## 竞争位置与差异
+
+截至 2026 年 9 月，营养信息产品已经有成熟的资料库、官方事实表和个性化应用。Examine 提供营养与补剂研究资料、按健康目标组织的指南，并说明其多位专业人员参与审核；NIH Office of Dietary Supplements 提供消费者和专业人员版补剂事实表；SuppAI 面向个人提供补剂选择、剂量、安全提醒和跟踪；CliniAtlas 则公开介绍了检索 PubMed、Europe PMC、指南和监管资料并返回带来源的临床证据答案。它们各自解决不同问题，不能仅凭功能描述判定实际建议质量。
+
+本项目更适合定位为**可移植到通用 Agent 的营养证据审计工作流**：重点在问题匹配、可复核的 PubMed 审计、营养情境下的来源评价、透明的未评级状态，以及用户控制的深入升级。它不是在已有专家团队、长期维护的内容库、移动端个性化体验或跨数据库搜索上与上述产品正面竞争。
+
+| 用户要解决的问题 | 常见替代方案 | 本 Skill 的侧重点 |
 |---|---|---|
-| 快速判断（L1-Quick） | “补充氨糖软骨素能缓解关节疼痛吗？”“这个产品值不值得买？” | 先查已审计缓存；未命中时核验本地标准、可靠指南或综述、权威安全资料，生成一张明确标注“快速核验，未正式评级”的 HTML 证据卡。卡片提供“申请完整审计”按钮。 |
-| 完整证据审计（L1-Audited） | 用户明确要求专业或完整审计，或当前风险需要更高保证 | 历史证据基座、可复现的 PubMed 更新检索、限定范围内的全部题录筛查、全文边界、PICOS 纳排，以及逐关键结局的效应和确定性。 |
-| 研究级合成（L2-Research） | 需要重新提取原始研究、重新合并数据或形成研究方案 | 预先指定数据库和方案，完整导出与筛查，提取可核查全文，完成偏倚评价、统计合并、敏感性分析、GRADE 和复现记录。 |
+| 查某种补剂通常怎么用、有哪些研究 | Examine 等主题资料库 | 按用户当前问题重新界定人群、产品、剂量与结局，并追溯本轮依据 |
+| 查营养素背景与官方安全信息 | NIH ODS、地区指南和监管资料 | 把这些资料作为候选来源，与具体宣称及地区适用性一起审查 |
+| 获取方便的个性化补剂推荐和日常跟踪 | SuppAI 等消费应用 | 不以“推荐更多产品”为目标；解释什么证据适用、何时不建议购买或需进一步核实 |
+| 对临床问题做快速文献问答 | CliniAtlas 等通用临床证据助手 | 聚焦营养、饮食暴露、补剂及产品宣称，支持完整审计记录和可选单库合成 |
 
-可直接查看：
-
-- [普通用户 L1-Quick 证据卡（含“申请完整审计”按钮）](examples/consumer-answer-quick-demo.html)
-- [14 个行为验收用例](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)
-- [氨糖软骨素完整审计示例](examples/cases/glucosamine-chondroitin/answer.html)
-- [专业证据展示：老年人补钙](examples/cases/calcium-older-adults/professional-evidence.md)
-- [单数据库 Meta 证据合成示例](examples/cases/meta-routing/original-meta-result.md)
-
-## 一张图看懂交付差异
-
-![氨糖软骨素问题：普通回答与本 Skill 的回答对比](assets/glucosamine-chondroitin-before-after.png)
-
-左侧保留常见的概括式回答。右侧展示当前普通用户路径：先给决定和适用边界，再显示 L1-Quick 的三类核验来源，并提供“申请完整审计”按钮。普通提问不会自动触发 PubMed 全量筛查或 GRADE；这些步骤在用户申请完整审计或风险需要更高保证时启动。[查看对比图的生成口径](examples/glucosamine-chondroitin-before-after.md)。
-
-## 方法底线
-
-普通功效问题默认执行以下流程：
-
-1. 先判断是在问一般证据，还是准备为自己作决定。一般证据问题直接检索；个人决策或意图不明时，先用点击选项确认通常 3–5 项、至多 5 项真正可能改变建议的信息，不要求填写完整病史，也不为凑数询问无关资料。
-2. 先查已审计本地证据包；命中时直接生成缓存审计卡，不重复联网。
-3. 未命中时先核验本地标准、可靠指南/综述和权威安全资料，生成 L1-Quick 卡；它不声称系统综述或正式 GRADE。
-4. 用户明确要求完整审计或风险需要更高保证时，再保存 PubMed 检索式与 Query Translation，完整导出并筛查全部命中。
-5. 完整审计才按关键结局评价 GRADE；若改判，在同一张卡显示改判原因。
-6. 始终把证据确定性、当前用户匹配度和最终决策分开表达。
-
-进入完整审计后，历史系统综述用于建立证据基座，PubMed 更新检索负责核查其截止日期之后的新记录。L1-Quick 首卡不等待这套流程。多数据库、注册平台、灰色文献和双人流程属于发表级系统综述的要求；本 Skill 的单数据库 Meta 证据合成只对预先声明的数据库和可得全文负责。
-
-### 为什么先点几项再生成证据
-
-“血脂”“关节痛”“老年人补钙”背后可能对应不同的异常分项、诊断、剂型、关键用药和风险状态，这些信息会直接改变检索人群与建议。Skill 会先做“决策翻转测试”，只保留会改变 PICOS、安全边界或购买判定的问题。
-
-- 宿主支持选择卡或表单时，直接使用原生点击控件；
-- 本地环境可运行脚本时，可用一次性 localhost 问卷收集选择，答案只写入临时文件；
-- 两者都不可用时，一次只问一个自然语言问题；绝不要求用户回复 1A/2B 等机器代码；
-- 每题都有“不清楚”，也可一键跳过并先看一般结论。
-
-本地问卷支持单选、多选、可跳过题和提交前摘要；最终提交会自动写回临时 JSON，用户不必复制答案。这不是完整健康问卷。通常 3–5 项，硬上限 5 项；若只有 1–2 项真正会改变建议，就只问 1–2 项。“适不适合我”展开层用于回顾已采用的信息和剩余不确定性，不再把首次关键问题藏在里面。
-
-### 全文拿不到时怎么处理
-
-全文获取不完整不等于研究结果阴性，也不等于论文质量差。如果 PubMed 命中已完整导出、题名摘要已全部筛查，而且历史证据基座足以界定证据体，Skill 会继续给出逐结局的**暂定 GRADE**，但必须：
-
-- 把等级写成“暂定高 / 暂定中 / 暂定低 / 暂定极低”；
-- 显示尚未取得全文的篇数和记录；
-- 说明哪些 GRADE 域可能受影响；
-- 在结果打开时提示用户上传全文，上传后重新筛选、提取和评级。
-
-如果连检索边界或关键效应都无法识别，则只做 GRADE-informed 判断，不使用四级等级。检索被截断或筛查未完成时，生成器会拒绝输出通常的功效结论。
-
-## 单数据库 Meta 证据合成
-
-这项功能主要面对目前**没有可靠综合结论**的问题，例如：没有系统综述、现有 Meta 已明显过时、纳排或统计方法存在严重缺陷，或者出现了可能改变旧结论的新研究。它用 Meta 分析方法重新合成边界清楚的证据集，交付范围始终限定在预先指定的数据库和可获得全文：
-
-1. 预先确定 PICOS、主要结局、检索截止日期和分析方案；
-2. 根据问题和访问条件指定一个数据库，保存完整检索式并导出全部命中；
-3. 按预设标准完成题名摘要和全文筛选；
-4. 只从能够取得全文、数据可核查的研究中提取效应数据；
-5. 评价偏倚风险，判断研究是否适合合并；
-6. 完成统计合并、异质性与敏感性分析，并按结局评价 GRADE；
-7. 明确列出未取得全文、无法提取或不适合合并的研究。
-
-结果应命名为“基于【数据库名称】和可获得全文的 Meta 证据合成”，只代表该数据库中已识别且能够核查全文的研究。单数据库可能漏掉其他数据库和未发表研究，因此不能写成“全面系统综述”或“发表级 Meta”。它的价值是，在证据结论空白或不可靠时，提供一个范围透明、可以复核、比随机挑选论文更可信的当前估计。
+**竞争力判断：当前有清晰的细分差异，但尚未证明整体竞争优势。**流程完整度和可追溯性是值得验证的优点；宿主依赖、需要用户理解 Skill 安装方式、单库边界、没有经过专家复核的主题库，以及尚无与人工或成熟产品比较的准确性与可用性基准，是实际短板。下一步最有价值的投入不是再增加评级术语，而是方法学专家复核、常见问题的高质量证据包，以及与普通 AI 回答和成熟资料库开展盲评，测量重大错误、安全遗漏、用户理解度与首次可用回答时间。
 
 ## 安装
 
-请保留整个仓库。`references/`、`scripts/` 和 `templates/` 都是 Skill 的一部分，只复制 `SKILL.md` 会丢失关键能力。
+将整个仓库放入宿主的 Skills 目录，并在新会话中启用 `evidence-based-nutrition-advisor`。以 Codex 的用户级目录为例：
 
-### 让 AI 直接安装
-
-把仓库地址复制给支持 Skills 的 AI：
-
-```text
-请从 https://github.com/BuuaaA/evidence-based-nutrition-advisor 安装这个 Skill。
-请保留完整目录，并确认最终目录的根部可以直接看到 SKILL.md。
+```powershell
+$skillsDir = Join-Path $HOME ".codex\skills"
+git clone https://github.com/BuuaaA/evidence-based-nutrition-advisor.git `
+  (Join-Path $skillsDir "evidence-based-nutrition-advisor")
 ```
 
-### 按宿主的官方文档安装
+已有安装时，在仓库目录内按自己的变更流程更新；不要覆盖个人证据缓存或健康档案。不同宿主的安装位置和启用方式可能不同，请查看对应产品的官方 Skills 文档。
 
-- Codex：[OpenAI Skills](https://github.com/openai/skills)
-- Claude Code：[Agent Skills](https://code.claude.com/docs/en/skills)
-- WorkBuddy：[技能说明](https://cloud.tencent.com/document/product/1831/134432)
-- TraeWork：[Skills 文档](https://docs.trae.cn/work_skills)
+## 使用示例
 
-一般做法是把完整仓库放进宿主的用户级或项目级 Skills 目录。不同产品的目录和启用方式可能变化，请以对应官方文档为准。
-
-### 下载 ZIP
-
-在 GitHub 点击 **Code → Download ZIP**，解压后把整个 `evidence-based-nutrition-advisor` 文件夹放入宿主的 Skills 目录；如果宿主支持上传 Skill ZIP，也可直接上传。安装后开启新任务，必要时重启宿主。
-
-## 怎么提问
-
-快速判断：
+**普通问题：**
 
 ```text
-使用 $evidence-based-nutrition-advisor：吃鱼油能改善血脂吗？
-如果这是个人决策且关键信息会改变建议，请先让我点击选择最关键的 3 至 5 项；至多 5 项，不要为凑数提问。收到选择后再生成证据。
+使用 $evidence-based-nutrition-advisor：鱼油能改善甘油三酯吗？
+如果这是个人使用决策，只询问会改变建议或安全判断的关键信息；先给快速核验结果，并标出仍不确定的部分。
 ```
 
-完整证据审计：
+**专业审计：**
 
 ```text
-使用 $evidence-based-nutrition-advisor 做专业证据审计：
-比较近期指南与系统综述对维生素 D 预防跌倒的结论，给出 PICOS、效应量、GRADE 五域和冲突原因。
+使用 $evidence-based-nutrition-advisor 做营养证据审计：
+比较指南、系统综述和 PubMed 更新研究对某个具体结局的判断；
+记录检索范围、纳排、来源评价、新旧证据冲突和 EAL 结论支持状态。
 ```
 
-研究级合成：
+**请求 Meta：**
 
 ```text
-使用 $evidence-based-nutrition-advisor，基于 PubMed 和可获得全文，
-重新合并某干预对某结局的研究。请先形成 PICOS、主要结局、截止日期和分析方案；
-结果不要称为发表级系统综述，并列出无法获取全文或无法提取数据的研究。
+基于预先界定的 PICOS 和一个指定数据库，评估这些独立研究是否适合定量合并。
+请报告数据提取、统计方法、异质性、敏感性分析及单库和资料访问限制；
+不满足合并条件时改做结构化叙述综合。
 ```
 
-## 示例与验收
+## 仓库内容
 
-仓库内置 14 个行为验收用例，覆盖模糊提问、产品审计、全文缺失、检索截断、Meta 意图分流、图文一致性、结构化个体试用、安全拦截、单病例随机交叉试验命名边界和完整产品事实采用。每个用例都有 PNG 与 SVG 结果图，并统一收在[可视化示例页](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/consumer-answer-demo.html)。商品名案例只出现在案例页，不作为首页代表问题。
-
-[L1-Quick 证据卡](examples/consumer-answer-quick-demo.html)由结构化答案和三类核验来源生成，不需要 PubMed manifest、RIS 或筛选日志，并会展示“申请完整审计”按钮。完整审计示例再由结构化答案、PubMed search manifest、原始 RIS 和逐条筛选 CSV 共同生成；生成器会核对检索式、Query Translation、命中数、筛选数、RIS 散列和全文缺失记录，任一项不一致都会拒绝生成。
+```text
+SKILL.md       入口说明、任务路由与关键边界
+references/    EAL/QCC、检索、来源评价、综合、隐私与交付规则
+scripts/       PubMed 检索、缓存校验、筛查辅助与答案生成
+templates/     证据卡、检索策略、筛查和报告模板
+examples/      可复核示例及测试材料
+tests/         行为验收用例、单元测试和统计校验
+```
 
 ## 开发与验证
+
+需要 Python 3。基础验证：
 
 ```powershell
 python -m unittest discover -s tests -p "test_*.py"
@@ -154,27 +104,18 @@ python scripts/build_behavior_case_gallery.py
 python scripts/build_before_after_image.py
 ```
 
-如本机安装了 Codex 的 Skill 校验器：
+如果安装了 Codex `skill-creator`，还可运行其 `quick_validate.py` 检查 Skill 结构。部分统计引擎和离线 WebR 能力需要额外依赖；按任务读取相关 `references/`，不必为普通快速核验安装全部工具。
 
-```powershell
-python "$env:USERPROFILE\.codex\skills\.system\skill-creator\scripts\quick_validate.py" .
-```
+不要提交健康档案、用户问卷正文、令牌、Cookie、数据库凭据、缓存中的个人信息或临时运行输出。贡献与安全报告方式见 [CONTRIBUTING.md](CONTRIBUTING.md)、[HEALTH_AND_PRIVACY.md](HEALTH_AND_PRIVACY.md) 和 [SECURITY.md](SECURITY.md)。
 
-主要目录：
+## 参考与竞品资料
 
-```text
-SKILL.md       Skill 入口和模式路由
-references/    检索、证据评价、GRADE、研究合成与隐私规则
-scripts/       PubMed 检索、HTML 生成、去重和 Meta 工具
-templates/     证据卡、筛选日志、提取表和报告模板
-examples/      三类任务路径、快速证据卡与可复现审计包
-tests/         行为用例、单元测试和统计引擎校验
-```
+- [Examine：研究流程](https://examine.com/about/research-process/) · [Examine：产品与研究内容](https://help.examine.com/help/getting-started)
+- [NIH ODS：膳食补充剂事实表](https://ods.od.nih.gov/factsheets/list-all/)
+- [SuppAI：App Store 产品说明](https://apps.apple.com/us/app/suppai-ai-supplement-guide/id6795253143)
+- [CliniAtlas：临床证据搜索产品说明](https://cliniatlas.com/)
+- [EAL Evidence Analysis Manual 与表单](https://www.andeal.org/evidence-analysis-manual)
 
-## 安全、贡献与许可
+## 许可
 
-不要把病历、健康档案、Cookie、API 密钥、数据库凭据或下载令牌提交到仓库。健康档案只有在用户明确要求时才建立，并须保存在 Skill 和 Git 仓库之外。更多边界见 [HEALTH_AND_PRIVACY.md](HEALTH_AND_PRIVACY.md)，安全问题见 [SECURITY.md](SECURITY.md)。
-
-欢迎提交 Issue 和 Pull Request；提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-本项目采用 [MIT License](LICENSE)。Copyright © 2026 BuuaaA。
+本项目采用 [MIT License](LICENSE)。

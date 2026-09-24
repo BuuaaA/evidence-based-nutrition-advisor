@@ -12,7 +12,7 @@ SCRIPT = ROOT / "scripts" / "evidence_cache.py"
 
 def example_pack():
     return {
-        "schema_version": "nutrition-evidence-pack-v1",
+        "schema_version": "nutrition-evidence-pack-v2",
         "topic_id": "test-topic",
         "title": "Test topic",
         "aliases": ["test"],
@@ -28,8 +28,16 @@ def example_pack():
             "records_exported": 3,
             "records_screened": 3,
             "full_text_unavailable": 0,
-            "certainty_method": "rapid_grade",
-            "certainty_summary": "moderate",
+            "assessment_framework": "EAL",
+            "method_version": "EAL-2022-11/QCC-primary-v1",
+            "assessment_status": "preliminary",
+            "assessment_summary": "EAL outcome level preliminary assessment",
+            "outcomes": [{
+                "outcome": "outcome",
+                "eal_grade_state": "preliminary",
+                "eal_grade": "II",
+                "synthesis_rationale": "Direct and generally consistent evidence with limitations.",
+            }],
             "coverage_limits": "PubMed-only single-reviewer audit",
             "sources": [{"label": "Test source", "url": "https://example.org/source"}],
         },
@@ -111,6 +119,22 @@ class EvidenceCacheTests(unittest.TestCase):
         result = call(self.index, "register", "--pack", str(self.source))
         self.assertEqual(result.returncode, 4)
         self.assertIn("unsupported top-level fields", result.stdout)
+
+    def test_legacy_grade_pack_requires_reappraisal_instead_of_cached_reuse(self):
+        pack = example_pack()
+        pack["schema_version"] = "nutrition-evidence-pack-v1"
+        passport = pack["evidence_passport"]
+        for key in ("assessment_framework", "method_version", "assessment_status", "assessment_summary", "outcomes"):
+            passport.pop(key)
+        passport["certainty_method"] = "rapid_grade"
+        passport["certainty_summary"] = "legacy GRADE result"
+        self.source.write_text(json.dumps(pack), encoding="utf-8")
+        self.register()
+        result = call(self.index, "lookup", "--topic", "test-topic", "--as-of", "2026-08-31")
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["status"], "reappraisal_required")
+        self.assertEqual(payload["route"], "quick_l1_reassess_legacy_pack")
+        self.assertIn("Do not reuse", payload["instruction"])
 
 
 if __name__ == "__main__":

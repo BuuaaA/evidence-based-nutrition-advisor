@@ -35,9 +35,9 @@
   "research": {
     "picos": "P：40至65岁健康成人；I：100 mg全咖啡果提取物加100 mg磷脂酰丝氨酸；C：安慰剂；O：认知结局；S：随机双盲安慰剂对照试验；随访：42天。",
     "effect": "部分工作记忆指标出现小幅组间差异，日常记忆、Go/No-Go和BDNF未显示组间获益。",
-    "certainty": "低至极低（逐结局）",
-    "certainty_method": "rapid_grade",
-    "certainty_scope": "以预定义检索式完整导出并单人筛查 PubMed 的 2 条命中，评估 2 篇全文；未检索 Embase、CENTRAL、注册库或灰色文献。",
+    "certainty": "证据不足，未正式评级；当前检索范围和可评价资料有限。",
+    "certainty_method": "eal_informed",
+    "certainty_scope": "示例：PubMed-only 检索了 2 条记录，未检索其他数据库、注册库或灰色文献。",
     "certainty_reasons": [
       "单项短期直接试验",
       "多结局比较",
@@ -63,26 +63,20 @@
         "effect": "出现小幅组间差异",
         "certainty": "极低",
         "why": "从随机试验的高起点，因选择性结果风险、替代结局间接性和不精确性降至极低。",
-        "grade_domains": {
-          "risk_of_bias": "严重：以符合方案人群为主要分析，并在大量认知指标中仅部分阳性。",
-          "inconsistency": "无法判断：只有一项符合条件的人体试验，未因同一问题重复降级。",
-          "indirectness": "严重：电脑任务表现不等于日常可感知的记忆或生活功能改善。",
-          "imprecision": "严重：单项短期试验、样本量小，缺少稳定的效应区间。",
-          "dissemination_bias": "疑似：产品公司资助且未发现独立重复；检索未覆盖注册库和灰色文献。"
-        }
+        "eal_grade_state": "incomplete",
+        "eal_grade": null,
+        "qcc_summary": "演示数据：单项研究评价信息不完整，整体 QCC 规则未核定。",
+        "synthesis_rationale": "仅有少量检索记录，不能据此给出结论级别。"
       },
       {
         "outcome": "主观日常记忆",
         "effect": "未优于安慰剂",
         "certainty": "低",
         "why": "从随机试验的高起点，因研究局限和不精确性各降一级。",
-        "grade_domains": {
-          "risk_of_bias": "严重：商业资助、符合方案分析和多结局报告增加选择性结果风险。",
-          "inconsistency": "无法判断：只有一项符合条件的人体试验。",
-          "indirectness": "不严重：该结局较接近用户在日常生活中的主观记忆体验。",
-          "imprecision": "严重：单项短期试验，无法排除小幅获益或伤害。",
-          "dissemination_bias": "疑似但未额外降级：缺少独立重复，且未检索注册库与灰色文献。"
-        }
+        "eal_grade_state": "incomplete",
+        "eal_grade": null,
+        "qcc_summary": "演示数据：单项研究评价信息不完整，整体 QCC 规则未核定。",
+        "synthesis_rationale": "仅有少量检索记录，不能据此给出结论级别。"
       }
     ],
     "evidence_base": {
@@ -120,7 +114,10 @@
         "没有比较组或未报告目标认知结局的记录。"
       ],
       "exclusion_log": [
-        {"reason": "体外研究，不能回答口服产品的人体认知效果", "count": "1"}
+        {
+          "reason": "体外研究，不能回答口服产品的人体认知效果",
+          "count": "1"
+        }
       ]
     },
     "funding": "研究由Reckitt资助，部分作者为公司员工。",
@@ -144,7 +141,13 @@
       }
     ],
     "meta": "未发现足以支持直接产品结论的独立产品级Meta分析。",
-    "grade": "本例完成了 PubMed-only、单人快速证据综合后的逐结局 GRADE。电脑工作记忆测试为极低确定性；主观日常记忆为低确定性。未检索其他数据库和注册库是明确的方法限制。",
-    "rob": "主要关注多重比较、符合方案分析和商业资助。"
+    "grade": "",
+    "rob": "主要关注多重比较、符合方案分析和商业资助。",
+    "eal_assessment": {
+      "framework": "EAL",
+      "manual_version": "EAL-2022-11",
+      "status": "incomplete",
+      "assessment_summary": "演示数据不形成 EAL I–V 等级。"
+    }
   }
 }
