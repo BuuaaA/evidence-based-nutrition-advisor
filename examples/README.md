@@ -2,7 +2,7 @@
 
 ## 新版 Skill 实际生成的示例
 
-[打开氨糖软骨素快速证据卡](cases/glucosamine-2026-quick/answer.html) · [查看来源核验与方法边界](cases/glucosamine-2026-quick/source-notes.md) · [查看首屏预览](cases/glucosamine-2026-quick/preview.svg)
+[打开氨糖软骨素快速证据卡](https://buuaaa.github.io/evidence-based-nutrition-advisor/examples/cases/glucosamine-2026-quick/answer.html) · [查看来源核验与方法边界](cases/glucosamine-2026-quick/source-notes.md) · [查看首屏预览](cases/glucosamine-2026-quick/preview.svg)
 
 这是 2026-09-24 按 V2.0 的 **L1-Quick** 路径重新核验、再用当前 `scripts/build_consumer_answer.py` 生成的通用问题示例。`answer.json` 保留结构化输入，`source-notes.md` 记录真实来源、适用性和方法局限。它没有冒称完成 PubMed 全量筛查或正式 EAL 结论评价。
 
